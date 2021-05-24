@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -60,7 +61,7 @@ public class ControladorLogin {
 			String rol=(String)request.getSession().getAttribute("ROL");
 
 			switch(rol) {
-			case "Admin":   
+			case "Vendedor":   
 				//guardar un objeto en una sesión
 				request.getSession().setAttribute("AdminId", usuarioBuscado.getId());
 				return new ModelAndView("redirect:/homeAdmin",model);
@@ -68,6 +69,10 @@ public class ControladorLogin {
 			case "Cliente": 
 				request.getSession().setAttribute("ClienteId", usuarioBuscado.getId());
 				return new ModelAndView("redirect:/homeCliente",model);		
+			
+			case "Administrador": 
+				request.getSession().setAttribute("AdministradorId", usuarioBuscado.getId());
+				return new ModelAndView("redirect:/homeAdministrador",model);
 			
 		   }
 		} else {
@@ -82,7 +87,7 @@ public class ControladorLogin {
 	public ModelAndView irAHome(HttpServletRequest request) {
 		String rol=(String)request.getSession().getAttribute("ROL");
 		
-		if(rol.equals("Admin")) {
+		if(rol.equals("Vendedor")) {
 			return new ModelAndView("homeAdmin");
 		}
 		else {
@@ -110,4 +115,32 @@ public class ControladorLogin {
 	public ModelAndView inicio() {
 		return new ModelAndView("redirect:/login");
 	}
+	
+	
+	@RequestMapping("/registroUsuario")
+	public ModelAndView registro() {
+		ModelMap modelo = new ModelMap();
+		Usuario usuario = new Usuario();
+		modelo.put("usuario", usuario);
+		return new ModelAndView("registroUsuario", modelo);
+	}
+	@RequestMapping(path="/procesarRegistro",method=RequestMethod.POST)
+	public ModelAndView procesarRegistroUsuario(
+			@ModelAttribute("usuario") Usuario usuario,
+			@RequestParam(value="repassword",required=false) String repass
+			) {
+		//validar password con repassword
+		ModelMap modelo = new ModelMap();
+		if(usuario.getPassword().equals(repass)) {
+			//guardamelo en la base
+			servicioLogin.registro(usuario);
+			modelo.put("mensaje","Usuario registrado! "+usuario.getEmail());
+		}else {
+			modelo.put("mensaje","Error no coinciden las pass");
+		}
+		return new ModelAndView("registroUsuario",modelo);
+		
+	}
+	
+
 }
