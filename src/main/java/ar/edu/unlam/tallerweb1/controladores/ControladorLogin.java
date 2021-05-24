@@ -63,8 +63,8 @@ public class ControladorLogin {
 			switch(rol) {
 			case "Vendedor":   
 				//guardar un objeto en una sesión
-				request.getSession().setAttribute("AdminId", usuarioBuscado.getId());
-				return new ModelAndView("redirect:/homeAdmin",model);
+				request.getSession().setAttribute("VendedorId", usuarioBuscado.getId());
+				return new ModelAndView("redirect:/homeVendedor",model);
 			        
 			case "Cliente": 
 				request.getSession().setAttribute("ClienteId", usuarioBuscado.getId());
@@ -82,8 +82,9 @@ public class ControladorLogin {
 		return new ModelAndView("login", model);
 	}
 
+	/*
 	// Escucha la URL /home por GET, y redirige a una vista.
-	@RequestMapping(path = "/homeAdmin", method = RequestMethod.GET)
+	@RequestMapping(path = "/homeVendedor", method = RequestMethod.GET)
 	public ModelAndView irAHome(HttpServletRequest request) {
 		String rol=(String)request.getSession().getAttribute("ROL");
 		
@@ -95,6 +96,8 @@ public class ControladorLogin {
 		}
 		
 	}
+	*/
+	
 	/*
 	@RequestMapping(path = "/cerrarsesion", method = RequestMethod.GET)
 	public ModelAndView cerrarsesion(HttpServletRequest request) {

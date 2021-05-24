@@ -8,13 +8,19 @@ import org.springframework.web.servlet.ModelAndView;
 public class ControladorAdmin {
 
 	// Escucha la URL /periodo por GET, y redirige a una vista.
-	   @RequestMapping("/periodo")
-		public ModelAndView irAPeriodo() {
-			return new ModelAndView("periodo");
+	@RequestMapping("/homeAdministrador")
+	public ModelAndView irAHomeAdministrador() {
+		return new ModelAndView("homeAdministrador");
+	}
+	
+	@RequestMapping("/periodo")
+	public ModelAndView irAPeriodo() {
+		return new ModelAndView("periodo");
 		}
 	   
-	   @RequestMapping("/estadisticas")
-		public ModelAndView irAEstadisticas() {
-			return new ModelAndView("estadisticas");
-		}
+	@RequestMapping("/estadisticas")
+	public ModelAndView irAEstadisticas() {
+		return new ModelAndView("estadisticas");
+	}
+	
 }
