@@ -16,10 +16,16 @@
 			<!-- SideBar User info -->
 			<div class="full-box dashboard-sideBar-UserInfo">
 			<c:choose>
-            <c:when test="${AdminId != null}">
+            <c:when test="${AdministradorId != null}">
 				    <figure class="full-box">
 					<img src="img/admin.png" alt="UserIcon">
-					<figcaption class="text-center text-titles">Admin</figcaption>
+					<figcaption class="text-center text-titles">Administrador</figcaption>
+				    </figure>
+				</c:when>
+				<c:when test="${VendedorId != null}">
+				    <figure class="full-box">
+					<img src="img/cliente-icon.png" alt="UserIcon">
+					<figcaption class="text-center text-titles">Vendedor</figcaption>
 				    </figure>
 				</c:when>
 	            <c:otherwise>
@@ -41,7 +47,7 @@
 			
 			<!-- SideBar Menu -->
 			<c:choose>
-            <c:when test="${AdminId != null}">
+            <c:when test="${AdministradorId != null}">
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu" >
 				<li>
 					<a href="homeAdmin">
@@ -52,7 +58,18 @@
 					<a href="#!" class="btn-sideBar-SubMenu">
 						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Proveedores <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
-					<ul class="list-unstyled full-box">
+					<ul class="list-unstyled full-box" style="padding-top: 0px;">
+						<li>
+							<a href="periodo"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Periodo</a>
+						</li>
+						<li>
+							<a href="estadisticas"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Estadisticas</a>
+						</li>
+					</ul>
+					<a href="#!" class="btn-sideBar-SubMenu">
+						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Clientes <i class="zmdi zmdi-caret-down pull-right"></i>
+					</a>
+					<ul class="list-unstyled full-box" style="padding-top: 0px;">
 						<li>
 							<a href="periodo"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Periodo</a>
 						</li>
@@ -64,6 +81,40 @@
 			</ul>
 			
 			</c:when>
+			
+			<c:when test="${VendedorId != null}">
+			<ul class="list-unstyled full-box dashboard-sideBar-Menu" >
+				<li>
+					<a href="homeVendedor">
+						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Principal
+					</a>
+				</li>
+				<li>
+					<a href="#!">
+						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Combos
+					</a>
+				</li>
+				<li>
+					<a href="#!">
+						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Clientes
+					</a>
+				</li>		
+				<!--<li>
+					<a href="#!" class="btn-sideBar-SubMenu">
+						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Proveedores <i class="zmdi zmdi-caret-down pull-right"></i>
+					</a>
+					<ul class="list-unstyled full-box">
+						<li>
+							<a href="periodo"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Periodo</a>
+						</li>
+						<li>
+							<a href="estadisticas"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Estadisticas</a>
+						</li>
+					</ul>
+				</li>-->		
+			</ul>
+			</c:when>
+			
 	        <c:otherwise>
 	        
 	        <ul class="list-unstyled full-box dashboard-sideBar-Menu" >
