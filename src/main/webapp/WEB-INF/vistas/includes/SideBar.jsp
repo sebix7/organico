@@ -90,7 +90,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="#!">
+					<a href="verCombos">
 						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Combos
 					</a>
 				</li>
