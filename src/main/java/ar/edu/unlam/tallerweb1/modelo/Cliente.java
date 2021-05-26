@@ -10,16 +10,18 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@OneToOne
-	private Carro carro;
+	//@OneToOne
+	//private Carro carro;
 	@OneToOne
 	private Usuario usuario;
+	/*
 	public Carro getCarro() {
 		return carro;
 	}
 	public void setCarro(Carro carro) {
 		this.carro = carro;
 	}
+	*/
 	public Usuario getUsuario() {
 		return usuario;
 	}

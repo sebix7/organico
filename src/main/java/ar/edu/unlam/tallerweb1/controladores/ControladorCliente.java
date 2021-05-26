@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,8 +11,15 @@ public class ControladorCliente {
 
 	
 	@RequestMapping("/homeCliente")
-	public ModelAndView irAHomeCliente() {
-		return new ModelAndView("homeCliente");
+	public ModelAndView irAHomeCliente(HttpServletRequest request) {
+		String rol=(String)request.getSession().getAttribute("ROL");
+		
+		if(rol.equals("Cliente")) {
+			return new ModelAndView("homeCliente");
+		}
+		else {
+			return new ModelAndView("login");
+		}
 	}
 	
 	@RequestMapping("/productos")

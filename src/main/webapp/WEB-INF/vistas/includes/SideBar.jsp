@@ -120,22 +120,20 @@
 	        <ul class="list-unstyled full-box dashboard-sideBar-Menu" >
 				<li>
 					<a href="homeCliente">
-						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Principal
+						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home
 					</a>
 				</li>
 				<li>
-					<a href="#!" class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Compras <i class="zmdi zmdi-caret-down pull-right"></i>
+					<a href="combos">
+						<i class="zmdi zmdi-cutlery zmdi-hc-fw"></i> Combos
 					</a>
-					<ul class="list-unstyled full-box">
-						<li>
-							<a href="#"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Periodo</a>
-						</li>
-						<li>
-							<a href="#"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Novedades</a>
-						</li>
-					</ul>
-				</li>			
+				</li>
+				<li>
+					<a href="carrito">
+						<i class="zmdi zmdi-shopping-cart zmdi-hc-fw"></i> Carrito
+					</a>
+				</li>
+			</ul>
 	        
 	        </c:otherwise>
             </c:choose>
