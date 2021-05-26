@@ -39,14 +39,14 @@
 		<div class="full-box text-center" style="padding: 30px 10px;">
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Provedores
+					Crear Combos
 				</div>
 				<div class="full-box tile-icon text-center">
 					<i class="zmdi zmdi-account"></i>
 				</div>
 				<div class="full-box tile-number text-titles">
 					<p class="full-box">7</p>
-					<small>Register</small>
+					<small><a href="creacionCombo">Crear</a></small>
 				</div>
 			</article>
 			<article class="full-box tile">

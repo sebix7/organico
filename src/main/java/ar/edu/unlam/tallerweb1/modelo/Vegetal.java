@@ -22,6 +22,12 @@ public class Vegetal {
 	@ManyToOne
 	private Combo combo;
 	
+	public Combo getCombo() {
+		return combo;
+	}
+	public void setCombo(Combo combo) {
+		this.combo = combo;
+	}
 	public Long getId() {
 		return id;
 	}
