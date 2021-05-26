@@ -25,6 +25,11 @@
 					</a>
 				</li>
 				<li>
+					<a href="carrito" class="btn-search">
+						<i class="zmdi zmdi-shopping-cart"></i>
+					</a>
+				</li>
+				<li>
 					<a href="#!" class="btn-modal-help">
 						<i class="zmdi zmdi-help-outline"></i>
 					</a>
@@ -39,16 +44,18 @@
 		</div>
 		<div class="full-box text-center" style="padding: 30px 10px;">
 			<article class="full-box tile">
+			<a href="combos">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Productos
+					Combos
 				</div>
 				<div class="full-box tile-icon text-center">
-					<i class="zmdi zmdi-account"></i>
+					<i class="zmdi zmdi-cutlery"></i>
 				</div>
 				<div class="full-box tile-number text-titles">
 					<p class="full-box">7</p>
 					<small>Register</small>
 				</div>
+			</a>
 			</article>
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
