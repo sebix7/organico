@@ -25,7 +25,7 @@
 					</a>
 				</li>
 				<li>
-					<a href="carrito" class="btn-search">
+					<a href="carrito" class="menu-dashboard">
 						<i class="zmdi zmdi-shopping-cart"></i>
 					</a>
 				</li>

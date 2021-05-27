@@ -154,6 +154,8 @@ public class ControladorLogin {
 				servicioCarro.guardarCarro(carro);
 				
 				modelo.put("mensaje","Usuario registrado! "+usuario.getEmail());
+			} else if(usuario.getRol().equals("Vendedor")) {
+				modelo.put("mensaje","Usuario registrado! "+usuario.getEmail());
 			}
 		}else {
 			modelo.put("mensaje","Error no coinciden las pass");
