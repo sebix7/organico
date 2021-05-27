@@ -3,9 +3,12 @@ package ar.edu.unlam.tallerweb1.controladores;
 import ar.edu.unlam.tallerweb1.modelo.Carro;
 import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.Vendedor;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCarro;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioVendedor;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,12 +31,14 @@ public class ControladorLogin {
 	private ServicioLogin servicioLogin;
 	private ServicioCliente servicioCliente;
 	private ServicioCarro servicioCarro;
+	private ServicioVendedor servicioVendedor;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioCliente servicioCliente, ServicioCarro servicioCarro){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioCliente servicioCliente, ServicioCarro servicioCarro, ServicioVendedor servicioVendedor){
 		this.servicioLogin = servicioLogin;
 		this.servicioCliente = servicioCliente;
 		this.servicioCarro = servicioCarro;
+		this.servicioVendedor=servicioVendedor;
 	}
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es invocada por metodo http GET
@@ -145,6 +150,14 @@ public class ControladorLogin {
 		if(usuario.getPassword().equals(repass)) {
 			//guardamelo en la base
 			servicioLogin.registro(usuario);
+			if(usuario.getRol().equals("Vendedor")) {
+				Vendedor vendedor = new Vendedor();
+				vendedor.setUsuario(usuario);
+				servicioVendedor.guardarVendedor(vendedor);
+				
+				modelo.put("mensaje","Usuario registrado! "+usuario.getEmail());
+			}
+			
 			if(usuario.getRol().equals("Cliente")) {
 				Cliente cliente = new Cliente();
 				Carro carro = new Carro();
