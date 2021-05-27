@@ -67,17 +67,5 @@ public class ControladorVendedor {
 		
 	}
 	
-	@RequestMapping("/verCombos")
-	public ModelAndView irAvista() {
-		ArrayList<Combo> a = (ArrayList) creado.ver();
-		String x = " ";
-		for (Combo combo : a) {
-			 x += combo.getNombre() + "\n";
-			 x += " ";
-		}
-		ModelMap modelo = new ModelMap();
-		modelo.put("create","Combos activos-> "+ x);
-		return new ModelAndView("verCombos",modelo);
-	}
 	
 }
