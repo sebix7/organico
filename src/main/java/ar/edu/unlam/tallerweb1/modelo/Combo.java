@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,10 +19,14 @@ public class Combo {
 	
 	private String estacion;
 	private String nombre;
+	private String descripcion;
+	private Double precio;
+	private Date vencimiento;
+	private Double peso;
 	@ManyToOne
 	private Carro compras;
 	@ManyToOne
-	private Vendedor vendedor;
+	private Usuario usuario;
 	
 
 	public Long getId() {
@@ -49,11 +54,43 @@ public class Combo {
 	public void setCompras(Carro compras) {
 		this.compras = compras;
 	}
-	public Vendedor getVendedor() {
-		return vendedor;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setVendedor(Vendedor vendedor) {
-		this.vendedor = vendedor;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public Double getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Double precio) {
+		this.precio = precio;
+	}
+
+	public Date getVencimiento() {
+		return vencimiento;
+	}
+
+	public void setVencimiento(Date vencimiento) {
+		this.vencimiento = vencimiento;
+	}
+
+	public Double getPeso() {
+		return peso;
+	}
+
+	public void setPeso(Double peso) {
+		this.peso = peso;
 	}
 	
 	

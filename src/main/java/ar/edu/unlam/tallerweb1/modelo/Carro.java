@@ -15,7 +15,7 @@ public class Carro {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@OneToOne
-	private Cliente cliente;
+	private Usuario usuario;
 	
 	public Long getId() {
 		return id;
@@ -23,10 +23,10 @@ public class Carro {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Cliente getCliente() {
-		return cliente;
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }

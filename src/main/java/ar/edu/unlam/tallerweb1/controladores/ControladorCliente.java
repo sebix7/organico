@@ -14,12 +14,12 @@ public class ControladorCliente {
 	public ModelAndView irAHomeCliente(HttpServletRequest request) {
 		String rol=(String)request.getSession().getAttribute("ROL");
 		
-		if(rol.equals("Cliente")) {
-			return new ModelAndView("homeCliente");
-		}
-		else {
-			return new ModelAndView("login");
-		}
+		if(rol != null) 
+			if(rol.equals("Cliente"))
+				return new ModelAndView("homeCliente");
+		
+		return new ModelAndView("redirect:/login");
+		
 	}
 	
 	@RequestMapping("/productos")

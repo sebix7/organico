@@ -14,12 +14,11 @@ public class ControladorAdmin {
 	public ModelAndView irAHomeAdministrador(HttpServletRequest request) {
 		String rol=(String)request.getSession().getAttribute("ROL");
 		
-		if(rol.equals("Administrador")) {
-			return new ModelAndView("homeAdministrador");
-		}
-		else {
-			return new ModelAndView("login");
-		}
+		if(rol != null) 
+			if(rol.equals("Administrador"))
+				return new ModelAndView("homeAdministrador");
+		
+		return new ModelAndView("redirect:/login");
 	}
 	
 	@RequestMapping("/periodo")

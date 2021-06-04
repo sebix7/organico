@@ -36,12 +36,11 @@ public class ControladorVendedor {
 	public ModelAndView irAHomeVendedor(HttpServletRequest request) {
 		String rol=(String)request.getSession().getAttribute("ROL");
 		
-		if(rol.equals("Vendedor")) {
-			return new ModelAndView("homeVendedor");
-		}
-		else {
-			return new ModelAndView("login");
-		}
+		if(rol != null) 
+			if(rol.equals("Vendedor"))
+				return new ModelAndView("homeVendedor");
+		
+		return new ModelAndView("redirect:/login");
 	}
 	
 	@RequestMapping("/creacionCombo")

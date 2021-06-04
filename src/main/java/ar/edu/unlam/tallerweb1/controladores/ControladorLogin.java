@@ -7,6 +7,7 @@ import ar.edu.unlam.tallerweb1.modelo.Vendedor;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCarro;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioVendedor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +30,14 @@ public class ControladorLogin {
 	// dicha clase debe estar anotada como @Service o @Repository y debe estar en un paquete de los indicados en
 	// applicationContext.xml
 	private ServicioLogin servicioLogin;
-	private ServicioCliente servicioCliente;
+	private ServicioUsuario servicioUsuario;
 	private ServicioCarro servicioCarro;
-	private ServicioVendedor servicioVendedor;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioCliente servicioCliente, ServicioCarro servicioCarro, ServicioVendedor servicioVendedor){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioUsuario servicioUsuario, ServicioCarro servicioCarro){
 		this.servicioLogin = servicioLogin;
-		this.servicioCliente = servicioCliente;
+		this.servicioUsuario = servicioUsuario;
 		this.servicioCarro = servicioCarro;
-		this.servicioVendedor=servicioVendedor;
 	}
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es invocada por metodo http GET
