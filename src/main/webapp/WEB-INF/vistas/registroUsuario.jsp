@@ -31,7 +31,6 @@
   		<label for="vendedor">Vendedor</label><br>
 			</div>
 			<button class="btn btn-primary" type="submit">Registrar</button>
-			<p class="text-center text-muted text-uppercase">${mensaje}</p>
 			<a href="login"class="btn btn-primary">Volver Login</a>
 		</form:form>
 	</main>

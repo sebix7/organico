@@ -16,10 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.modelo.Vegetal;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCombo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
-import ar.edu.unlam.tallerweb1.servicios.ServicioVegetal;
+
 
 @Controller
 public class ControladorVendedor {

@@ -31,6 +31,7 @@
 	
 		<div class="form-group text-center">
 			<a href="registroUsuario">No tienes cuenta,Registrate!</a>
+			<p class="text-center text-muted text-uppercase">${mensaje}</p>
 		</div>
 		
 			<c:if test="${not empty error}">

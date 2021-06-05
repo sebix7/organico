@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioCombo;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioVegetal;
+
 @Service("servicioCombo")
 @Transactional
 public class ServicioComboImpl implements ServicioCombo {

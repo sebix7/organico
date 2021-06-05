@@ -1,14 +1,9 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.Carro;
-import ar.edu.unlam.tallerweb1.modelo.Cliente;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.modelo.Vendedor;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCarro;
-import ar.edu.unlam.tallerweb1.servicios.ServicioCliente;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
-import ar.edu.unlam.tallerweb1.servicios.ServicioUsuario;
-import ar.edu.unlam.tallerweb1.servicios.ServicioVendedor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,13 +25,11 @@ public class ControladorLogin {
 	// dicha clase debe estar anotada como @Service o @Repository y debe estar en un paquete de los indicados en
 	// applicationContext.xml
 	private ServicioLogin servicioLogin;
-	private ServicioUsuario servicioUsuario;
 	private ServicioCarro servicioCarro;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioUsuario servicioUsuario, ServicioCarro servicioCarro){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioCarro servicioCarro){
 		this.servicioLogin = servicioLogin;
-		this.servicioUsuario = servicioUsuario;
 		this.servicioCarro = servicioCarro;
 	}
 
@@ -93,22 +86,6 @@ public class ControladorLogin {
 		}
 		return new ModelAndView("login", model);
 	}
-
-	/*
-	// Escucha la URL /home por GET, y redirige a una vista.
-	@RequestMapping(path = "/homeVendedor", method = RequestMethod.GET)
-	public ModelAndView irAHome(HttpServletRequest request) {
-		String rol=(String)request.getSession().getAttribute("ROL");
-		
-		if(rol.equals("Vendedor")) {
-			return new ModelAndView("homeAdmin");
-		}
-		else {
-			return new ModelAndView("login");
-		}
-		
-	}
-	*/
 	
 	/*
 	@RequestMapping(path = "/cerrarsesion", method = RequestMethod.GET)
@@ -149,30 +126,24 @@ public class ControladorLogin {
 		if(usuario.getPassword().equals(repass)) {
 			//guardamelo en la base
 			servicioLogin.registro(usuario);
-			if(usuario.getRol().equals("Vendedor")) {
-				Vendedor vendedor = new Vendedor();
-				vendedor.setUsuario(usuario);
-				servicioVendedor.guardarVendedor(vendedor);
-				
+			
 				modelo.put("mensaje","Usuario registrado! "+usuario.getEmail());
 			}
 			
 			if(usuario.getRol().equals("Cliente")) {
-				Cliente cliente = new Cliente();
+		
 				Carro carro = new Carro();
-				cliente.setUsuario(usuario);
-				carro.setCliente(cliente);
-				servicioCliente.guardarCliente(cliente);
+
 				servicioCarro.guardarCarro(carro);
 				
 				modelo.put("mensaje","Usuario registrado! "+usuario.getEmail());
 			} else if(usuario.getRol().equals("Vendedor")) {
 				modelo.put("mensaje","Usuario registrado! "+usuario.getEmail());
 			}
-		}else {
+			else {
 			modelo.put("mensaje","Error no coinciden las pass");
 		}
-		return new ModelAndView("registroUsuario",modelo);
+		return new ModelAndView("login",modelo);
 		
 	}
 	
