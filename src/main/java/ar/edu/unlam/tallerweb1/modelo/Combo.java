@@ -23,8 +23,11 @@ public class Combo {
 	private Double precio;
 	private Date vencimiento;
 	private Double peso;
+	private Integer stock;
 	@ManyToOne
 	private Carro compras;
+
+
 	@ManyToOne
 	private Usuario usuario;
 	
@@ -92,7 +95,13 @@ public class Combo {
 	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
-	
+	public Integer getStock() {
+		return stock;
+	}
+
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
 	
 	
 }
