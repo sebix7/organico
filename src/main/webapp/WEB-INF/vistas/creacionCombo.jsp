@@ -36,11 +36,27 @@
 			  <h1 class="text-titles">Creacion de combos </h1>
 			</div>
 		</div>				<form:form action="crear" method="POST" modelAttribute="combo">
-			<p >Crea tu combo</p>
 			<div>
 				<label for="nombre">Nombre:</label>
 				<form:input path="nombre" type="text" id="nombre" class="form-control" />
 			</div>
+			<div>
+				<label for="descripcion">Descripcion del combo:</label>
+				<form:input path="descripcion" type="text" id="descripcion" class="form-control" />
+			</div>
+			<div>
+				<label for="precio">Precio:</label>
+				<form:input path="precio" type="number" id="precio" class="form-control" />
+			</div>
+			<div>
+				<label for="peso">Peso en gramos:</label>
+				<form:input path="peso" type="number" id="peso" class="form-control" />
+			</div>
+			<div>
+				<label for="stock">Stock:</label>
+				<form:input path="stock" type="number" id="stock" class="form-control" />
+			</div>
+			
 			<div>
 				<label for="estacion">Estacion:</label>
 				<form:input path="estacion" type="text" id="estacion" class="form-control"/>

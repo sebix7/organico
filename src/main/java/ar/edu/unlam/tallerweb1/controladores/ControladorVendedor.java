@@ -20,14 +20,18 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioCombo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 
 
+
 @Controller
 public class ControladorVendedor {
 	
 	private ServicioCombo creado;
+	private ServicioLogin idVendedor;
+
 	
 	@Autowired
-	public ControladorVendedor(ServicioCombo creado){
+	public ControladorVendedor(ServicioCombo creado, ServicioLogin idVendedor){
 		this.creado = creado;
+		this.idVendedor = idVendedor;
 	}
 
 	// Escucha la URL /home por GET, y redirige a una vista.
@@ -43,25 +47,41 @@ public class ControladorVendedor {
 	}
 	
 	@RequestMapping("/creacionCombo")
-	public ModelAndView registro() {
-		ModelMap modelo = new ModelMap();
-		Combo usuario = new Combo();
-		modelo.put("combo", usuario);
-		return new ModelAndView("creacionCombo", modelo);
+	
+	public ModelAndView creacionCombos(HttpServletRequest request) {
+		String rol=(String)request.getSession().getAttribute("ROL");
+		if(rol != null) 
+		if(rol.equals("Vendedor")) {
+			ModelMap modelo = new ModelMap();
+			Combo nuevo = new Combo();
+			modelo.put("combo", nuevo);
+			return new ModelAndView("creacionCombo", modelo);
+		}
+		return new ModelAndView("redirect:/login");
+		
 	}
 	@RequestMapping(path="/crear",method=RequestMethod.POST)
 	public ModelAndView procesarRegistroCombo(
-			@ModelAttribute("combo") Combo frutalOVegetal
+			@ModelAttribute("combo") Combo frutalOVegetal,HttpServletRequest request
 			) {
-		ModelMap modelo = new ModelMap();
-		if(frutalOVegetal!=null) {
-			//guardamelo en la base
-			creado.registro(frutalOVegetal);
-			modelo.put("create","Combo Creado! "+frutalOVegetal.getNombre());
-		}else {
-			modelo.put("create","Error");
+		String rol=(String)request.getSession().getAttribute("ROL");
+		String email=(String)request.getSession().getAttribute("EMAIL");
+		if(rol != null) {
+			if(rol.equals("Vendedor")) {
+				ModelMap modelo = new ModelMap();
+				if(frutalOVegetal!=null) {
+					frutalOVegetal.setUsuario(idVendedor.buscarPorMail(email));
+					creado.registro(frutalOVegetal);
+					modelo.put("create","Combo Creado! "+frutalOVegetal.getNombre());
+					return new ModelAndView("creacionCombo",modelo);
+			}else {
+				modelo.put("create","Error");	
+			}
 		}
-		return new ModelAndView("creacionCombo",modelo);
+		}
+			return new ModelAndView("redirect:/login");
+		
+	
 		
 	}
 	

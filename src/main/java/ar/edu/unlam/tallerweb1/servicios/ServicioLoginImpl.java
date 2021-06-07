@@ -37,4 +37,9 @@ public class ServicioLoginImpl implements ServicioLogin {
 		
 	}
 
+	@Override
+	public Usuario buscarPorMail(String mail) {
+		return servicioLoginDao.buscar(mail);
+	}
+
 }

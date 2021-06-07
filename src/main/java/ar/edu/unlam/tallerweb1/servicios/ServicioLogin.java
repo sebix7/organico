@@ -7,4 +7,5 @@ public interface ServicioLogin {
 
 	Usuario consultarUsuario(Usuario usuario);
 	void registro(Usuario usuario);
+	Usuario buscarPorMail(String mail);
 }
