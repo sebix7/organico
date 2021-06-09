@@ -50,7 +50,7 @@
             <c:when test="${AdministradorId != null}">
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu" >
 				<li>
-					<a href="homeAdmin">
+					<a href="homeAdministrador">
 						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Principal
 					</a>
 				</li>

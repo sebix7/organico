@@ -51,14 +51,14 @@
 			</article>
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Clientes
+					Usuarios
 				</div>
 				<div class="full-box tile-icon text-center">
-					<i class="zmdi zmdi-male-alt"></i>
+					<i class="zmdi zmdi-accounts-alt zmdi-hc-fw"></i>
 				</div>
 				<div class="full-box tile-number text-titles">
-					<p class="full-box">10</p>
-					<small>Register</small>
+					<p class="full-box"><i class="zmdi zmdi-info-outline"></i></p>
+					<small><a href="usuarios">Ver</a></small>
 				</div>
 			</article>
 			<article class="full-box tile">
