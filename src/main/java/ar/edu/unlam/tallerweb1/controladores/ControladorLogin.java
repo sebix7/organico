@@ -62,6 +62,8 @@ public class ControladorLogin {
 		if (usuarioBuscado != null) {
 			  request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
 			  request.getSession().setAttribute("EMAIL", usuarioBuscado.getEmail());
+			  request.getSession().setAttribute("userId", usuarioBuscado.getId());
+			  
 			  model.put("usuario",usuarioBuscado);
 			
 			String rol=(String)request.getSession().getAttribute("ROL");
@@ -149,4 +151,47 @@ public class ControladorLogin {
 	}
 	
 
+	//tanto el cliente como el vendedor que esten logueados van a poder ver su perfil y modificarlo 
+	@RequestMapping(path="perfil")
+	public ModelAndView mostrarPerfil(HttpServletRequest request) {
+		
+		if(request.getSession().getAttribute("userId") == null) {
+			return new ModelAndView("redirect:/login");
+		}
+		
+		ModelMap modelo = new ModelMap();
+		
+		Usuario usuarioLogueado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
+		modelo.put("usuario", usuarioLogueado);
+		modelo.put("nombre", usuarioLogueado.getNombre());
+		modelo.put("email", usuarioLogueado.getEmail());
+		modelo.put("password", usuarioLogueado.getPassword());
+		
+		return new ModelAndView("perfil" , modelo);
+	}
+	
+	
+	@RequestMapping(path="actualizar-perfil" , method = RequestMethod.POST)
+	public ModelAndView actualizarPerfil(@ModelAttribute("usuario") Usuario usuario , HttpServletRequest request) {
+		
+		if(request.getSession().getAttribute("userId") == null) {
+			return new ModelAndView("redirect:/login");
+		}
+		
+		ModelMap modelo = new ModelMap();
+		
+		Usuario usuarioLogueado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
+		
+		if(servicioLogin.buscarPorId(usuario.getId()) != null) {
+			servicioLogin.actualizar(usuario);
+			modelo.put("mensaje", "Se actualizo correctamente");
+			modelo.put("usuario", usuario);
+
+		} else {
+			modelo.put("mensaje", "No se pudo actualizar");
+			modelo.put("usuario", usuarioLogueado);
+		
+		}
+		return new ModelAndView("perfil", modelo);
+	}
 }

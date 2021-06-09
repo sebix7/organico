@@ -74,15 +74,16 @@
 				</div>
 			</article>
 			<article class="full-box tile">
+			   	   
 				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Alertas!
+					Mi Perfil
 				</div>
 				<div class="full-box tile-icon text-center">
-					<i class="zmdi zmdi-timer"></i>
+					<i class="zmdi zmdi-face "></i>
 				</div>
-				<div class="full-box tile-number text-titles">
-					<p class="full-box">70</p>
-					<small>Register</small>
+					<div class="full-box tile-number text-titles">
+					<p class="full-box"><i class="zmdi zmdi-check"></i></p>
+					<small><a href="perfil">Ver/Editar</a></small>
 				</div>
 			</article>
 		</div>

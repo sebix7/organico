@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,27 @@ public class ServicioLoginImpl implements ServicioLogin {
 	@Override
 	public Usuario buscarPorMail(String mail) {
 		return servicioLoginDao.buscar(mail);
+	}
+
+	@Override
+	public List<Usuario> listarTodos() {
+		return servicioLoginDao.findAll();
+	}
+
+	@Override
+	public List<Usuario> busquedaPorRol(String rol) {
+		return servicioLoginDao.findByRol(rol);
+	}
+	
+	@Override
+	public Usuario buscarPorId(Long id) {
+		return servicioLoginDao.buscarPorId(id);
+	}
+
+	@Override
+	public void actualizar(Usuario usuario) {
+		 servicioLoginDao.modificar(usuario);
+		
 	}
 
 }

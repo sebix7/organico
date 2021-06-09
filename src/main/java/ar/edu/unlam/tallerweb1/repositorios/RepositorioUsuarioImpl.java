@@ -7,6 +7,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 // implelemtacion del repositorio de usuarios, la anotacion @Repository indica a Spring que esta clase es un componente que debe
@@ -53,5 +55,29 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 	public void modificar(Usuario usuario) {
 		sessionFactory.getCurrentSession().update(usuario);
 	}
+
+	@Override
+	public Usuario buscarPorId(Long id) {
+		return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
+				.add(Restrictions.eq("id",id)).uniqueResult();
+	}
+
+	@Override
+	public List<Usuario> findAll() {
+		return (List<Usuario>) sessionFactory.getCurrentSession().createCriteria(Usuario.class).list();
+	}
+	
+	@Override
+	public List<Usuario> findByRol(String rol) {{
+			final Session session = sessionFactory.getCurrentSession();
+			
+			List<Usuario> usuarioPorRol=session.createCriteria(Usuario.class)
+					.add(Restrictions.eq("rol",rol))
+					.list();
+			return  usuarioPorRol ;
+		}
+	}
+
+
 
 }
