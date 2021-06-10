@@ -3,10 +3,12 @@ package ar.edu.unlam.tallerweb1.modelo;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -24,8 +26,6 @@ public class Combo {
 	private Date vencimiento;
 	private Double peso;
 	private Integer stock;
-	@ManyToOne
-	private Carro compras;
 
 
 	@ManyToOne
@@ -50,12 +50,6 @@ public class Combo {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-	public Carro getCompras() {
-		return compras;
-	}
-	public void setCompras(Carro compras) {
-		this.compras = compras;
 	}
 	public Usuario getUsuario() {
 		return usuario;

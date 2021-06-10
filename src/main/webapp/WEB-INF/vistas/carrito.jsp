@@ -46,6 +46,9 @@
 			<c:if test="${not empty mensaje}">
 		        <h4><span>${mensaje}</span></h4>
 	        </c:if>
+	        <c:if test="${not empty mensaje2}">
+		        <h4><span>${mensaje2}</span></h4>
+	        </c:if>
 	        <c:if test="${not empty combos}">
 		        <div class="row">
 		        	<c:forEach items="${combos}" var="combo">
@@ -61,6 +64,7 @@
 		  				</div>
 					</c:forEach>
         		</div>
+				<a href="validar-comprar-carro" class="btn" style="background-color: #ffd700; color: #000000">Comprar</a>
 	        </c:if>
 		</div>
 		
