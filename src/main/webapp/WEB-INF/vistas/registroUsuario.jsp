@@ -25,7 +25,7 @@
 			</div>
 			<div>
 				<p class="text-center text-muted text-uppercase">Quieres ser Vendedor O Comprador:</p>
-		<input type="radio" id="comprador" name="rol" value="Cliente">
+		<input type="radio" id="comprador" name="rol" value="Cliente" checked>
   		<label for="comprador">Comprador</label><br>
   		<input type="radio" id="vendedor" name="rol" value="Vendedor">
   		<label for="vendedor">Vendedor</label><br>

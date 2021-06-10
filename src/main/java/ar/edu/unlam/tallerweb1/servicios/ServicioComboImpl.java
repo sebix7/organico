@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Combo;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioCombo;
 
 @Service("servicioCombo")
@@ -31,9 +32,26 @@ public class ServicioComboImpl implements ServicioCombo {
 		nuevo.guardar(usuario1);
 	}
 	@Override
-	public List ver() {
+	public List<Combo> consultarCombos() {
+		return this.nuevo.consultarCombos();
+	}
+	@Override
+	public Combo buscarPorNombre(String nombre) {
+		return this.nuevo.buscar(nombre);
+	}
+	@Override
+	public void modificar(Combo combo) {
+		this.nuevo.modificar(combo);
 		
-		return nuevo.ver();
+	}
+	@Override
+	public Combo buscarPorId(Long id) {
+		// TODO Auto-generated method stub
+		return nuevo.buscarPorId(id);
+	}
+	@Override
+	public List<Combo> consultarCombosPorUs(Usuario entrada) {
+		return nuevo.consultarCombosPorId(entrada);
 	}
 
 }

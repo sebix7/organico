@@ -183,6 +183,8 @@ public class ControladorLogin {
 		Usuario usuarioLogueado = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
 		
 		if(servicioLogin.buscarPorId(usuario.getId()) != null) {
+			String rol=(String)request.getSession().getAttribute("ROL");
+			usuario.setRol(rol);
 			servicioLogin.actualizar(usuario);
 			modelo.put("mensaje", "Se actualizo correctamente");
 			modelo.put("usuario", usuario);
