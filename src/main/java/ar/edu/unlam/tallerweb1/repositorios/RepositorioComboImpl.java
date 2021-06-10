@@ -45,13 +45,22 @@ public class RepositorioComboImpl implements RepositorioCombo {
 		sessionFactory.getCurrentSession().update(usuario);
 
 	}
+
 	@Override
-	public List ver() {
-		final Session session = sessionFactory.getCurrentSession();
-		Criteria crit = session.createCriteria(Combo.class);
-		crit.setMaxResults(50);
-		List cats = crit.list();
-		return cats;
+	public List<Combo> consultarCombos() {
+		return this.sessionFactory.getCurrentSession().createCriteria(Combo.class)
+				.list();
+	}
+	@Override
+	public Combo buscarPorId(Long id) {
+		return (Combo) sessionFactory.getCurrentSession().createCriteria(Combo.class)
+				.add(Restrictions.eq("id",id)).uniqueResult();
+	}
+	@Override
+	public List<Combo> consultarCombosPorId(Usuario entrada) {
+		return this.sessionFactory.getCurrentSession().createCriteria(Combo.class)
+				.add(Restrictions.eq("usuario", entrada))
+				.list();
 	}
 
 }

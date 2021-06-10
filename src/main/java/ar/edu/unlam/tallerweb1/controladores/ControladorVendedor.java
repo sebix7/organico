@@ -47,7 +47,6 @@ public class ControladorVendedor {
 	}
 	
 	@RequestMapping("/creacionCombo")
-	
 	public ModelAndView creacionCombos(HttpServletRequest request) {
 		String rol=(String)request.getSession().getAttribute("ROL");
 		if(rol != null) 
@@ -56,6 +55,20 @@ public class ControladorVendedor {
 			Combo nuevo = new Combo();
 			modelo.put("combo", nuevo);
 			return new ModelAndView("creacionCombo", modelo);
+		}
+		return new ModelAndView("redirect:/login");
+		
+	}
+	
+	@RequestMapping(path="/editarCombos",method=RequestMethod.POST)
+	public ModelAndView editarCombos(HttpServletRequest request) {
+		String rol=(String)request.getSession().getAttribute("ROL");
+		if(rol != null) 
+		if(rol.equals("Vendedor")) {
+			ModelMap modelo = new ModelMap();
+			Combo nuevo = new Combo();
+			modelo.put("combo", nuevo);
+			return new ModelAndView("editarCombos", modelo);
 		}
 		return new ModelAndView("redirect:/login");
 		
@@ -84,6 +97,32 @@ public class ControladorVendedor {
 	
 		
 	}
+	@RequestMapping("/verCombos")
+	public ModelAndView irACombosVendedor(HttpServletRequest request) {
+
+		String rol=(String)request.getSession().getAttribute("ROL");
+		String email=(String)request.getSession().getAttribute("EMAIL");
+		if(rol!=null){
+			if(rol.equals("Vendedor")) {
+				List<Combo> combos = this.creado.consultarCombosPorUs(idVendedor.buscarPorMail(email));
+			ModelMap modelo = new ModelMap();
+				if(combos.size() == 0) {
+					String mensaje = "No hay combos Creados";
+					modelo.put("mensaje", mensaje);
+				} else {
+					modelo.put("combos", combos);
+				}
+				return new ModelAndView("verCombos", modelo);
+			}
+			else {
+				return new ModelAndView("login");
+			}
+			
+		}
+				return new ModelAndView("redirect:/login");
+		
+	}
+	
 	
 	
 }
