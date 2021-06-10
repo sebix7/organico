@@ -1,8 +1,10 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import ar.edu.unlam.tallerweb1.modelo.Carro;
+import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCarro;
+import ar.edu.unlam.tallerweb1.servicios.ServicioClienteCombos;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,16 +32,22 @@ public class ControladorLogin {
 	// applicationContext.xml
 	private ServicioLogin servicioLogin;
 	private ServicioCarro servicioCarro;
+	private ServicioClienteCombos servicioClienteCombos;
 
 	@Autowired
-	public ControladorLogin(ServicioLogin servicioLogin, ServicioCarro servicioCarro){
+	public ControladorLogin(ServicioLogin servicioLogin, ServicioCarro servicioCarro, ServicioClienteCombos servicioClienteCombos){
 		this.servicioLogin = servicioLogin;
 		this.servicioCarro = servicioCarro;
+		this.servicioClienteCombos = servicioClienteCombos;
 	}
 
 	// Este metodo escucha la URL localhost:8080/NOMBRE_APP/login si la misma es invocada por metodo http GET
 	@RequestMapping("/login")
-	public ModelAndView irALogin() {
+	public ModelAndView irALogin(HttpServletRequest request) {
+		if(request.getSession().getAttribute("carro") == null) {
+			List<Combo> carro = new ArrayList<Combo>();
+			request.getSession().setAttribute("carro", carro);
+		}
 
 		ModelMap modelo = new ModelMap();
 		// Se agrega al modelo un objeto del tipo Usuario con key 'usuario' para que el mismo sea asociado
@@ -100,6 +112,13 @@ public class ControladorLogin {
 	
  	@RequestMapping("/cerrarsesion")
 	public ModelAndView cerrarSession(HttpServletRequest request) {
+ 		
+ 		if(request.getSession().getAttribute("carro") != null) {
+ 			List<Combo> combos = (List<Combo>) request.getSession().getAttribute("carro");
+ 			if(!combos.isEmpty()) {
+ 				this.servicioClienteCombos.restaurarStockDeCombos(combos);
+			}
+		}
 		
 		request.getSession().invalidate();
 		return new ModelAndView("redirect:/login");
@@ -113,7 +132,12 @@ public class ControladorLogin {
 	
 	
 	@RequestMapping("/registroUsuario")
-	public ModelAndView registro() {
+	public ModelAndView registro(HttpServletRequest request) {
+		if(request.getSession().getAttribute("carro") == null) {
+			List<Combo> carro = new ArrayList<Combo>();
+			request.getSession().setAttribute("carro", carro);
+		}
+		
 		ModelMap modelo = new ModelMap();
 		Usuario usuario = new Usuario();
 		modelo.put("usuario", usuario);
@@ -134,10 +158,6 @@ public class ControladorLogin {
 			}
 			
 			if(usuario.getRol().equals("Cliente")) {
-		
-				Carro carro = new Carro();
-
-				servicioCarro.guardarCarro(carro);
 				
 				modelo.put("mensaje","Usuario registrado! "+usuario.getEmail());
 			} else if(usuario.getRol().equals("Vendedor")) {

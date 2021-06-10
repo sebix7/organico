@@ -9,12 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.modelo.Carro;
 import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioCarro;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioClienteCombos;
 
 @Service
 @Transactional
 public class ServicioCarroImpl implements ServicioCarro {
 
 	private RepositorioCarro repositorioCarro;
+	private RepositorioClienteCombos repositorioClienteCombos;
 	
 	@Autowired
 	public ServicioCarroImpl(RepositorioCarro repositorioCarro) {

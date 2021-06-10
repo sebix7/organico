@@ -58,12 +58,16 @@ public class ControladorClienteCombos {
 			String rol=(String)request.getSession().getAttribute("ROL");
 		
 			if(rol.equals("Cliente")) {
-				Long clienteId=(Long)request.getSession().getAttribute("ClienteId");
+				List<Combo> carro = (List<Combo>) request.getSession().getAttribute("carro");
+//				Long clienteId=(Long)request.getSession().getAttribute("ClienteId");
 				Combo combo = servicioClienteCombos.obtenerComboPorId(id);
-				Carro compras = servicioCarro.obtenerCarroPorClienteId(clienteId);
+				carro.add(combo);
+				request.getSession().setAttribute("carro", carro);
+				servicioClienteCombos.actualizarStockDelCombo(id, -1);
+//				Carro compras = servicioCarro.obtenerCarroPorClienteId(clienteId);
 				
-				combo.setCompras(compras);
-				servicioClienteCombos.modificarCombo(combo);
+//				combo.setCompras(compras);
+//				servicioClienteCombos.modificarCombo(combo);
 				
 				return new ModelAndView("redirect:/carrito");
 			}

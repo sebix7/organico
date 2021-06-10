@@ -23,7 +23,6 @@ public class RepositorioClienteCombosImpl implements RepositorioClienteCombos {
 	@Override
 	public List<Combo> consultarCombos() {
 		return this.sessionFactory.getCurrentSession().createCriteria(Combo.class)
-				.add(Restrictions.isNull("compras"))
 				.list();
 	}
 

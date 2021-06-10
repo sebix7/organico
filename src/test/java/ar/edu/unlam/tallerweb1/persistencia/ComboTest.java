@@ -13,7 +13,7 @@ import org.springframework.test.annotation.Rollback;
 
 import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.modelo.Combo;
-import ar.edu.unlam.tallerweb1.modelo.Vendedor;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public class ComboTest extends SpringTest {
 	@Test
@@ -21,14 +21,14 @@ public class ComboTest extends SpringTest {
 	@Rollback(true)
 	public void QueSePuedaCrearUnComboTest() {
 	//declaramos e inicializamos
-	Vendedor vendedor1 = new Vendedor();
+	Usuario vendedor1 = new Usuario();
 	//Carro carro1=new Carro();	
 	Combo combo1=new Combo();
 	
 	//seteamos
 	combo1.setNombre("ComboPrimavera");
 	combo1.setEstacion("Primavera");
-	combo1.setVendedor(vendedor1);
+	combo1.setUsuario(vendedor1);;
 	//combo1.setCompras(carro1);
 	
 	//guardamos
@@ -47,22 +47,22 @@ public class ComboTest extends SpringTest {
 	public void QueMeMuestreTodosLosCombosPrimaveraCreados() {	
 		
 		//declaramos e inicializamos
-		Vendedor vendedor2 = new Vendedor();
+		Usuario vendedor2 = new Usuario();
 		Combo combo4= new Combo();
 		Combo combo2= new Combo();
 		Combo combo3= new Combo();
 		//seteamos
 		combo4.setNombre("ComboPrimavera");
 		combo4.setEstacion("Primavera");
-		combo4.setVendedor(vendedor2);
+		combo4.setUsuario(vendedor2);
 		
 		combo2.setNombre("ComboVerano");
 		combo2.setEstacion("Verano");
-		combo2.setVendedor(vendedor2);
+		combo2.setUsuario(vendedor2);
 		
 		combo3.setNombre("ComboFrutal");
 		combo3.setEstacion("Primavera");
-		combo3.setVendedor(vendedor2);
+		combo3.setUsuario(vendedor2);
 		//guardamos
 		
 		session().save(combo4);
