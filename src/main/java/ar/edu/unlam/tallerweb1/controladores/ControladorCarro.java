@@ -18,6 +18,7 @@ import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCarro;
+import ar.edu.unlam.tallerweb1.servicios.ServicioComboCarro;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPedido;
 
@@ -27,12 +28,14 @@ public class ControladorCarro {
 	private ServicioCarro servicioCarro;
 	private ServicioLogin servicioLogin;
 	private ServicioPedido servicioPedido;
+	private ServicioComboCarro servicioComboCarro;
 
 	@Autowired
-	public ControladorCarro(ServicioCarro servicioCarro, ServicioLogin servicioLogin, ServicioPedido servicioPedido) {
+	public ControladorCarro(ServicioCarro servicioCarro, ServicioLogin servicioLogin, ServicioPedido servicioPedido, ServicioComboCarro servicioComboCarro) {
 		this.servicioCarro = servicioCarro;
 		this.servicioLogin = servicioLogin;
 		this.servicioPedido = servicioPedido;
+		this.servicioComboCarro = servicioComboCarro;
 	}
 	
 	@RequestMapping("/carrito")
@@ -63,20 +66,20 @@ public class ControladorCarro {
 		String rol=(String)request.getSession().getAttribute("ROL");
 		
 		if(rol.equals("Cliente")) {
+			
 			ModelMap modelo = new ModelMap();
 			List<Combo> combos = (List<Combo>) request.getSession().getAttribute("carro");
 			Usuario usuario = this.servicioLogin.buscarPorMail((String)request.getSession().getAttribute("EMAIL"));
 			Carro carrito = new Carro();
 			Pedido pedido = new Pedido();
 			carrito.setUsuario(usuario);
-			carrito.setCombos(combos);
 			this.servicioCarro.guardarCarro(carrito);
+			this.servicioComboCarro.guardarComboCarro(carrito, combos);
 			pedido.setFechaDeEmision(new Date());
 			pedido.setEstado("Pago");
 			pedido.setCarro(carrito);
 			this.servicioPedido.guardarPedido(pedido);
-			request.getSession().setAttribute("carro", null);
-			if(request.getSession().getAttribute("carro") == null) {
+			if(request.getSession().getAttribute("carro") != null) {
 				List<Combo> carro = new ArrayList<Combo>();
 				request.getSession().setAttribute("carro", carro);
 			}
@@ -86,8 +89,8 @@ public class ControladorCarro {
 		} else {
 			return new ModelAndView("login");
 		}
-		
-		
+//		
+//		
 	}
 
 }

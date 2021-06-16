@@ -18,8 +18,6 @@ public class Carro {
 	private Long id;
 	@OneToOne
 	private Usuario usuario;
-	@ManyToMany(cascade = CascadeType.ALL)
-	private List<Combo> combos;
 	
 	public Long getId() {
 		return id;
@@ -32,11 +30,5 @@ public class Carro {
 	}
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-	}
-	public List<Combo> getCombos() {
-		return combos;
-	}
-	public void setCombos(List<Combo> combos) {
-		this.combos = combos;
 	}
 }
