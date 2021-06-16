@@ -7,27 +7,33 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Carro;
 import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.ValorarDAO;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCarro;
 import ar.edu.unlam.tallerweb1.servicios.ServicioClienteCombos;
+import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 
 @Controller
 public class ControladorClienteCombos {
 	
 	private ServicioClienteCombos servicioClienteCombos;
 	private ServicioCarro servicioCarro;
+	private ServicioLogin servicioLogin;
 
 	@Autowired
-	public ControladorClienteCombos(ServicioClienteCombos servicioClienteCombos, ServicioCarro servicioCarro) {
+	public ControladorClienteCombos(ServicioClienteCombos servicioClienteCombos, ServicioCarro servicioCarro,ServicioLogin servicioLogin) {
 		this.servicioClienteCombos = servicioClienteCombos;
 		this.servicioCarro = servicioCarro;
+		this.servicioLogin=servicioLogin;
 	}
 	
 	@RequestMapping("/combos")
@@ -76,4 +82,38 @@ public class ControladorClienteCombos {
 			}
 	}
 
+	
+	//action que permite visualizar la vista VerDetalle de cada combo
+		@RequestMapping(path ="/verDetalle",method = RequestMethod.GET)
+		public ModelAndView irDetalle(@RequestParam(value = "id", required = true) Long idcombo, HttpServletRequest request) {
+		    
+			
+			String rol=(String)request.getSession().getAttribute("ROL");
+			//solo imgresa si es cliente
+			      if(rol.equals("Cliente")) {
+				      ModelMap modelo = new ModelMap();
+				      Combo combo=servicioClienteCombos.obtenerComboPorId(idcombo);
+				      Integer CantidadPositivos=servicioClienteCombos.obtenerPositivosCombo(idcombo);
+				      Integer CantidadNegativos=servicioClienteCombos.obtenerNegativosCombo(idcombo);
+
+				       modelo.put("combo", combo);
+				       modelo.put("positivos",CantidadPositivos);
+				       modelo.put("negativos", CantidadNegativos);
+				      return new ModelAndView("verDetalle",modelo);
+			 }	
+			
+			return new ModelAndView("login");
+		}
+		
+		//el valor de retorno del método no debe ser interpretado por Spring como el nombre lógico de una vista.
+		//esto se consigue con @ResponseBody. El valor de retorno es un String
+		@RequestMapping(value = "/valorarcombos", method = RequestMethod.POST,consumes= "application/json")
+		  public @ResponseBody String CalificaCombos(@RequestBody ValorarDAO data,HttpServletRequest request) {
+			
+			  Usuario usuario = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
+			  
+				servicioClienteCombos.valorar(usuario.getId(),data.getIdcombo(),data.isValidacion());
+			
+			  return null;
+			}
 }

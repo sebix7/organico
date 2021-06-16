@@ -36,19 +36,21 @@
 			  <h1 class="text-titles">Secciones </h1>
 			</div>
 		</div>
+		
 		<div class="full-box text-center" style="padding: 30px 10px;">
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
 					Crear Combos
 				</div>
 				<div class="full-box tile-icon text-center">
-					<i class="zmdi zmdi-account"></i>
+				<i class="zmdi zmdi-toys"></i>
 				</div>
 				<div class="full-box tile-number text-titles">
-					<p class="full-box">7</p>
+					<p class="full-box"><i class="zmdi zmdi-long-arrow-down"></i></p>
 					<small><a href="creacionCombo">Crear</a></small>
 				</div>
 			</article>
+			
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
 					Clientes

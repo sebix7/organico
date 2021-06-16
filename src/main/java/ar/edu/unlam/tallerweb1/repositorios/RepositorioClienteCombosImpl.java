@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Combo;
+import ar.edu.unlam.tallerweb1.modelo.ValorarCombo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioClienteCombos;
 
 @Repository
@@ -36,6 +37,37 @@ public class RepositorioClienteCombosImpl implements RepositorioClienteCombos {
 	@Override
 	public void modificarCombo(Combo combo) {
 		this.sessionFactory.getCurrentSession().update(combo);
+	}
+	
+	@Override
+	public void guardarValoracion(ValorarCombo nuevaValoracion) {
+		sessionFactory.getCurrentSession().save(nuevaValoracion);
+	}
+
+	@Override
+	public List<ValorarCombo> obtenerValoracionesPositivas(Long idcombo) {
+		    
+		List<ValorarCombo>resultado;
+		resultado=sessionFactory.getCurrentSession().createCriteria(ValorarCombo.class)
+				.createAlias("combo", "comb")
+				.add(Restrictions.eq("comb.id",idcombo))
+				.add(Restrictions.eq("valoracion", true))
+				.list();	
+		
+		return resultado;
+	}
+
+	@Override
+	public List<ValorarCombo> obtenerValoracionesNegativas(Long idcombo) {
+		
+		List<ValorarCombo>resultado;
+		resultado=sessionFactory.getCurrentSession().createCriteria(ValorarCombo.class)
+				.createAlias("combo", "comb")
+				.add(Restrictions.eq("comb.id",idcombo))
+				.add(Restrictions.eq("valoracion", false))
+				.list();	
+		
+		return resultado;
 	}
 
 }
