@@ -11,5 +11,9 @@ public interface ServicioClienteCombos {
 	void modificarCombo(Combo combo);
 	void actualizarStockDelCombo(Long id, Integer i);
 	void restaurarStockDeCombos(List<Combo> combos);
+	void valorar(Long idUsuario, Long idCombo, boolean valoracion);
+	Integer obtenerPositivosCombo(Long idcombo);
+	Integer obtenerNegativosCombo(Long idcombo);
+	
 	
 }

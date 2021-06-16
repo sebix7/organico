@@ -56,7 +56,7 @@
 			      					<div class="caption">
 			        					<h3>${combo.nombre}</h3>
 			       						<p>Stock disponible: ${combo.stock}</p>
-			        					<p><a href="#" class="btn btn-primary" role="button">Ver Detalles</a></p>
+			        					<p><a href=verDetalle?id=${combo.id} class="btn btn-primary" role="button">Ver Detalles</a></p>
 			        					<c:choose>
 			    							<c:when test="${combo.stock > 0}">
 			        							<p><a href=agregarACarrito?id=${combo.id} class="btn btn-default" role="button">Agregar al Carrito</a></p>

@@ -9,17 +9,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Combo;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.ValorarCombo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioClienteCombos;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
 @Service
 @Transactional
 public class ServicioClienteCombosImpl implements ServicioClienteCombos {
 
 	private RepositorioClienteCombos repositorioClienteCombos;
+	private  RepositorioUsuario repositorioUsuario;
 	
 	@Autowired
-	public ServicioClienteCombosImpl(RepositorioClienteCombos repositorioClienteCombos) {
+	public ServicioClienteCombosImpl(RepositorioClienteCombos repositorioClienteCombos,RepositorioUsuario repositorioUsuario) {
 		this.repositorioClienteCombos = repositorioClienteCombos;
+		this.repositorioUsuario=repositorioUsuario;
 	}
 	
 	@Override
@@ -52,5 +57,50 @@ public class ServicioClienteCombosImpl implements ServicioClienteCombos {
 			this.repositorioClienteCombos.modificarCombo(aux);
 		}
 	}
+	
+
+	@Override
+	public void valorar(Long idUsuario, Long idCombo, boolean valoracion) {
+	
+		     ValorarCombo nuevaValoracion = new ValorarCombo();
+		
+	         Combo combo= repositorioClienteCombos.obtenerComboPorId(idCombo);
+	         Usuario usuario= repositorioUsuario.buscarPorId(idUsuario);
+	    
+	         nuevaValoracion.setValoracion(valoracion);
+	         nuevaValoracion.setCombo(combo);
+	         nuevaValoracion.setUsuario(usuario);
+	    
+	    repositorioClienteCombos.guardarValoracion(nuevaValoracion);    
+		
+	}
+
+	@Override
+	public Integer obtenerPositivosCombo(Long idcombo) {
+	    Integer positivos = 0;
+	    
+	    List<ValorarCombo> resultado = repositorioClienteCombos.obtenerValoracionesPositivas(idcombo);
+	   
+	       for(ValorarCombo lista : resultado) {
+			  positivos ++;
+	     	}	    
+	      
+		return positivos;
+	}
+
+	@Override
+	public Integer obtenerNegativosCombo(Long idcombo) {
+		 Integer negativos = 0;
+		    
+		    List<ValorarCombo> resultado = repositorioClienteCombos.obtenerValoracionesNegativas(idcombo);
+		   
+		       for(ValorarCombo lista : resultado) {
+				  negativos ++;
+		     	}	    
+		      
+			return negativos;
+		
+	}
+
 
 }
