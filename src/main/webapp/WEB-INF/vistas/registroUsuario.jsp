@@ -31,7 +31,7 @@
   		<label for="vendedor">Vendedor</label><br>
 			</div>
 			<button class="btn btn-primary" type="submit">Registrar</button>
-			<a href="login"class="btn btn-primary">Volver Login</a>
+			<a href="index"class="btn btn-primary">Volver Home</a>
 		</form:form>
 	</main>
 </body>

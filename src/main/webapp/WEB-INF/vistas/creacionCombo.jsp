@@ -51,48 +51,53 @@
 					<div class="col-md-9 col-md-offset-2">
 				
 				          <span for="nombre">Nombre:</span>
-				          <form:input path="nombre" type="text" id="nombre" class="form-control" />
+				          <form:input path="nombre" type="text" id="nombre" value="${nombre}" class="form-control" />
 			          </div>
 			         </div>
 			        
 			<div class="form-group">
 				<div class="col-md-9 col-md-offset-2">
 				<span for="descripcion">Descripcion del combo:</span>
-				<form:input path="descripcion" type="text" id="descripcion" class="form-control" />
+				<form:input path="descripcion" type="text" value="${descripcion}" id="descripcion" class="form-control" />
+			</div>
+				<div class="form-group">
+				<div class="col-md-9 col-md-offset-2">
+				<span for="id"></span>
+				<form:input path="id" type="hidden" value="${id}" id="id" class="form-control" />
 			</div>
 		 </div>
-		 	
+		 </div>
 			<div class="form-group">
 				<div class="col-md-9 col-md-offset-2">
 				   <span for="precio">Precio:</span>
-				   <form:input path="precio" type="number" id="precio" class="form-control" />
+				   <form:input path="precio" type="number" value="${precio}" id="precio" class="form-control" />
 			    </div>
 			</div>
 			
 			<div class="form-group">
 				<div class="col-md-9 col-md-offset-2">
 				<span for="peso">Peso en gramos:</span>
-				<form:input path="peso" type="number" id="peso" class="form-control" />
+				<form:input path="peso" type="number" id="peso" value="${peso}" class="form-control" />
 			    </div>
 			   </div>
 			   
 			<div class="form-group">
 				<div class="col-md-9 col-md-offset-2">
 				   <span for="stock">Stock:</span>
-				   <form:input path="stock" type="number" id="stock" class="form-control" />
+				   <form:input path="stock" type="number" id="stock" value="${stock}" class="form-control" />
 			   </div>
 			</div>
 			
 			<div class="form-group">
 				<div class="col-md-9 col-md-offset-2">
 				  <span for="estacion">Estacion:</span>
-				  <form:input path="estacion" type="text" id="estacion" class="form-control"/>
+				  <form:input path="estacion" type="text" id="estacion" value="${estacion}" class="form-control"/>
 			    </div>
 			    </div>
 			    
 			    <div class="form-group">
 				  <div class="col-md-9 col-md-offset-2">
-		     	      <button class="btn btn-primary" type="submit">Registrar Combo</button>
+		     	      <button class="btn btn-primary" type="submit">Registrar Combo o Editar</button>
 		     	      </div>
 			      </div>
 		     	      	<div class="row">
@@ -104,7 +109,6 @@
 			</c:if> 
 			  
 		        </form:form>
-			    <a href="homeVendedor"class="btn btn-primary">Volver Home</a>
 </div>				
 	</section>
 

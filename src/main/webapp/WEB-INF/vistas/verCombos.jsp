@@ -55,7 +55,7 @@
 		      					<div class="caption">
 		        					<h3>${combo.nombre}</h3>
 		       						<p>stock disponible: ${combo.stock}</p>
-		       						<form action="envioId">
+		       						<form action="envioId" method="POST">
 		       						<label for="idDetalle"></label>
 									<input type="hidden" id="idDetalle" name="idDetalle" value="${combo.id}">
 		       						<button type="submit"  class="btn btn-success">Editar Combo</button>

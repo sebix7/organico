@@ -28,8 +28,8 @@ public class RepositorioComboImpl implements RepositorioCombo {
 	}
 
 	@Override
-	public void guardar(Combo usuario1) {
-		sessionFactory.getCurrentSession().save(usuario1);
+	public void guardar(Combo Combo) {
+		sessionFactory.getCurrentSession().saveOrUpdate(Combo);
 
 	}
 

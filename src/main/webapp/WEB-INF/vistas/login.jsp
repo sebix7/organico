@@ -33,6 +33,9 @@
 			<a href="registroUsuario">No tienes cuenta,Registrate!</a>
 			<p class="text-center text-muted text-uppercase">${mensaje}</p>
 		</div>
+			<div class="form-group text-center">
+			<a href="index">Volver Al Home!</a>
+		</div>
 		
 			<c:if test="${not empty error}">
 			        <h4><span>${error}</span></h4>

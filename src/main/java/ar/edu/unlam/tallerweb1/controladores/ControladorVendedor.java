@@ -60,15 +60,23 @@ public class ControladorVendedor {
 		
 	}
 	
-	@RequestMapping(path="/editarCombos",method=RequestMethod.POST)
-	public ModelAndView editarCombos(HttpServletRequest request) {
+	@RequestMapping(path="/envioId",method=RequestMethod.POST)
+	public ModelAndView editarCombos(HttpServletRequest request,@RequestParam(value="idDetalle",required=false) Long idDelCombo) {
 		String rol=(String)request.getSession().getAttribute("ROL");
 		if(rol != null) 
 		if(rol.equals("Vendedor")) {
 			ModelMap modelo = new ModelMap();
 			Combo nuevo = new Combo();
+			nuevo = creado.buscarPorId(idDelCombo);
 			modelo.put("combo", nuevo);
-			return new ModelAndView("editarCombos", modelo);
+			modelo.put("id", nuevo.getId());
+			modelo.put("nombre", nuevo.getNombre());
+			modelo.put("estacion", nuevo.getEstacion());
+			modelo.put("descripcion", nuevo.getDescripcion());
+			modelo.put("precio", nuevo.getPrecio());
+			modelo.put("peso", nuevo.getPeso());
+			modelo.put("stock", nuevo.getStock());
+			return new ModelAndView("creacionCombo", modelo);
 		}
 		return new ModelAndView("redirect:/login");
 		
