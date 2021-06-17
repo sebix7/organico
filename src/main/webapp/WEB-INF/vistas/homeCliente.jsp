@@ -59,14 +59,14 @@
 			</article>
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Compras
+					Pedidos
 				</div>
 				<div class="full-box tile-icon text-center">
 					<i class="zmdi zmdi-male-alt"></i>
 				</div>
 				<div class="full-box tile-number text-titles">
 					<p class="full-box">10</p>
-					<small>Register</small>
+					<small><a href="pedidosCliente">Ver Pedidos</a></small>
 				</div>
 			</article>
 			
