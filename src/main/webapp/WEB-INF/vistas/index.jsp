@@ -1,9 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
@@ -26,7 +24,7 @@
             <div class="container">
                 <a class="navbar-brand" href="index">Vida Sana</a>
                 <ul class="list-inline mb-2">
-                    <li class="list-inline-item"><a href="#!">Como pedir?</a></li>
+                    <li class="list-inline-item"><a href="#!">¿Como pedir?</a></li>
                     <li class="list-inline-item">⋅</li>
                     <li class="list-inline-item"><a href="#!">Contacto</a></li>
                     <li class="list-inline-item">⋅</li>
@@ -34,7 +32,7 @@
                     <li class="list-inline-item">⋅</li>
                     <li class="list-inline-item"><a href="registroUsuario">Registrarse</a></li>
                 </ul>
-                <a class="btn btn-primary" href="login">Loguin</a>
+                <a class="btn btn-primary" href="login">Login</a>
             </div>
         </nav>
     
@@ -155,14 +153,14 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">Como pedir? </a></li>
+                            <li class="list-inline-item"><a href="#!">¿Como pedir? </a></li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="#!">Contacto </a></li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="#!">Productos </a></li>
                             <li class="list-inline-item">⋅</li>
                         </ul>
-                        <p class="text-muted small mb-4 mb-lg-0">Taller web 2021. All Rights Reserved.</p>
+                        <p class="text-muted small mb-4 mb-lg-0">Taller Web 2021. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
                         <ul class="list-inline mb-0">
