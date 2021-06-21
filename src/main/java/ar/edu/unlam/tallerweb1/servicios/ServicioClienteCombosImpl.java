@@ -101,6 +101,47 @@ public class ServicioClienteCombosImpl implements ServicioClienteCombos {
 			return negativos;
 		
 	}
+	@Override
+	public boolean validaValoracion(Long idcombo, Long idusuario) {
+	     boolean validar ;
+	     validar = repositorioClienteCombos.VerificaUnaSolaValoracion(idusuario,idcombo); 
+	     
+		return validar;
+	}
+
+	@Override
+	public List<ValorarCombo> obtenerComentariosdeCombo(Long idcombo) {
+		 
+		List<ValorarCombo> comentarios = repositorioClienteCombos.obtenerComentariosCombo(idcombo);
+		
+		return comentarios;
+	}
+
+	@Override
+	public void guardarComentario(Long idusuario, long idcombo, String comentario) {
+		
+		     ValorarCombo valoracion ;
+		
+		     Combo combo= repositorioClienteCombos.obtenerComboPorId(idcombo);
+	         Usuario usuario= repositorioUsuario.buscarPorId(idusuario);
+	         
+	         valoracion = repositorioClienteCombos.obtenerValoracionPorid(combo.getId(),usuario.getId());
+	       
+	        if(valoracion.getComentario()== null)
+	            {
+	             	  valoracion.setComentario(comentario);
+	             	  repositorioClienteCombos.guardarValoracion(valoracion);
+	            }         
+	         
+		
+	}
+
+	@Override
+	public boolean validaComentario(Long idcombo, Long idusuario) {
+		
+		return repositorioClienteCombos.verificaUnSoloComentario(idcombo, idusuario);
+	}
+		
 
 
 }

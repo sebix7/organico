@@ -70,4 +70,65 @@ public class RepositorioClienteCombosImpl implements RepositorioClienteCombos {
 		return resultado;
 	}
 
+	@Override
+	public boolean VerificaUnaSolaValoracion(Long idusuario, long idcombo) {
+	      
+		  List<ValorarCombo> resultado;
+		      resultado=sessionFactory.getCurrentSession().createCriteria(ValorarCombo.class)
+			 	.createAlias("combo", "comb")
+				.add(Restrictions.eq("comb.id",idcombo))
+				.createAlias("usuario", "usu")
+				.add(Restrictions.eq("usu.id",idusuario))
+				.list();
+		      
+		  if(resultado.size()>=1)
+			  return false;
+		    
+		  	return true;
+	
+	}
+
+	@Override
+	public List<ValorarCombo> obtenerComentariosCombo(Long idcombo) {
+
+		  List<ValorarCombo> resultado;
+		   resultado=sessionFactory.getCurrentSession().createCriteria(ValorarCombo.class)
+				 	.createAlias("combo", "comb")
+					.add(Restrictions.eq("comb.id",idcombo))
+					.list();
+		return resultado;
+	}
+
+	@Override
+	public ValorarCombo obtenerValoracionPorid(Long idcombo, Long idusuario) {
+
+		  ValorarCombo resultado;
+	      resultado=(ValorarCombo)sessionFactory.getCurrentSession().createCriteria(ValorarCombo.class)
+		 	.createAlias("combo", "comb")
+			.add(Restrictions.eq("comb.id",idcombo))
+			.createAlias("usuario", "usu")
+			.add(Restrictions.eq("usu.id",idusuario))
+			.uniqueResult();
+		
+		return resultado;
+	}
+
+	@Override
+	public boolean verificaUnSoloComentario(Long idcombo, Long idusuario) {
+	
+		  List<ValorarCombo> resultado;
+			resultado= sessionFactory.getCurrentSession().createCriteria(ValorarCombo.class)
+					.createAlias("combo", "comb")
+					.add(Restrictions.eq("comb.id",idcombo))
+					.createAlias("usuario", "usu")
+					.add(Restrictions.eq("usu.id",idusuario))
+					.add(Restrictions.isNull("comentario"))
+					.list();
+	      
+	  if(resultado.size()>=1)
+		  return false;
+	    
+	  	return true;
+	  	
+	}
 }

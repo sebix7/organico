@@ -73,15 +73,51 @@
 
          </div>
          
-          <span> Valorar Combo: </span>
-	          <img style="cursor: pointer" id="likeIcon"  value="true" width="36" height="36" class="img-circle" src="img/MeGusta.png" title="Me Gusta" alt="Me Gusta" onclick="location.reload()"> | 
-			  <img style="cursor: pointer" id="dislikeIcon"  value="false" width="36" height="36" class="img-circle" src="img/NoMeGusta.png" title="No me Gusta" alt="No Me Gusta" onclick="location.reload()">
+         	<c:if test="${resultado == true}">
+              <span> Valorar Combo: </span>
+	          <img style="cursor: pointer" id="likeIcon"  value="true" width="36" height="36" class="img-circle" src="img/MeGusta.png" title="Me Gusta" alt="Me Gusta" > | 
+			  <img style="cursor: pointer" id="dislikeIcon"  value="false" width="36" height="36" class="img-circle" src="img/NoMeGusta.png" title="No me Gusta" alt="No Me Gusta" >
 										  
 			  <input type="hidden" id="Idcombo" value="${combo.id}" />
-			  
+		   
+		    </c:if>	
        </div> 
    </div>    
-				<a href="combos"class="btn btn-primary">Volver </a>
+  <a href="combos"class="btn btn-primary">Volver </a>
+  
+ <!-- SECCION COMENTARIOS -->
+ 
+ 		<div class="container-fluid">
+			  	<h1 class="text-titles"><i class="zmdi zmdi-comment-text"></i>Comentarios: </h1>
+			<!-- Solo es visible si el cliente no realizo ningun comentario -->
+			
+			<c:if test="${estadoComentario == false}">
+			
+                  <legend>Realizar comentario:</legend>
+		          <div class="form-group">
+               
+                   <input type="hidden" id="Idcombo" value="${combo.id}"  />
+                   <textarea id="comentario" name="comentario" cols="40" rows="3" ></textarea>
+               
+                  <button class="btn btn-success" id="boton" type="submit">Envíe su mensaje</button>
+                  </div>
+         
+              </c:if>	  
+		 </div>
+	 
+	  <!-- LISTAR COMENTARIOS -->
+		 	<c:if test="${not empty comentarios}">
+		 		<div class="col-sm-8">
+					<c:forEach items="${comentarios}" var="comentarios">
+		            <ul class="list-group comentario" > 
+		            <li class="list-group-item list-group-item-action list-group-item-success">${comentarios.comentario}</li>
+		            </ul>
+		            
+		            </c:forEach>
+		     </c:if>
+		  
+		  
+		  
 </section>
 
 <!-- Modal de ayuda -->
@@ -91,6 +127,9 @@
 		$.material.init();
 	</script>
 	 <script src="js/valorarCombos.js"></script>
+	 <script src="js/realizarComentario.js"></script>
+
+
 </body>
 </html>		
 		

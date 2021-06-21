@@ -13,5 +13,9 @@ public interface RepositorioClienteCombos {
 	void guardarValoracion(ValorarCombo nuevaValoracion);
 	List<ValorarCombo> obtenerValoracionesPositivas(Long idcombo);
 	List<ValorarCombo> obtenerValoracionesNegativas(Long idcombo);
-	
+	boolean VerificaUnaSolaValoracion(Long idusuario, long idcombo);
+	List<ValorarCombo> obtenerComentariosCombo(Long idcombo);
+	ValorarCombo obtenerValoracionPorid(Long idcombo, Long idusuario);
+	boolean verificaUnSoloComentario(Long idcombo, Long idusuario);
+
 }

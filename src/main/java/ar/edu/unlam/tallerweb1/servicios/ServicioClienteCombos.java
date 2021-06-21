@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Combo;
+import ar.edu.unlam.tallerweb1.modelo.ValorarCombo;
 
 public interface ServicioClienteCombos {
 
@@ -14,6 +15,10 @@ public interface ServicioClienteCombos {
 	void valorar(Long idUsuario, Long idCombo, boolean valoracion);
 	Integer obtenerPositivosCombo(Long idcombo);
 	Integer obtenerNegativosCombo(Long idcombo);
+	boolean validaValoracion(Long idcombo, Long id);
+	List<ValorarCombo> obtenerComentariosdeCombo(Long idcombo);
+	void guardarComentario(Long idusuario, long idcombo, String comentario);
+	boolean validaComentario(Long idcombo, Long idusuario);
 	
 	
 }

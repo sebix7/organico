@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Carro;
 import ar.edu.unlam.tallerweb1.modelo.Combo;
+import ar.edu.unlam.tallerweb1.modelo.ComentarDAO;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.ValorarCombo;
 import ar.edu.unlam.tallerweb1.modelo.ValorarDAO;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCarro;
 import ar.edu.unlam.tallerweb1.servicios.ServicioClienteCombos;
@@ -86,19 +89,30 @@ public class ControladorClienteCombos {
 	//action que permite visualizar la vista VerDetalle de cada combo
 		@RequestMapping(path ="/verDetalle",method = RequestMethod.GET)
 		public ModelAndView irDetalle(@RequestParam(value = "id", required = true) Long idcombo, HttpServletRequest request) {
-		    
+			
+		         List<ValorarCombo> comentarios = new ArrayList();
+		
 			
 			String rol=(String)request.getSession().getAttribute("ROL");
 			//solo imgresa si es cliente
 			      if(rol.equals("Cliente")) {
 				      ModelMap modelo = new ModelMap();
+				      Usuario usuario = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
+				      
+				      comentarios =servicioClienteCombos.obtenerComentariosdeCombo(idcombo);
 				      Combo combo=servicioClienteCombos.obtenerComboPorId(idcombo);
-				      Integer CantidadPositivos=servicioClienteCombos.obtenerPositivosCombo(idcombo);
-				      Integer CantidadNegativos=servicioClienteCombos.obtenerNegativosCombo(idcombo);
-
+				      Integer CantidadPositivos=servicioClienteCombos.obtenerPositivosCombo(idcombo);//Cantidad de MeGusta que posee el combo
+				      Integer CantidadNegativos=servicioClienteCombos.obtenerNegativosCombo(idcombo);//cantidad de no me gusta
+				      boolean resultado = servicioClienteCombos.validaValoracion(idcombo,usuario.getId());//valida si el cliente ya hizo una valoracion al combo
+	                  boolean resultadoComentario = servicioClienteCombos.validaComentario(idcombo,usuario.getId());//valida si el cliente ya realizo ujn comentario al combo
+				
+	                   modelo.put("estadoComentario",resultadoComentario);
+				       modelo.put("comentarios",comentarios);
 				       modelo.put("combo", combo);
 				       modelo.put("positivos",CantidadPositivos);
 				       modelo.put("negativos", CantidadNegativos);
+				       modelo.put("resultado", resultado);
+		
 				      return new ModelAndView("verDetalle",modelo);
 			 }	
 			
@@ -110,10 +124,18 @@ public class ControladorClienteCombos {
 		@RequestMapping(value = "/valorarcombos", method = RequestMethod.POST,consumes= "application/json")
 		  public @ResponseBody String CalificaCombos(@RequestBody ValorarDAO data,HttpServletRequest request) {
 			
-			  Usuario usuario = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
-			  
+			    Usuario usuario = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
 				servicioClienteCombos.valorar(usuario.getId(),data.getIdcombo(),data.isValidacion());
 			
+			  return null;
+			}
+		
+		@RequestMapping(value = "/guardarComentario", method = RequestMethod.POST,consumes= "application/json")
+		  public @ResponseBody String recibeComentarioCombo(@RequestBody ComentarDAO data,HttpServletRequest request) {		
+		      	     
+			         Usuario usuario = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
+			         servicioClienteCombos.guardarComentario(usuario.getId(),data.getIdcombo(),data.getComentario());
+				    		
 			  return null;
 			}
 }
