@@ -46,6 +46,31 @@ public class ControladorVendedor {
 		return new ModelAndView("redirect:/login");
 	}
 	
+	@RequestMapping(path = "/aplicacionDescuento", method = RequestMethod.GET)
+	public ModelAndView aplicacionDescuento(HttpServletRequest request,@RequestParam(value="descuento",required=false) Integer descuento ) {
+		String rol=(String)request.getSession().getAttribute("ROL");
+		if(rol != null) 
+		if(rol.equals("Vendedor")) {
+			return new ModelAndView("aplicacionDescuento");
+		}
+		return new ModelAndView("redirect:/login");
+		
+	}
+	
+	@RequestMapping(path = "/aplicarDescuento", method = RequestMethod.POST)
+	public ModelAndView aplicarDescuento(HttpServletRequest request,@RequestParam(value="descuento",required=false) Long descuento, @RequestParam(value="descuentosAlCombo",required=false) Long id ) {
+		String rol=(String)request.getSession().getAttribute("ROL");
+		if(rol != null) 
+			if(rol.equals("Vendedor")) {
+				ModelMap modelo = new ModelMap();
+				this.creado.aplicarDescuento(descuento, id);
+				modelo.put("create","Descuento Aplicado");
+				return new ModelAndView("aplicacionDescuento", modelo);
+			}
+			return new ModelAndView("redirect:/login");
+			
+		}
+
 	@RequestMapping("/creacionCombo")
 	public ModelAndView creacionCombos(HttpServletRequest request) {
 		String rol=(String)request.getSession().getAttribute("ROL");
@@ -78,7 +103,7 @@ public class ControladorVendedor {
 			modelo.put("stock", nuevo.getStock());
 			return new ModelAndView("creacionCombo", modelo);
 		}
-		return new ModelAndView("redirect:/login");
+		return new ModelAndView("redirect:/index");
 		
 	}
 	@RequestMapping(path="/crear",method=RequestMethod.POST)
@@ -100,7 +125,7 @@ public class ControladorVendedor {
 			}
 		}
 		}
-			return new ModelAndView("redirect:/login");
+			return new ModelAndView("redirect:/index");
 		
 	
 		
@@ -127,10 +152,28 @@ public class ControladorVendedor {
 			}
 			
 		}
-				return new ModelAndView("redirect:/login");
+				return new ModelAndView("redirect:/index");
 		
 	}
 	
+	@RequestMapping(path="/descuentosAlCombo",method=RequestMethod.POST)
+	public ModelAndView procesardescuentosAlCombo(
+			HttpServletRequest request,@RequestParam(value="descuentosAlCombo",required=false) Long idDelCombo
+			) {
+		String rol=(String)request.getSession().getAttribute("ROL");
+		if(rol != null) 
+		if(rol.equals("Vendedor")) {
+			ModelMap modelo = new ModelMap();
+			Combo nuevo = new Combo();
+			nuevo = creado.buscarPorId(idDelCombo);
+			modelo.put("combo", nuevo);
+			modelo.put("id", nuevo.getId());
+			modelo.put("nombre", nuevo.getNombre());
+			return new ModelAndView("aplicacionDescuento", modelo);
+		}
+		return new ModelAndView("redirect:/index");
+		
+	}
 	
 	
 }

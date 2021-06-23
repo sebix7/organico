@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,7 +86,45 @@
                 </div>
                     </div>
                     
+                                 <div class="full-box text-center" style="padding: 30px 10px;">
+			
+		        <h4><span>Combos Seleccionados</span></h4>
+	       
+	        <c:if test="${not empty combos}">
+				<div class="row">
+					<c:forEach items="${combos}" var="combo">
+		  				<div class="col-sm-6 col-md-4">
+		    				<div class="thumbnail">
+		      					<img alt="100%x200" data-src="holder.js/100%x200" src="img/pngegg.png" data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
+		      					<div class="caption">
+		        					<h3>${combo.nombre}</h3>
+		        					<p>${combo.descripcion}</p>
+		       						<p>stock disponible: ${combo.stock}</p>
+		       						<c:if test="${combo.tieneDescuento == true}">
+		       						<h4><span>Este Combo Tiene Descuento</span></h4>
+	       							 </c:if>
+	       							 <h5>Precio Final ${combo.precio} !!</h5>
+		       						<form action="" method="POST">
+		       						<label for="EnvioDeIdCompra"></label>
+									<input type="hidden" id="EnvioDeIdCompra" name="EnvioDeIdCompra" value="${combo.id}">
+		       						<button type="submit"  class="btn btn-success">Comprar Combo</button>
+		       						</form>
+		      					</div>
+		    				</div>
+		  				</div>
+					</c:forEach>
+				</div>
+			</c:if>
+		</div>
+                   
+                    
         </section>
+        
+                     
+        
+                     
+                     
+       
         <!-- Image Showcases-->
         <section class="showcase">
             <div class="container-fluid p-0">

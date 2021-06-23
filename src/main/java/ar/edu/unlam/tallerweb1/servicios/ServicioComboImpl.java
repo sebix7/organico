@@ -46,12 +46,21 @@ public class ServicioComboImpl implements ServicioCombo {
 	}
 	@Override
 	public Combo buscarPorId(Long id) {
-		// TODO Auto-generated method stub
 		return nuevo.buscarPorId(id);
 	}
 	@Override
 	public List<Combo> consultarCombosPorUs(Usuario entrada) {
 		return nuevo.consultarCombosPorId(entrada);
+	}
+	@Override
+	public void aplicarDescuento(Long descuento,Long id) {
+		Combo entrada = new Combo();
+		 entrada = nuevo.buscarPorId(id);
+		 Double total = entrada.getPrecio();
+		 Double resto = (entrada.getPrecio() * descuento) / 100;
+		 entrada.setPrecio(total - resto);
+		 Boolean descuentos = true;
+		 entrada.setTieneDescuento(descuentos);
 	}
 
 }

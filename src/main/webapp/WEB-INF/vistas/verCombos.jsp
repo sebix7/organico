@@ -55,10 +55,18 @@
 		      					<div class="caption">
 		        					<h3>${combo.nombre}</h3>
 		       						<p>stock disponible: ${combo.stock}</p>
+		       						<c:if test="${combo.tieneDescuento == true}">
+		       						<h4><span>Este Combo Tiene Descuento</span></h4>
+	       							 </c:if>
 		       						<form action="envioId" method="POST">
 		       						<label for="idDetalle"></label>
 									<input type="hidden" id="idDetalle" name="idDetalle" value="${combo.id}">
 		       						<button type="submit"  class="btn btn-success">Editar Combo</button>
+		       						</form>
+		       						<form action="descuentosAlCombo" method="POST">
+		       						<label for="descuentosAlCombo"></label>
+									<input type="hidden" id="descuentosAlCombo" name="descuentosAlCombo" value="${combo.id}">
+		       						<button type="submit"  class="btn btn-success">Aplicar Descuento al Combo</button>
 		       						</form>
 		      					</div>
 		    				</div>
@@ -78,4 +86,4 @@
 		$.material.init();
 	</script>
 </body>
-</html>>
+</html>

@@ -17,11 +17,11 @@
 			</div>
 			<div>
 				<label for="password">Contraseña:</label>
-				<form:input path="password" type="password" id="password" class="form-control"/>
+				<form:input path="password" type="password" id="password" class="form-control" pattern=".{6,}"/>
 			</div>
 			<div>
 				<label for="repassword">Repetir contraseña:</label>
-				<input type="password" name="repassword" id="repassword" class="form-control">
+				<input type="password" name="repassword" id="repassword" class="form-control" pattern=".{6,}">
 			</div>
 			<div>
 				<p class="text-center text-muted text-uppercase">Quieres ser Vendedor O Comprador:</p>

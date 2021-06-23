@@ -15,6 +15,7 @@ public interface ServicioCombo {
 		void modificar(Combo combo);
 		Combo buscarPorId(Long id);
 		List<Combo> consultarCombosPorUs(Usuario entrada);
+		void aplicarDescuento(Long descuento,Long id);
 
 
 }

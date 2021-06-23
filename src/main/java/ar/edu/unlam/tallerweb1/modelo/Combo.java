@@ -26,11 +26,20 @@ public class Combo {
 	private Date vencimiento;
 	private Double peso;
 	private Integer stock;
+	private Boolean tieneDescuento = false;
 
 
 	@ManyToOne
 	private Usuario usuario;
 	
+
+	public Boolean getTieneDescuento() {
+		return tieneDescuento;
+	}
+
+	public void setTieneDescuento(Boolean tieneDescuento) {
+		this.tieneDescuento = tieneDescuento;
+	}
 
 	public Long getId() {
 		return id;

@@ -13,4 +13,5 @@ public interface RepositorioCombo {
 	    Combo buscarPorId(Long id);
 	    List<Combo> consultarCombos();
 	    List<Combo> consultarCombosPorId(Usuario entrada);
+	    
 }
