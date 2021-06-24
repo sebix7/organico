@@ -59,7 +59,7 @@
 										<td>${pedido.id}</td>
 										<td><span class="label label-xl font-weight-boldest label-rounded label-success">${pedido.estado}</span></td>
 										<td>${pedido.fechaDeEmision}</td>
-										<th><a href="#!">VER DETALLE DEL PEDIDO</a></th>
+										<th><a href=detallePedido?id=${pedido.carro.id}>VER DETALLE DEL PEDIDO</a></th>
 									</tr>
 								</c:forEach>
 							</tbody>

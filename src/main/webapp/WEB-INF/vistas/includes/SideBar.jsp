@@ -90,28 +90,23 @@
 					</a>
 				</li>
 				<li>
-					<a href="verCombos">
-						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Combos
+					<a href="#!" class="btn-sideBar-SubMenu">
+						<i class="zmdi zmdi-cutlery zmdi-hc-fw"></i> Combos <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
+					<ul class="list-unstyled full-box" style="padding-top: 0">
+						<li>
+							<a href="verCombos"><span style="margin-left: 10px"> Ver Combos</span></a>
+						</li>
+						<li>
+							<a href="creacionCombo"><span style="margin-left: 10px"> Nuevo Combo</span></a>
+						</li>
+					</ul>
 				</li>
 				<li>
 					<a href="#!">
 						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Clientes
 					</a>
-				</li>		
-				<!--<li>
-					<a href="#!" class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Proveedores <i class="zmdi zmdi-caret-down pull-right"></i>
-					</a>
-					<ul class="list-unstyled full-box">
-						<li>
-							<a href="periodo"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Periodo</a>
-						</li>
-						<li>
-							<a href="estadisticas"><i class="zmdi zmdi-book zmdi-hc-fw"></i> Estadisticas</a>
-						</li>
-					</ul>
-				</li>-->		
+				</li>
 			</ul>
 			</c:when>
 			
@@ -130,7 +125,12 @@
 				</li>
 				<li>
 					<a href="carrito">
-						<i class="zmdi zmdi-shopping-cart zmdi-hc-fw"></i> Carrito
+						<i class="zmdi zmdi-shopping-cart zmdi-hc-fw"></i> Carrito<c:if test="${sessionScope.carro.size() > 0}"> (${sessionScope.carro.size()})</c:if>
+					</a>
+				</li>
+				<li>
+					<a href="pedidosCliente">
+						<i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Pedidos
 					</a>
 				</li>
 			</ul>

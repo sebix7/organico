@@ -25,11 +25,6 @@
 					</a>
 				</li>
 				<li>
-					<a href="carrito" class="menu-dashboard">
-						<i class="zmdi zmdi-shopping-cart"></i>
-					</a>
-				</li>
-				<li>
 					<a href="#!" class="btn-modal-help">
 						<i class="zmdi zmdi-help-outline"></i>
 					</a>

@@ -58,7 +58,7 @@
 		      					<div class="caption">
 		        					<h3>${combo.nombre}</h3>
 		       						<p>...</p>
-		        					<p><a href="#" class="btn btn-primary" role="button">Ver Detalles</a><p>
+		        					<p><a href=verDetalle?id=${combo.id} class="btn btn-primary" role="button">Ver Detalles</a><p>
 		      					</div>
 		    				</div>
 		  				</div>
