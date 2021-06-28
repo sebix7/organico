@@ -78,7 +78,7 @@ public class ControladorClienteCombos {
 //				combo.setCompras(compras);
 //				servicioClienteCombos.modificarCombo(combo);
 				
-				return new ModelAndView("redirect:/carrito");
+				return new ModelAndView("redirect:/combos");
 			}
 			else {
 				return new ModelAndView("login");

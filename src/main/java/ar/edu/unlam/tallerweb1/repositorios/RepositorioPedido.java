@@ -2,11 +2,14 @@ package ar.edu.unlam.tallerweb1.repositorios;
 
 import java.util.List;
 
+import ar.edu.unlam.tallerweb1.modelo.Combo;
+import ar.edu.unlam.tallerweb1.modelo.ComboCarro;
 import ar.edu.unlam.tallerweb1.modelo.Pedido;
 
 public interface RepositorioPedido {
 
-	public void guardarPedido(Pedido pedido);
-	public List<Pedido> obtenerPedidosDelCliente(Long clienteId);
+	void guardarPedido(Pedido pedido);
+	List<Pedido> obtenerPedidosDelCliente(Long clienteId);
+	List<ComboCarro> obtenerComboCarrosVinculadosAlPedido(Long carroId);
 
 }

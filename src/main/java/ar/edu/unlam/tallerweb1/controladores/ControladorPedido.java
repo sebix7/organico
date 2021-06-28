@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Combo;
+import ar.edu.unlam.tallerweb1.modelo.ComboCarro;
 import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCarro;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComboCarro;
@@ -49,5 +50,22 @@ public class ControladorPedido {
 			return new ModelAndView("login");
 		}
 	}
+	
+	@RequestMapping(path = "/detallePedido", method = RequestMethod.GET)
+	public ModelAndView detallePedido(@RequestParam(value = "id", required = true) Long id, HttpServletRequest request) {
+		
+			String rol=(String)request.getSession().getAttribute("ROL");
+		
+			if(rol.equals("Cliente")) {
+				ModelMap modelo = new ModelMap();
+				List<Combo> combos = servicioPedido.consultarCombosDelPedido(id);
+				modelo.put("carro", combos);
+				return new ModelAndView("detallePedido", modelo);
+			} else {
+				return new ModelAndView("login");
+			}
+	}
+	
+	
 
 }

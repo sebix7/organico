@@ -56,10 +56,13 @@
 			      					<div class="caption">
 			        					<h3>${combo.nombre}</h3>
 			       						<p>Stock disponible: ${combo.stock}</p>
+			       						<c:if test="${combo.tieneDescuento == true}">
+				       						<h4><span>Este Combo Tiene Descuento</span></h4>
+										</c:if>
 			        					<p><a href=verDetalle?id=${combo.id} class="btn btn-primary" role="button">Ver Detalles</a></p>
 			        					<c:choose>
 			    							<c:when test="${combo.stock > 0}">
-			        							<p><a href=agregarACarrito?id=${combo.id} class="btn btn-default" role="button">Agregar al Carrito</a></p>
+			        							<p><a href=agregarACarrito?id=${combo.id} class="btn btn-default" id="boton-agregar-carrito" role="button">Agregar al Carrito</a></p>
 									        </c:when>
 									        <c:otherwise>
 									        	<p><span class="btn btn-danger" style="text-transform: uppercase;">Sin stock</span></p>
