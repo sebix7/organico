@@ -43,12 +43,17 @@
 		<div class="col-sm-4">
 			<form action="usuarios" method="POST">
 			    
-				<input type="checkbox" name="Cliente">Cliente<br> 
-				<input type="checkbox" name="Vendedor">Vendedor<br> 
-				<input type="checkbox" name="Administrador">Administrador<br> <br>
+		        <select  name = "roles">
+		        <option value="" disabled selected>Tipo de Usuario</option>
+                <option value = "Todos">Todos</option>
+                <option value = "Cliente">Clientes</option>
+                <option value = "Vendedor">Vendedor</option>
+                <option value = "Administrador">Administrador</option>
+                 </select>  
+			    
 				<br>
 				<div class="col-sm-6">
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Filtrar</button>
+					<button class="btn btn-lg btn-primary btn-block" type="submit">Buscar</button>
 					<br>
 					<br>
 				</div>
@@ -72,7 +77,11 @@
 							<td><c:out value="${lista.nombre}" /></td>
 							<td><c:out value="${lista.email}" /></td>
 							<td><c:out value="${lista.rol} " /></td>
-		
+							<td class="col-sm-2">
+						    <button type="button" class="boton" class="btn btn-primary" value="${lista.id}" data-toggle="modal" data-target="#exampleModal">
+                                 ver Perfil
+                                </button>
+		                   </td>
 					    </tr>
 					 </c:forEach>
 				</tbody>
@@ -82,7 +91,9 @@
 		
 </div>
 </div>
+ <!--  modal para visualizar Perfil-->
 
+<%@ include file="includes/modalPerfil.jsp"%>
 
 
 <!-- Modal de ayuda -->
@@ -91,4 +102,11 @@
 	<script>
 		$.material.init();
 	</script>
+	<script>
+	$('#Modal').on('shown.bs.modal', function () {
+		  $('#myInput').trigger('focus')
+		})
+	</script>
+ <script src="js/mostrarperfil.js"></script>
 </body>
+</html>

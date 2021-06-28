@@ -57,35 +57,38 @@ public class ControladorAdmin {
  	
 	@RequestMapping(path = "/usuarios", method = RequestMethod.POST)
 	 public ModelAndView irUsuariosBusqueda(
-			@RequestParam(defaultValue = "false") boolean Vendedor, //Filtro si es True, entra al IF.
-			@RequestParam(defaultValue = "false") boolean Cliente,
-			@RequestParam(defaultValue = "false") boolean Administrador){
+			@RequestParam(defaultValue = "true") String roles ){
 			
 			ModelMap modelo = new ModelMap();
 			
 		//Cada if hace un criteria que trae todos los usuarios de un rol en particular
-	   	if (Vendedor) {
+	   	if (roles.equalsIgnoreCase("Vendedor")) {
 	  
 			modelo.put("busqueda",servicioLogin.busquedaPorRol("Vendedor"));
 			return new ModelAndView("usuarios", modelo);
 	    }
 		
-		if (Cliente) {
+		if (roles.equalsIgnoreCase("Cliente")) {
 	    
 			modelo.put("busqueda",servicioLogin.busquedaPorRol("Cliente"));
 			return new ModelAndView("usuarios", modelo);
 	    }
 		
-		if (Administrador) {
+		if (roles.equalsIgnoreCase("Administrador")) {
 	      
 			modelo.put("busqueda",servicioLogin.busquedaPorRol("Administrador"));
+			return new ModelAndView("usuarios", modelo);
+	    }
+		
+		if (roles.equalsIgnoreCase("Todos")) {
+		      
+			modelo.put("busqueda",servicioLogin.listarTodos());
 			return new ModelAndView("usuarios", modelo);
 	    }
 		
 		return null;
 		
 	}
-
 	@RequestMapping("/periodo")
 	public ModelAndView irAPeriodo() {
 		return new ModelAndView("periodo");

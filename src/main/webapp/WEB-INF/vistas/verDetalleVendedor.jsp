@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="includes/cabecera.jsp"%>
+
 </head>
 <body>
 <!-- SideBar -->
@@ -72,74 +73,62 @@
             </ul>
 
          </div>
-         
-         	<c:if test="${resultado == true}">
-              <span> Valorar Combo: </span>
-	          <img style="cursor: pointer" id="likeIcon"  value="true" width="36" height="36" class="img-circle" src="img/MeGusta.png" title="Me Gusta" alt="Me Gusta" > | 
-			  <img style="cursor: pointer" id="dislikeIcon"  value="false" width="36" height="36" class="img-circle" src="img/NoMeGusta.png" title="No me Gusta" alt="No Me Gusta" >
-										  
-			  <input type="hidden" id="Idcombo" value="${combo.id}" />
-		   
-		    </c:if>	
+  
        </div> 
    </div>    
-  <a href="combos"class="btn btn-primary">Volver </a>
+  <a href="verCombos"class="btn btn-primary">Volver </a>
+  
+
   
  <!-- SECCION COMENTARIOS -->
  
  		<div class="container-fluid">
 			  	<h1 class="text-titles"><i class="zmdi zmdi-comment-text"></i>Comentarios: </h1>
-			<!-- Solo es visible si el cliente no realizo ningun comentario -->
-			
-			<c:if test="${estadoComentario == false}">
-			
-                  <legend>Realizar comentario:</legend>
-		          <div class="form-group">
-               
-                   <input type="hidden" id="Idcombo" value="${combo.id}"  />
-                   <textarea id="comentario" name="comentario" cols="40" rows="3" ></textarea>
-               
-                  <button class="btn btn-success" id="boton" type="submit">Envíe su mensaje</button>
-                  </div>
-         
-              </c:if>	  
-		 </div>
 	 
 	  <!-- LISTAR COMENTARIOS -->
-		 	 <!-- LISTAR COMENTARIOS -->
-		 	<c:if test="${estadoComentario == true}">
-		 	     <div class="col-sm-8">
+		 	<c:if test="${not empty comentarios}">
+		     	<div class="col-sm-8">
 		 		      <table class="table table-bordered">
-				          <thead >
+				         <thead >
 					       <tr>
 						   <th scope="col">Usuario</div></th>
+						    <th scope="col"></div></th>
 						   <th scope="col">Comentario</th>
 					       </tr>
-				          </thead>
-				
-				         
+				          </thead>			         
 		 		          <tbody>
-					        <c:forEach items="${comentarios}" var="comentarios">
+					      <c:forEach items="${comentarios}" var="comentarios">
 		                    <tr>
-							 <td class="col-sm-5"><img src="img/anonimo.jpg" title="anonimo"  width="45" height="45">
-							 ${comentarios.usuario.nombre}
+							<td class="col-sm-3"><img src="img/anonimo.jpg" title="anonimo"  width="45" height="45">
+							${comentarios.usuario.nombre}
+							</td>
+							<td class="col-sm-2">
 						      <button type="button" class="boton" class="btn btn-primary" value="${comentarios.usuario.id}" data-toggle="modal" data-target="#exampleModal">
                                  ver Perfil
                                 </button>
-							 <td><c:out value="${comentarios.comentario}" /></td>
-					         </tr>
+						     
+						     </td>
+							<td><c:out value="${comentarios.comentario}" /></td>
+					        </tr>
 		                  </c:forEach>
 		                </tbody>
 		               </table>   
 		              </div>  		              
 		     </c:if>
 		  
+		 
+		  <c:if test="${empty comentarios}">
+			        <h4><span>No se ha registrado ningun comentario</span></h4>
+			        <br>
+		        </c:if>	
 		  
 </section>
+
+
+
  <!--  modal para visualizar Perfil-->
 
 <%@ include file="includes/modalPerfil.jsp"%>
-
 <!-- Modal de ayuda -->
 <%@ include file="includes/DialogHelpModal.jsp"%>
 <!--====== Scripts -->
@@ -151,10 +140,6 @@
 		  $('#myInput').trigger('focus')
 		})
 	</script>
-    <script src="js/mostrarperfil.js"></script>
-	 <script src="js/valorarCombos.js"></script>
-	 <script src="js/realizarComentario.js"></script>
-
-</script>
+ <script src="js/mostrarperfil.js"></script>
+</body>
 </html>		
-		

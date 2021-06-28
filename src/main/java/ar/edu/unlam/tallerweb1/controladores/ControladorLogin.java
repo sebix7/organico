@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -215,5 +216,21 @@ public class ControladorLogin {
 		
 		}
 		return new ModelAndView("perfil", modelo);
+	}
+	
+	//action que me devuelve los datos a  usar en el modal para ver perfil
+	@RequestMapping(value = "/verPerfil", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody ModelMap verPerfil(@RequestParam("id") Long idusuario) {
+		ModelMap modelo = new ModelMap();
+	
+		
+		Usuario usuario = servicioLogin.buscarPorId(idusuario);
+		modelo.put("nombre", usuario.getNombre());
+		modelo.put("email", usuario.getEmail());
+		modelo.put("direccion", usuario.getDireccion());
+		modelo.put("rol",usuario.getRol());
+		
+		
+		return modelo; 
 	}
 }

@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.ValorarCombo;
+import ar.edu.unlam.tallerweb1.servicios.ServicioClienteCombos;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCombo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 
@@ -26,12 +28,14 @@ public class ControladorVendedor {
 	
 	private ServicioCombo creado;
 	private ServicioLogin idVendedor;
+	private ServicioClienteCombos servicioClienteCombos;
 
 	
 	@Autowired
-	public ControladorVendedor(ServicioCombo creado, ServicioLogin idVendedor){
+	public ControladorVendedor(ServicioCombo creado, ServicioLogin idVendedor,ServicioClienteCombos servicioClienteCombos){
 		this.creado = creado;
 		this.idVendedor = idVendedor;
+		this.servicioClienteCombos=servicioClienteCombos;
 	}
 
 	// Escucha la URL /home por GET, y redirige a una vista.
@@ -174,6 +178,35 @@ public class ControladorVendedor {
 		return new ModelAndView("redirect:/index");
 		
 	}
+	
+	//action que permite visualizar la vista VerDetalle de cada combo
+	@RequestMapping(path ="/verDetalleVendedor",method = RequestMethod.GET)
+	public ModelAndView irDetalleVendedor(@RequestParam(value = "id", required = true) Long idcombo, HttpServletRequest request) {
+		
+	         List<ValorarCombo> comentarios = new ArrayList();	
+		
+		String rol=(String)request.getSession().getAttribute("ROL");
+		//solo ingresa si es vendedor
+		      if(rol.equals("Vendedor")) {
+			      ModelMap modelo = new ModelMap();
+			      
+			      comentarios =servicioClienteCombos.obtenerComentariosdeCombo(idcombo);
+			      Combo combo=servicioClienteCombos.obtenerComboPorId(idcombo);
+			      Integer CantidadPositivos=servicioClienteCombos.obtenerPositivosCombo(idcombo);//Cantidad de MeGusta que posee el combo
+			      Integer CantidadNegativos=servicioClienteCombos.obtenerNegativosCombo(idcombo);//cantidad de no me gusta
+                
+			
+			       modelo.put("comentarios",comentarios);
+			       modelo.put("combo", combo);
+			       modelo.put("positivos",CantidadPositivos);
+			       modelo.put("negativos", CantidadNegativos);
+	
+			      return new ModelAndView("verDetalleVendedor",modelo);
+		 }	
+		
+		return new ModelAndView("login");
+	}
+
 	
 	
 }

@@ -63,6 +63,7 @@
 									<input type="hidden" id="idDetalle" name="idDetalle" value="${combo.id}">
 		       						<button type="submit"  class="btn btn-success">Editar Combo</button>
 		       						</form>
+		       						<p><a href=verDetalleVendedor?id=${combo.id} class="btn btn-primary" role="button">Ver Detalles</a></p>
 		       						<form action="descuentosAlCombo" method="POST">
 		       						<label for="descuentosAlCombo"></label>
 									<input type="hidden" id="descuentosAlCombo" name="descuentosAlCombo" value="${combo.id}">

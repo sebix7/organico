@@ -90,8 +90,7 @@ public class ControladorClienteCombos {
 		@RequestMapping(path ="/verDetalle",method = RequestMethod.GET)
 		public ModelAndView irDetalle(@RequestParam(value = "id", required = true) Long idcombo, HttpServletRequest request) {
 			
-		         List<ValorarCombo> comentarios = new ArrayList();
-		
+		         List<ValorarCombo> comentarios = new ArrayList();	
 			
 			String rol=(String)request.getSession().getAttribute("ROL");
 			//solo imgresa si es cliente
