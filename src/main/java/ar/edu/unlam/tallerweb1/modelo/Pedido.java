@@ -17,6 +17,11 @@ public class Pedido {
 	private Date fechaDeEmision;
 	private String estado;
 	
+	//El pedido puede estar pendiente de entrega
+		//cancelado
+		// o entregado
+		private String entrega;
+	
 	@OneToOne
 	private Carro carro;
 
@@ -50,5 +55,13 @@ public class Pedido {
 
 	public void setCarro(Carro carro) {
 		this.carro = carro;
+	}
+	
+	public String getEntrega() {
+		return entrega;
+	}
+
+	public void setEntrega(String entrega) {
+		this.entrega = entrega;
 	}
 }

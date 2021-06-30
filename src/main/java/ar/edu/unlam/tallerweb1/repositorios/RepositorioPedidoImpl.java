@@ -42,5 +42,18 @@ public class RepositorioPedidoImpl implements RepositorioPedido {
 				.add(Restrictions.eq("carro.id", carroId))
 				.list();
 	}
+	
+	@Override
+	public Pedido buscarPedidoPorId(Long idpedido) {
+		return (Pedido) sessionFactory.getCurrentSession().createCriteria(Pedido.class)
+				.add(Restrictions.eq("id",idpedido)).uniqueResult();
+		
+	}
+
+	@Override
+	public void actualizar(Pedido pedido) {
+		sessionFactory.getCurrentSession().update(pedido);
+		
+	}
 
 }

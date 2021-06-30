@@ -51,4 +51,16 @@ public class ServicioPedidoImpl implements ServicioPedido {
 		return combos;
 	}
 
+	
+	@Override
+	public Pedido buscarPedidoPorId(Long idpedido) {
+	      
+		return repositorioPedido.buscarPedidoPorId(idpedido);
+	}
+
+	@Override
+	public void actualizar(Pedido pedido) {
+		repositorioPedido.actualizar(pedido);
+		
+	}
 }

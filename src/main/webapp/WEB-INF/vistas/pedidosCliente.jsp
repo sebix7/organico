@@ -47,10 +47,11 @@
 						<table class="table">
 							<thead>
 								<tr>
-									<th>Codigo del Pedido</th>
-									<th>Estado</th>
-									<th>Fecha de Emisión</th>
-									<th></th>
+									<th scope="col" >Codigo del Pedido</th>
+									<th scope="col">Estado</th>
+									<th scope="col">Fecha de Emisión</th>
+									<th scope="col"></th>								
+									<th scope="col">Entrega</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -59,7 +60,13 @@
 										<td>${pedido.id}</td>
 										<td><span class="label label-xl font-weight-boldest label-rounded label-success">${pedido.estado}</span></td>
 										<td>${pedido.fechaDeEmision}</td>
-										<th><a href=detallePedido?id=${pedido.carro.id}>VER DETALLE DEL PEDIDO</a></th>
+										<td><a href=detallePedido?id=${pedido.carro.id}>VER DETALLE DEL PEDIDO</a></td>
+										<td>${pedido.entrega}</td>
+										
+										 	<c:if test="${pedido.entrega == 'Pendiente'}">
+									        <td><button  type="button"  class="boton" value="${pedido.id}" class="btn btn-raised btn-danger" >Cancelar Pedido</button></td>				
+										   
+										    </c:if>	
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -78,5 +85,6 @@
 	<script>
 		$.material.init();
 	</script>
+	<script src="js/CancelarPedidos.js"></script>
 </body>
 </html>

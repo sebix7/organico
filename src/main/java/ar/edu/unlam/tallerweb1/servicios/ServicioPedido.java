@@ -13,5 +13,7 @@ public interface ServicioPedido {
 	void guardarPedido(Pedido pedido);
 	List<Pedido> obtenerPedidosDelCliente(Long clienteId);
 	List<Combo> consultarCombosDelPedido(Long carroId);
+	Pedido buscarPedidoPorId(Long idpedido);
+	void actualizar(Pedido pedido);
 
 }

@@ -11,5 +11,8 @@ public interface RepositorioPedido {
 	void guardarPedido(Pedido pedido);
 	List<Pedido> obtenerPedidosDelCliente(Long clienteId);
 	List<ComboCarro> obtenerComboCarrosVinculadosAlPedido(Long carroId);
+	Pedido buscarPedidoPorId(Long idpedido);
+	void actualizar(Pedido pedido);
+
 
 }

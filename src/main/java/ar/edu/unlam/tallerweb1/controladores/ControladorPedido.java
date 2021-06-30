@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Combo;
@@ -65,6 +66,17 @@ public class ControladorPedido {
 				return new ModelAndView("login");
 			}
 	}
+	
+	//action que cambia la entrega del pedido a cancelado
+		@RequestMapping(value = "/cancelarPedido", method = RequestMethod.GET, produces = "application/json")
+		public @ResponseBody String cancelaPedido(@RequestParam("id") Long idpedido) {
+
+		      Pedido pedido =servicioPedido.buscarPedidoPorId(idpedido);
+		      pedido.setEntrega("Cancelado");
+		      servicioPedido.actualizar(pedido);	
+			
+			return null; 
+		}
 	
 	
 

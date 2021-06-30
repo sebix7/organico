@@ -77,6 +77,7 @@ public class ControladorCarro {
 			this.servicioComboCarro.guardarComboCarro(carrito, combos);
 			pedido.setFechaDeEmision(new Date());
 			pedido.setEstado("Pago");
+			pedido.setEntrega("Pendiente");	
 			pedido.setCarro(carrito);
 			this.servicioPedido.guardarPedido(pedido);
 			if(request.getSession().getAttribute("carro") != null) {
