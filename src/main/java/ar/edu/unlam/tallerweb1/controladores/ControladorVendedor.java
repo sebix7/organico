@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Combo;
@@ -207,6 +208,14 @@ public class ControladorVendedor {
 		return new ModelAndView("login");
 	}
 
+	 //action que pasa todos los comentarios a true = leido
+	@RequestMapping(value = "/marcarComentariosLeidos", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody String leerComentarios(@RequestParam("id") Long idcombo) {
+
+		      servicioClienteCombos.marcarComentarios(idcombo);
+		
+		return null; 
+	}
 	
 	
 }

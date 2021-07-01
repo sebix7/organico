@@ -19,6 +19,7 @@ public interface ServicioClienteCombos {
 	List<ValorarCombo> obtenerComentariosdeCombo(Long idcombo);
 	void guardarComentario(Long idusuario, long idcombo, String comentario);
 	boolean validaComentario(Long idcombo, Long idusuario);
+	void marcarComentarios(Long idcombo);
 	
 	
 }

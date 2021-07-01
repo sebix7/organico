@@ -141,6 +141,23 @@ public class ServicioClienteCombosImpl implements ServicioClienteCombos {
 		
 		return repositorioClienteCombos.verificaUnSoloComentario(idcombo, idusuario);
 	}
+
+	@Override
+	public void marcarComentarios(Long idcombo) {
+		List<ValorarCombo> resultado = repositorioClienteCombos.obtenerComentariosCombo(idcombo);
+			
+			  for(ValorarCombo lista : resultado) {
+				  
+				  if(lista.isLeido()== false)
+		            {
+		             	  lista.setLeido(true);
+		             	  repositorioClienteCombos.guardarValoracion(lista);
+		            }
+		    
+		     	}	
+	                 
+			
+		}
 		
 
 

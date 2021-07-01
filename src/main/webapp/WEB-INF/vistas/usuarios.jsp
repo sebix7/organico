@@ -91,6 +91,8 @@
 		
 </div>
 </div>
+</div>
+</section>
  <!--  modal para visualizar Perfil-->
 
 <%@ include file="includes/modalPerfil.jsp"%>

@@ -87,6 +87,10 @@
 	 
 	  <!-- LISTAR COMENTARIOS -->
 		 	<c:if test="${not empty comentarios}">
+		 	 <button type="button" id="marcarLeido" class="btn btn-primary" value="${combo.id}">
+                               Marcar comentarios como leidos
+                       </button>
+		 	
 		     	<div class="col-sm-8">
 		 		      <table class="table table-bordered">
 				         <thead >
@@ -105,10 +109,16 @@
 							<td class="col-sm-2">
 						      <button type="button" class="boton" class="btn btn-primary" value="${comentarios.usuario.id}" data-toggle="modal" data-target="#exampleModal">
                                  ver Perfil
-                                </button>
-						     
+                                </button>						    
 						     </td>
-							<td><c:out value="${comentarios.comentario}" /></td>
+						      <c:if test="${comentarios.leido == 'false'}">
+							    <td class="success"><c:out value="${comentarios.comentario}" /></td>
+                             </c:if>
+                             
+                             <c:if test="${comentarios.leido == 'true'}">
+							    <td ><c:out value="${comentarios.comentario}" /></td>
+                             </c:if>	
+						     
 					        </tr>
 		                  </c:forEach>
 		                </tbody>
@@ -141,5 +151,6 @@
 		})
 	</script>
  <script src="js/mostrarperfil.js"></script>
+  <script src="js/marcarComentariosLeidos.js"></script>
 </body>
 </html>		

@@ -24,6 +24,8 @@ public class ValorarCombo {
 	private boolean valoracion;
 	
 	private String comentario;
+	
+	private boolean leido = false;
 
 	public Long getId() {
 		return id;
@@ -63,6 +65,14 @@ public class ValorarCombo {
 
 	public void setComentario(String comentario) {
 		this.comentario = comentario;
+	}
+
+	public boolean isLeido() {
+		return leido;
+	}
+
+	public void setLeido(boolean leido) {
+		this.leido = leido;
 	}
 
 	
