@@ -91,19 +91,19 @@
 			  	<h1 class="text-titles"><i class="zmdi zmdi-comment-text"></i>Comentarios: </h1>
 			<!-- Solo es visible si el cliente no realizo ningun comentario -->
 			
-			<c:if test="${estadoComentario == false}">
+			   <c:if test="${estadoComentario == false}">
 			
-                  <legend>Realizar comentario:</legend>
-		          <div class="form-group">
+                      <legend>Realizar comentario:</legend>
+		              <div class="form-group">
                
-                   <input type="hidden" id="Idcombo" value="${combo.id}"  />
-                   <textarea id="comentario" name="comentario" cols="40" rows="3" ></textarea>
-               
-                  <button class="btn btn-success" id="boton" type="submit">Envíe su mensaje</button>
-                  </div>
+                      <input type="hidden" id="Idcombo" value="${combo.id}"  />
+                      <textarea id="comentario" name="comentario" cols="40" rows="3" ></textarea>
+                      <button class="btn btn-success" id="boton" type="submit">Envíe su mensaje</button>
+                      </div>
          
-              </c:if>	  
+                </c:if>	  
 		 </div>
+	
 	 
 	  <!-- LISTAR COMENTARIOS -->
 		 	 <!-- LISTAR COMENTARIOS -->

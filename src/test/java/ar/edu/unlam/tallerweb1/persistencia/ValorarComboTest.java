@@ -16,11 +16,11 @@ import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.modelo.ValorarCombo;
 
 public class ValorarComboTest extends SpringTest{
-	/*
+	
 	@Test
 	@Transactional
 	@Rollback(true)
-	public void testBusqueTodosCombosValoracionPositivaConDeterminadoID() {
+	public void testBusqueTodosCombosValoracionPositiva() {
 		
 		//Declarar
 				Combo combo1;
@@ -37,8 +37,12 @@ public class ValorarComboTest extends SpringTest{
 			    val3  = new ValorarCombo();
 		//seteamos   
 			    
-			    combo1.setId(1L);
-			    combo2.setId(2L);
+			    combo1.setEstacion("primavera");
+			     combo1.setNombre("combo1");
+			       
+			    combo2.setEstacion("verano");
+		        combo2.setNombre("combo2");
+		        
 			    val1.setValoracion(false);
 			    val2.setValoracion(false);
 			    val3.setValoracion(true);
@@ -58,7 +62,7 @@ public class ValorarComboTest extends SpringTest{
 				List<ValorarCombo>resultado;
 				resultado=session.createCriteria(ValorarCombo.class)
 						.createAlias("combo", "comb")
-						.add(Restrictions.eq("comb.id",1L))
+					    .add(Restrictions.eq("comb.nombre","combo1"))
 						.add(Restrictions.eq("valoracion", true))
 						.list();
 				
@@ -75,11 +79,11 @@ public class ValorarComboTest extends SpringTest{
 				System.out.println("Los Positivos son : "+ positivos);
 	}
 	
-	*/
+
 	@Test
 	@Transactional
 	@Rollback(true)
-	public void testBusqueTodosCombosValoracionNegativaConDeterminadoID() {
+	public void testBusqueTodosCombosValoracionNegativa() {
 		
 		//Declarar
 		Combo combo1;
@@ -96,8 +100,12 @@ public class ValorarComboTest extends SpringTest{
 	    val3  = new ValorarCombo();
 //seteamos   
 	    
-	    combo1.setId(1L);
-	    combo2.setId(2L);
+	      combo1.setEstacion("primavera");
+	       combo1.setNombre("combo1");
+	       
+	       combo2.setEstacion("verano");
+	       combo2.setNombre("combo2");
+	       
 	    val1.setValoracion(false);
 	    val2.setValoracion(false);
 	    val3.setValoracion(true);
@@ -116,7 +124,7 @@ public class ValorarComboTest extends SpringTest{
 		List<ValorarCombo>resultado;
 		resultado=session.createCriteria(ValorarCombo.class)
 				.createAlias("combo", "comb")
-				.add(Restrictions.eq("comb.id",1L))
+				.add(Restrictions.eq("comb.nombre","combo1"))
 				.add(Restrictions.eq("valoracion",false))
 				.list();
 		

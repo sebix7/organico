@@ -158,6 +158,22 @@ public class ServicioClienteCombosImpl implements ServicioClienteCombos {
 	                 
 			
 		}
+
+	@Override
+	public Integer contarComentariosNoLeidos(Long idcombo) {
+		
+		  Integer contador=0;
+			List<ValorarCombo> resultado = repositorioClienteCombos.obtenerComentariosCombo(idcombo);
+			
+			 for(ValorarCombo lista : resultado) {
+				 if(lista.isLeido()== false)
+		            {
+		             	  contador ++;
+		            }
+			 }
+			 
+			 return contador;
+		}
 		
 
 

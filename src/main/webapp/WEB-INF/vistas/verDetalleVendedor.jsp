@@ -87,9 +87,23 @@
 	 
 	  <!-- LISTAR COMENTARIOS -->
 		 	<c:if test="${not empty comentarios}">
-		 	 <button type="button" id="marcarLeido" class="btn btn-primary" value="${combo.id}">
+		 	   <div class="container-fluid ">      
+                   	<div class="col-sm-8">
+                   	
+                   	 	<c:if test="${NoLeidoComentario == 0}">
+                      	   <button type="button" id="marcarLeido" class="btn btn-primary" disabled="disabled" value="${combo.id}">
                                Marcar comentarios como leidos
-                       </button>
+                          </button>
+                       </c:if>
+                       
+                       	<c:if test="${NoLeidoComentario != 0}">
+                      	   <button type="button" id="marcarLeido" class="btn btn-primary" value="${combo.id}">
+                               Marcar comentarios como leidos
+                          </button>
+                       </c:if>
+                       
+                   	<p class="text-right"><i class="zmdi zmdi-alert-circle-o title "></i>Hay ${NoLeidoComentario} comentarios sin leer</p>
+                   	</div>
 		 	
 		     	<div class="col-sm-8">
 		 		      <table class="table table-bordered">

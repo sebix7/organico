@@ -20,6 +20,7 @@ public interface ServicioClienteCombos {
 	void guardarComentario(Long idusuario, long idcombo, String comentario);
 	boolean validaComentario(Long idcombo, Long idusuario);
 	void marcarComentarios(Long idcombo);
+	Integer contarComentariosNoLeidos(Long idcombo);
 	
 	
 }

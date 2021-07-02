@@ -28,18 +28,11 @@ public class ClienteTest extends SpringTest {
         
         session().save(usuario);
         
-//        cliente.setUsuario(usuario);
-//        
-//        session().save(cliente);
+        Usuario usuarioGuardado =session().get(Usuario.class,1L);
         
-        Usuario usuarioGuardado;
-        usuarioGuardado = (Usuario) session().createCriteria(Usuario.class)
-//        		.createAlias("usuario", "usuario")
-				.add(Restrictions.eq("usuario.email", usuario.getEmail()))
-				.add(Restrictions.eq("usuario.password", usuario.getPassword()))
-				.uniqueResult();
         
-        assertEquals(usuario.getId(), usuario.getId());
+        assertEquals(usuarioGuardado.getEmail(),"seba@gmail.com");
+     
     }
 
 //	@Test

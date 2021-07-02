@@ -38,8 +38,12 @@ public class VerificaUnComentarioTest extends SpringTest {
 					
 					//seteamos 
 					
-					usuario1.setId(1L);
-				    combo1.setId(1L);
+					  usuario1.setEmail("miguel@gmail.com");
+				       usuario1.setRol("Cliente");
+				       
+				       combo1.setEstacion("verano");
+				       combo1.setNombre("combo1");
+				       
 				    val1.setCombo(combo1);
 				    val1.setUsuario(usuario1);
 				   // val1.setComentario("hola");
@@ -52,11 +56,11 @@ public class VerificaUnComentarioTest extends SpringTest {
 				    
 				    List<ValorarCombo>resultado;
 				    
-					resultado= session.createCriteria(ValorarCombo.class)
+				    resultado= session.createCriteria(ValorarCombo.class)
 							.createAlias("combo", "comb")
-							.add(Restrictions.eq("comb.id",1L))
+							.add(Restrictions.eq("comb.nombre","combo1"))
 							.createAlias("usuario", "usu")
-							.add(Restrictions.eq("usu.id",1L))
+							.add(Restrictions.eq("usu.email","miguel@gmail.com"))
 							.add(Restrictions.isNull("comentario"))
 							.list();
 				

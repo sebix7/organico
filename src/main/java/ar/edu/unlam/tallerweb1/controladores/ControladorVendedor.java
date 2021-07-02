@@ -192,11 +192,12 @@ public class ControladorVendedor {
 			      ModelMap modelo = new ModelMap();
 			      
 			      comentarios =servicioClienteCombos.obtenerComentariosdeCombo(idcombo);
+			      Integer NoLeidoComentario =servicioClienteCombos.contarComentariosNoLeidos(idcombo);
 			      Combo combo=servicioClienteCombos.obtenerComboPorId(idcombo);
 			      Integer CantidadPositivos=servicioClienteCombos.obtenerPositivosCombo(idcombo);//Cantidad de MeGusta que posee el combo
 			      Integer CantidadNegativos=servicioClienteCombos.obtenerNegativosCombo(idcombo);//cantidad de no me gusta
                 
-			
+			       modelo.put("NoLeidoComentario",NoLeidoComentario);
 			       modelo.put("comentarios",comentarios);
 			       modelo.put("combo", combo);
 			       modelo.put("positivos",CantidadPositivos);
