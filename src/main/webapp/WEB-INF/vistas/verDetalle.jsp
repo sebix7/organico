@@ -121,11 +121,14 @@
 		 		          <tbody>
 					        <c:forEach items="${comentarios}" var="comentarios">
 		                    <tr>
-							 <td class="col-sm-5"><img src="img/anonimo.jpg" title="anonimo"  width="45" height="45">
-							 ${comentarios.usuario.nombre}
+							<td class="col-sm-3"><img src="img/anonimo.jpg" title="anonimo"  width="45" height="45">
+							${comentarios.usuario.nombre}
+							</td>
+						     <td class="col-sm-2">
 						      <button type="button" class="boton" class="btn btn-primary" value="${comentarios.usuario.id}" data-toggle="modal" data-target="#exampleModal">
                                  ver Perfil
-                                </button>
+                                </button> 
+                                </td>                    
 							 <td><c:out value="${comentarios.comentario}" /></td>
 					         </tr>
 		                  </c:forEach>

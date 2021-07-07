@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.ValorarCombo;
+import ar.edu.unlam.tallerweb1.modelo.VerDetalleViewModel;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioClienteCombos;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
 
@@ -174,7 +175,31 @@ public class ServicioClienteCombosImpl implements ServicioClienteCombos {
 			 
 			 return contador;
 		}
+
+	@Override
+	public List<VerDetalleViewModel> obtenerComentariosSinLeerPorCombo(List<Combo> combos) {
+	
+ List<VerDetalleViewModel> resultado = new ArrayList();
+		 
+		 
+		 Integer cantidad=0;
+		 
+    	 for(Combo lista : combos) {
+    		     VerDetalleViewModel nodo = new VerDetalleViewModel();
+    		     
+		         nodo.setId(lista.getId());
+		         nodo.setNombre(lista.getNombre());
+		         nodo.setTieneDescuento(lista.getTieneDescuento());
+		         cantidad = contarComentariosNoLeidos(lista.getId());
+		         nodo.setCantidadMensajesNoLeidos(cantidad);	
+		         
+		         resultado.add(nodo);
+	 }
+    	 
+    	 
+		 return resultado;
 		
+	}
 
 
 }

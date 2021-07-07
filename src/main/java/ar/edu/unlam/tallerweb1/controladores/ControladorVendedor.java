@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.ValorarCombo;
+import ar.edu.unlam.tallerweb1.modelo.VerDetalleViewModel;
 import ar.edu.unlam.tallerweb1.servicios.ServicioClienteCombos;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCombo;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
@@ -143,12 +144,16 @@ public class ControladorVendedor {
 		if(rol!=null){
 			if(rol.equals("Vendedor")) {
 				List<Combo> combos = this.creado.consultarCombosPorUs(idVendedor.buscarPorMail(email));
-			ModelMap modelo = new ModelMap();
+			    ModelMap modelo = new ModelMap();
+			   List<VerDetalleViewModel> resultado = new ArrayList();
+			  
 				if(combos.size() == 0) {
 					String mensaje = "No hay combos Creados";
 					modelo.put("mensaje", mensaje);
 				} else {
-					modelo.put("combos", combos);
+					
+					resultado= servicioClienteCombos.obtenerComentariosSinLeerPorCombo(combos);		
+				    modelo.put("combos", resultado);
 				}
 				return new ModelAndView("verCombos", modelo);
 			}

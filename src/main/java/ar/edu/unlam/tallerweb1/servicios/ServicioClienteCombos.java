@@ -4,6 +4,7 @@ import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.modelo.ValorarCombo;
+import ar.edu.unlam.tallerweb1.modelo.VerDetalleViewModel;
 
 public interface ServicioClienteCombos {
 
@@ -21,6 +22,7 @@ public interface ServicioClienteCombos {
 	boolean validaComentario(Long idcombo, Long idusuario);
 	void marcarComentarios(Long idcombo);
 	Integer contarComentariosNoLeidos(Long idcombo);
+	List<VerDetalleViewModel> obtenerComentariosSinLeerPorCombo(List<Combo> combos);
 	
 	
 }
