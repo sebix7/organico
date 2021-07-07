@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.modelo.ComboCarro;
 import ar.edu.unlam.tallerweb1.modelo.Pedido;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCarro;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComboCarro;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
@@ -24,11 +25,14 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioPedido;
 @Controller
 public class ControladorPedido {
 	private ServicioPedido servicioPedido;
+	private ServicioLogin servicioLogin;
 
 	@Autowired
-	public ControladorPedido(ServicioPedido servicioPedido) {
+	public ControladorPedido(ServicioPedido servicioPedido,ServicioLogin servicioLogin) {
 		this.servicioPedido = servicioPedido;
+		this.servicioLogin=servicioLogin;
 	}
+	
 	
 	@RequestMapping(path="pedidosCliente")
 	public ModelAndView pedidosCliente(HttpServletRequest request) {
@@ -37,7 +41,9 @@ public class ControladorPedido {
 		
 		if(rol.equals("Cliente")) {
 //			Long id=(Long)request.getSession().getAttribute("ClienteId");
-			List<Pedido> pedidos = this.servicioPedido.obtenerPedidosDelCliente((Long) request.getSession().getAttribute("ClienteId"));
+			Usuario usuario= servicioLogin.buscarPorId((Long) request.getSession().getAttribute("ClienteId"));
+			List<Pedido> pedidos = this.servicioPedido.obtenerPedidosDelCliente(usuario.getId());
+			
 			ModelMap modelo = new ModelMap();
 			if(pedidos.size() == 0) {
 				String mensaje = "Aún no has hecho compras";
