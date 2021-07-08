@@ -36,9 +36,9 @@
 			<div class="page-header">
 			  	<h1 class="text-titles">Combos </h1>
 			</div>
-		</div>
-		
-		<div class="full-box text-center" style="padding: 30px 10px;">
+		</div>		
+	<a href="homeVendedor">Hacer Otra Busqueda!</a>
+	<div class="full-box text-center" style="padding: 30px 10px;">
 			<c:if test="${not empty mensaje}">
 		        <h4><span>${mensaje}</span></h4>
 	        </c:if>
@@ -49,13 +49,9 @@
 		    				<div class="thumbnail">
 		      					<img alt="100%x200" data-src="holder.js/100%x200" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTkxIiBoZWlnaHQ9IjIwMCIgdmlld0JveD0iMCAwIDE5MSAyMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MjAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTc5YTU3OTljNzcgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNzlhNTc5OWM3NyI+PHJlY3Qgd2lkdGg9IjE5MSIgaGVpZ2h0PSIyMDAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI2OS41MzkwNjI1IiB5PSIxMDQuNDAxNTYyNSI+MTkxeDIwMDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
 		      					<div class="caption">
-		      					
-		      					    <c:if test="${combo.cantidadMensajesNoLeidos > 0}">
-		      					           <p class="btn btn-danger"><i class="zmdi zmdi-comment-outline"></i>  Tiene ${combo.cantidadMensajesNoLeidos} comentarios sin leer</p>
-		      					     </c:if>
-		      					
 		        					<h3>${combo.nombre}</h3>
 		       						<p>stock disponible: ${combo.stock}</p>
+		       						<p>Precio Actual: ${combo.precio}</p>
 		       						<c:if test="${combo.tieneDescuento == true}">
 		       						<h4><span>Este Combo Tiene Descuento</span></h4>
 	       							 </c:if>

@@ -62,5 +62,19 @@ public class ServicioComboImpl implements ServicioCombo {
 		 Boolean descuentos = true;
 		 entrada.setTieneDescuento(descuentos);
 	}
+	@Override
+	public List<Combo> consultarCombosConDescuento() {
+		return this.nuevo.consultarCombosConDescuento();
+	}
+	@Override
+	public List<Combo> consultarCombosPorEstacion(String estacion) {
+		// TODO Auto-generated method stub
+		return nuevo.buscarPorEstacion(estacion);
+	}
+	@Override
+	public List<Combo> consultarCombosSinDescuento() {
+		// TODO Auto-generated method stub
+		return nuevo.consultarCombosSinDescuento();
+	}
 
 }

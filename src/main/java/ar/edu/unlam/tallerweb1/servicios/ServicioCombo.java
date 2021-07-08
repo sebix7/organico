@@ -12,10 +12,13 @@ public interface ServicioCombo {
 		Combo buscarPorNombre(String nombre);
 		void registro(Combo usuario);
 		List<Combo> consultarCombos();
+		List<Combo> consultarCombosPorEstacion(String estacion);
 		void modificar(Combo combo);
 		Combo buscarPorId(Long id);
 		List<Combo> consultarCombosPorUs(Usuario entrada);
 		void aplicarDescuento(Long descuento,Long id);
+		List<Combo> consultarCombosConDescuento();
+		List<Combo> consultarCombosSinDescuento();
 
 
 }

@@ -37,6 +37,21 @@ public class ControladorIndex {
 				}
 				return new ModelAndView("index", modelo);
 			}
+	
+	@RequestMapping("/oportunidades")
+	public ModelAndView oportunidades() {
+
+		List<Combo> combos = this.ServicioComboDao.consultarCombosConDescuento();
+		
+			ModelMap modelo = new ModelMap();
+				if(combos.size() == 0) {
+					String mensaje = "No hay combos Con Descuentos";
+					modelo.put("mensaje", mensaje);
+				} else {
+					modelo.put("combos", combos);
+				}
+				return new ModelAndView("oportunidades", modelo);
+			}
 		
 
 }

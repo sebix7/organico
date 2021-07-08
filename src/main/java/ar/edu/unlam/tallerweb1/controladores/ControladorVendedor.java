@@ -1,6 +1,8 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -222,6 +224,98 @@ public class ControladorVendedor {
 		
 		return null; 
 	}
+	
+	@RequestMapping(path = "/filtrar", method = RequestMethod.GET)
+	public ModelAndView irAfiltro(HttpServletRequest request) {
+		String rol=(String)request.getSession().getAttribute("ROL");
+		
+		if(rol != null) 
+			if(rol.equals("Vendedor"))
+				return new ModelAndView("filtrar");
+		
+		return new ModelAndView("redirect:/login");
+	}
+	
+	@RequestMapping(path="/filtro1",method=RequestMethod.GET)
+	public ModelAndView filtro(
+			HttpServletRequest request,@RequestParam(value="estacion",required=false) String busqueda
+			) {
+		String rol=(String)request.getSession().getAttribute("ROL");
+		if(rol != null) 
+		if(rol.equals("Vendedor")) {
+			ModelMap modelo = new ModelMap();
+			 List<Combo> estacion;
+			  estacion = creado.consultarCombosPorEstacion(busqueda);
+				if(estacion.size()>0) {
+					modelo.put("combos",estacion);
+					modelo.put("mensaje","exito en la busqueda");
+				}
+				
+				
+			return new ModelAndView("filtroBusqueda", modelo);
+		}
+		return new ModelAndView("redirect:/index");
+		
+	}
+	
+	@RequestMapping(path="/filtro2",method=RequestMethod.GET)
+	public ModelAndView filtro2(
+			HttpServletRequest request,@RequestParam(value="precio",required=false) String busqueda
+			) {
+		String rol=(String)request.getSession().getAttribute("ROL");
+		if(rol != null) 
+		if(rol.equals("Vendedor")) {
+			ModelMap modelo = new ModelMap();
+			 switch (busqueda) {
+			case "menor":
+				List<Combo> orden;
+				orden = creado.consultarCombos();
+				Collections.sort(orden, (x, y) -> x.getPrecio().compareTo(y.getPrecio()));
+				modelo.put("combos",orden);
+				break;
+
+			default:
+				List<Combo> orden2;
+				orden2 = creado.consultarCombos();
+				Collections.sort(orden2, (x, y) -> y.getPrecio().compareTo(x.getPrecio()));
+				modelo.put("combos",orden2);
+				break;
+			}
+				
+			return new ModelAndView("filtroBusqueda", modelo);
+		}
+		return new ModelAndView("redirect:/index");
+		
+	}
+	@RequestMapping(path="/filtro3",method=RequestMethod.GET)
+	public ModelAndView filtro3(
+			HttpServletRequest request,@RequestParam(value="descuento",required=false) String busqueda
+			) {
+		String rol=(String)request.getSession().getAttribute("ROL");
+		if(rol != null) 
+		if(rol.equals("Vendedor")) {
+			ModelMap modelo = new ModelMap();
+			 switch (busqueda) {
+			case "si":
+				List<Combo> orden;
+				orden = creado.consultarCombosConDescuento();
+				modelo.put("combos",orden);
+				break;
+
+			default:
+				List<Combo> orden2;
+				orden2 = creado.consultarCombosSinDescuento();
+				modelo.put("combos",orden2);
+				break;
+			}
+				
+			return new ModelAndView("filtroBusqueda", modelo);
+		}
+		return new ModelAndView("redirect:/index");
+		
+	}
+	
+	
 	
 	
 }

@@ -9,9 +9,13 @@ public interface RepositorioCombo {
 	 	Combo consultarCombo (Combo usuario);
 	    void guardar(Combo usuario);
 	    Combo buscar(String nombre);
+	    List<Combo> buscarPorEstacion(String estacion);
 	    void modificar(Combo usuario);
 	    Combo buscarPorId(Long id);
 	    List<Combo> consultarCombos();
+	    List<Combo> consultarCombosConDescuento();
+	    List<Combo> consultarCombosSinDescuento();
 	    List<Combo> consultarCombosPorId(Usuario entrada);
+	    
 	    
 }

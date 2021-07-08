@@ -88,12 +88,19 @@
 			   </div>
 			</div>
 			
-			<div class="form-group">
-				<div class="col-md-9 col-md-offset-2">
-				  <span for="estacion">Estacion:</span>
-				  <form:input path="estacion" type="text" id="estacion" value="${estacion}" class="form-control"/>
-			    </div>
-			    </div>
+			<div  class="form-group">
+			<div class="col-md-9 col-md-offset-2">
+				<p class="text-center text-muted text-uppercase">Estacion:</p>
+		<input type="radio" id="Verano" name="estacion" value="Verano" checked>
+  		<label for="Verano">Verano</label><br>
+  		<input type="radio" id="Invierno" name="estacion" value="Invierno">
+  		<label for="Invierno">Invierno</label><br>
+  		<input type="radio" id="Primavera" name="estacion" value="Primavera" >
+  		<label for="Primavera">Primavera</label><br>
+  		<input type="radio" id="Otono" name="estacion" value="Otono">
+  		<label for="Otono">Otoño</label><br>
+  		 </div>
+			</div>
 			    
 			    <div class="form-group">
 				  <div class="col-md-9 col-md-offset-2">

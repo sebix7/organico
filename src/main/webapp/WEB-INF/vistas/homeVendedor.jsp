@@ -36,7 +36,7 @@
 			  <h1 class="text-titles">Secciones </h1>
 			</div>
 		</div>
-		
+	
 		<div class="full-box text-center" style="padding: 30px 10px;">
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
@@ -61,6 +61,18 @@
 				<div class="full-box tile-number text-titles">
 					<p class="full-box">10</p>
 					<small>Register</small>
+				</div>
+			</article>
+			<article class="full-box tile">
+				<div class="full-box tile-title text-center text-titles text-uppercase">
+					Filtrar Combos
+				</div>
+				<div class="full-box tile-icon text-center">
+					<i class="zmdi zmdi-rotate-left"></i>
+				</div>
+				<div class="full-box tile-number text-titles">
+					<p class="full-box">10</p>
+					<small><a href="filtrar">Filtrar</a></small>
 				</div>
 			</article>
 			<article class="full-box tile">

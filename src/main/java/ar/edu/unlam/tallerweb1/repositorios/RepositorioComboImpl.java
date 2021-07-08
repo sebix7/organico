@@ -62,6 +62,22 @@ public class RepositorioComboImpl implements RepositorioCombo {
 				.add(Restrictions.eq("usuario", entrada))
 				.list();
 	}
-
-
+	@Override
+	public List<Combo> consultarCombosConDescuento() {
+		return this.sessionFactory.getCurrentSession().createCriteria(Combo.class)
+				.add(Restrictions.eq("tieneDescuento", true))
+				.list();
+	}
+	@Override
+	public List<Combo> buscarPorEstacion(String estacion) {
+		return this.sessionFactory.getCurrentSession().createCriteria(Combo.class)
+				.add(Restrictions.eq("estacion", estacion))
+				.list();
+	}
+	@Override
+	public List<Combo> consultarCombosSinDescuento() {
+		return this.sessionFactory.getCurrentSession().createCriteria(Combo.class)
+				.add(Restrictions.eq("tieneDescuento", false))
+				.list();
+	}
 }
