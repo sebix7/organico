@@ -4,6 +4,10 @@
 <html>
 <head>
 <%@ include file="includes/cabecera.jsp"%>
+ <style type="text/css">
+.boton {
+ border: 0;}
+ </style>
 </head>
 <body>
 <!-- SideBar -->
@@ -120,15 +124,11 @@
 				         
 		 		          <tbody>
 					        <c:forEach items="${comentarios}" var="comentarios">
-		                    <tr>
-							<td class="col-sm-3"><img src="img/anonimo.jpg" title="anonimo"  width="45" height="45">
-							${comentarios.usuario.nombre}
-							</td>
-						     <td class="col-sm-2">
-						      <button type="button" class="boton" class="btn btn-primary" value="${comentarios.usuario.id}" data-toggle="modal" data-target="#exampleModal">
-                                 ver Perfil
-                                </button> 
-                                </td>                    
+		                     <td class="col-sm-3"><img src="img/anonimo.jpg" title="anonimo"  width="45" height="45">
+							 	<button type="button"  class="boton text-primary"  value="${comentarios.usuario.id}" data-toggle="modal" data-target="#exampleModal">
+                                 ${comentarios.usuario.nombre}
+                                </button>    							 						             							  
+                                </td>                        
 							 <td><c:out value="${comentarios.comentario}" /></td>
 					         </tr>
 		                  </c:forEach>
