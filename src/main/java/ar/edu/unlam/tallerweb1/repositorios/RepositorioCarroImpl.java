@@ -22,10 +22,7 @@ public class RepositorioCarroImpl implements RepositorioCarro {
 	}
 	
 	@Override
-	public List<Combo> consultarProductosDelCarrito(Long id) {
-		//Criterion rest1 = Restrictions.eq("usuario.id", id);
-		//Criterion rest2 = Restrictions.eq("usuario.id", null);
-		
+	public List<Combo> consultarProductosDelCarrito(Long id) {		
 		return this.sessionFactory.getCurrentSession().createCriteria(Combo.class)
 			.createAlias("compras", "carro")
 			.createAlias("carro.cliente", "cliente")

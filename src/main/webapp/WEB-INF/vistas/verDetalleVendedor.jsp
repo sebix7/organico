@@ -4,7 +4,6 @@
 <html>
 <head>
 <%@ include file="includes/cabecera.jsp"%>
-
 </head>
 <body>
 <!-- SideBar -->
@@ -23,11 +22,6 @@
 				<li>
 					<a href="#!" class="btn-search">
 						<i class="zmdi zmdi-search"></i>
-					</a>
-				</li>
-				<li>
-					<a href="carrito" class="menu-dashboard">
-						<i class="zmdi zmdi-shopping-cart"></i>
 					</a>
 				</li>
 				<li>

@@ -103,8 +103,8 @@
 					</ul>
 				</li>
 				<li>
-					<a href="#!">
-						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Clientes
+					<a href="pedidosVendedor">
+						<i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Pedidos
 					</a>
 				</li>
 			</ul>

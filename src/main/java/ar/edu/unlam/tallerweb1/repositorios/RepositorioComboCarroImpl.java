@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,14 @@ public class RepositorioComboCarroImpl implements RepositorioComboCarro {
 	@Override
 	public void guardarComboCarro(ComboCarro cc) {
 		sessionFactory.getCurrentSession().save(cc);
+	}
+
+	@Override
+	public List<ComboCarro> obtenerComboCarrosDelCarro(Long carroId) {
+		return this.sessionFactory.getCurrentSession().createCriteria(ComboCarro.class)
+				.createAlias("carro", "carro")
+				.add(Restrictions.eq("carro.id", carroId))
+				.list();
 	}
 
 }
