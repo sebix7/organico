@@ -13,6 +13,7 @@ public interface RepositorioPedido {
 	List<ComboCarro> obtenerComboCarrosVinculadosAlPedido(Long carroId);
 	Pedido buscarPedidoPorId(Long idpedido);
 	void actualizar(Pedido pedido);
+	List<Pedido> obtenerTodosLosPedidos();
 
 
 }

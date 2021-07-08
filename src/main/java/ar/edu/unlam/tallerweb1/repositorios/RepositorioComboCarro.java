@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Combo;
@@ -10,5 +12,6 @@ public interface RepositorioComboCarro {
 	ComboCarro obtenerComboCarro(Long id, Long id2);
 	void modificarComboCarro(ComboCarro cc);
 	void guardarComboCarro(ComboCarro cc);
+	List<ComboCarro> obtenerComboCarrosDelCarro(Long carroId);
 
 }

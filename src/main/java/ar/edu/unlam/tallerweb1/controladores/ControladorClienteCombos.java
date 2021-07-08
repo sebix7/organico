@@ -94,7 +94,7 @@ public class ControladorClienteCombos {
 			
 			String rol=(String)request.getSession().getAttribute("ROL");
 			//solo imgresa si es cliente
-			      if(rol.equals("Cliente")) {
+			      if(rol.equals("Cliente") || rol.equals("Vendedor")) {
 				      ModelMap modelo = new ModelMap();
 				      Usuario usuario = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
 				      

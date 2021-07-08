@@ -56,4 +56,9 @@ public class RepositorioPedidoImpl implements RepositorioPedido {
 		
 	}
 
+	@Override
+	public List<Pedido> obtenerTodosLosPedidos() {
+		return this.sessionFactory.getCurrentSession().createCriteria(Pedido.class).list();
+	}
+
 }

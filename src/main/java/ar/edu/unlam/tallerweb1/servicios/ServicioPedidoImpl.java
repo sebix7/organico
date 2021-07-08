@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.modelo.Carro;
 import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.modelo.ComboCarro;
 import ar.edu.unlam.tallerweb1.modelo.Pedido;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioCombo;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioComboCarro;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPedido;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuario;
@@ -21,11 +24,13 @@ public class ServicioPedidoImpl implements ServicioPedido {
 	
 	private RepositorioPedido repositorioPedido;
 	private RepositorioComboCarro repositorioComboCarro;
+	private RepositorioCombo repositorioCombo;
 	
 	@Autowired
-	public ServicioPedidoImpl(RepositorioPedido repositorioPedido, RepositorioComboCarro repositorioComboCarro){
+	public ServicioPedidoImpl(RepositorioPedido repositorioPedido, RepositorioComboCarro repositorioComboCarro, RepositorioCombo repositorioCombo){
 		this.repositorioPedido = repositorioPedido;
 		this.repositorioComboCarro = repositorioComboCarro;
+		this.repositorioCombo = repositorioCombo;
 	}
 
 	@Override
@@ -36,6 +41,28 @@ public class ServicioPedidoImpl implements ServicioPedido {
 	@Override
 	public List<Pedido> obtenerPedidosDelCliente(Long clienteId) {
 		return this.repositorioPedido.obtenerPedidosDelCliente(clienteId);
+	}
+	
+	@Override
+	public List<Pedido> obtenerPedidosDelVendedor(Long vendedorId) {
+		List<Pedido> pedidosEntrantes = new ArrayList<Pedido>();
+		List<Pedido> pedidos = repositorioPedido.obtenerTodosLosPedidos();
+		if(pedidos.size() > 0) {
+			for (Pedido pedido : pedidos) {
+				Boolean pedidoEntrante = false;
+				List<ComboCarro> comboCarros = repositorioComboCarro.obtenerComboCarrosDelCarro(pedido.getCarro().getId());
+				for (ComboCarro comboCarro : comboCarros) {
+					Combo combo = repositorioCombo.buscarPorId(comboCarro.getCombo().getId());
+					if(combo.getUsuario().getId().equals(vendedorId)) {
+						pedidoEntrante = true;
+					}
+				}
+				if(pedidoEntrante.equals(true)) {
+					pedidosEntrantes.add(pedido);
+				}
+			}
+		}
+		return pedidosEntrantes;
 	}
 
 	@Override
@@ -63,4 +90,5 @@ public class ServicioPedidoImpl implements ServicioPedido {
 		repositorioPedido.actualizar(pedido);
 		
 	}
+
 }

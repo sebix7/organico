@@ -58,12 +58,36 @@ public class ControladorPedido {
 		}
 	}
 	
+	@RequestMapping(path="pedidosVendedor")
+	public ModelAndView pedidosVendedor(HttpServletRequest request) {
+		
+		String rol=(String)request.getSession().getAttribute("ROL");
+		
+		if(rol.equals("Vendedor")) {
+//			Long id=(Long)request.getSession().getAttribute("ClienteId");
+			Usuario usuario= servicioLogin.buscarPorId((Long) request.getSession().getAttribute("VendedorId"));
+			List<Pedido> pedidos = this.servicioPedido.obtenerPedidosDelVendedor(usuario.getId());
+			
+			ModelMap modelo = new ModelMap();
+			if(pedidos.size() == 0) {
+				String mensaje = "Aún no has recibido pedidos";
+				modelo.put("mensaje", mensaje);
+			} else {
+				modelo.put("pedidos", pedidos);
+			}
+			return new ModelAndView("pedidosVendedor", modelo);
+		}
+		else {
+			return new ModelAndView("login");
+		}
+	}
+	
 	@RequestMapping(path = "/detallePedido", method = RequestMethod.GET)
 	public ModelAndView detallePedido(@RequestParam(value = "id", required = true) Long id, HttpServletRequest request) {
 		
 			String rol=(String)request.getSession().getAttribute("ROL");
 		
-			if(rol.equals("Cliente")) {
+			if(rol.equals("Cliente") || rol.equals("Vendedor")) {
 				ModelMap modelo = new ModelMap();
 				List<Combo> combos = servicioPedido.consultarCombosDelPedido(id);
 				modelo.put("carro", combos);
