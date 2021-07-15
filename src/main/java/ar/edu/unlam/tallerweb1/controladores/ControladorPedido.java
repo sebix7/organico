@@ -108,6 +108,17 @@ public class ControladorPedido {
 			return null; 
 		}
 	
+		//action que cambia la entrega del pedido a cancelado
+		@RequestMapping(value = "/entregarPedido", method = RequestMethod.GET, produces = "application/json")
+		public @ResponseBody String entregaPedido(@RequestParam("id") Long idpedido) {
+
+		      Pedido pedido =servicioPedido.buscarPedidoPorId(idpedido);
+		      pedido.setEntrega("Entregado");
+		      servicioPedido.actualizar(pedido);	
+			
+			return null; 
+		}
+	
 	
 
 }

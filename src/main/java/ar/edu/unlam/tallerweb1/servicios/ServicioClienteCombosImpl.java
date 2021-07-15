@@ -190,6 +190,7 @@ public class ServicioClienteCombosImpl implements ServicioClienteCombos {
 		         nodo.setId(lista.getId());
 		         nodo.setNombre(lista.getNombre());
 		         nodo.setTieneDescuento(lista.getTieneDescuento());
+		         nodo.setImagen(lista.getImagen());
 		         cantidad = contarComentariosNoLeidos(lista.getId());
 		         nodo.setCantidadMensajesNoLeidos(cantidad);	
 		         

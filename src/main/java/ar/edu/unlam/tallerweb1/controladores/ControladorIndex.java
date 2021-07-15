@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,19 +25,29 @@ public class ControladorIndex {
 	}
 	
 	@RequestMapping("/index")
-	public ModelAndView verIndex() {
+	public ModelAndView verIndex(HttpServletRequest request) {
 
-		List<Combo> combos = this.ServicioComboDao.consultarCombos();
+		List<Combo> combos = this.ServicioComboDao.Obtener3CombosConMenorPrecio();
+		String rol=(String)request.getSession().getAttribute("ROL");
 		
 			ModelMap modelo = new ModelMap();
-				if(combos.size() == 0) {
+			
+			if(rol != null)
+			
+				  modelo.put(rol, modelo);
+	
+				  if(combos.size() == 0) {
 					String mensaje = "No hay combos En La Web Aun";
 					modelo.put("mensaje", mensaje);
-				} else {
+				  } else {
 					modelo.put("combos", combos);
-				}
+				  }
+			
+			
+					  
 				return new ModelAndView("index", modelo);
 			}
+	
 	
 	@RequestMapping("/oportunidades")
 	public ModelAndView oportunidades() {

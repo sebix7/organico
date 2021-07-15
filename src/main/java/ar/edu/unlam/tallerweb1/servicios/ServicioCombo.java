@@ -19,6 +19,7 @@ public interface ServicioCombo {
 		void aplicarDescuento(Long descuento,Long id);
 		List<Combo> consultarCombosConDescuento();
 		List<Combo> consultarCombosSinDescuento();
+		List<Combo> Obtener3CombosConMenorPrecio();
 
 
 }

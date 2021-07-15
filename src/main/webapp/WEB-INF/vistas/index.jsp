@@ -23,7 +23,50 @@
 <body>
   <!-- Navigation-->
       
-        <nav class="navbar menu static-top">
+        <c:choose>     
+        <c:when test="${Vendedor != null}">       
+          <nav class="navbar menu static-top">
+            <div class="container">
+                <a class="navbar-brand" href="index">Vida Sana</a>
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item"><a href="homeVendedor">Home Vendedor</a></li>
+                    <li class="list-inline-item">⋅</li>
+                    <li class="list-inline-item"><a href="verCombos">Ver Combos</a></li>
+                    <li class="list-inline-item">⋅</li>
+                    <li class="list-inline-item"><a href="pedidosVendedor">Pedidos</a></li>
+                 
+                 </ul>
+             <a href="cerrarsesion" class="btn-exit-system">
+							<i class="zmdi zmdi-power"></i>Cerrar Sesion
+						</a>
+						 
+            </div>
+            </nav>
+       	</c:when>
+          
+           
+           <c:when test="${Cliente != null}">       
+             <nav class="navbar menu static-top">
+            <div class="container">
+                <a class="navbar-brand" href="index">Vida Sana</a>
+                <ul class="list-inline mb-2">
+                    <li class="list-inline-item"><a href="homeCliente">Home Cliente</a></li>
+                    <li class="list-inline-item">⋅</li>
+                    <li class="list-inline-item"><a href="combos">Combos</a></li>
+                    <li class="list-inline-item">⋅</li>
+                    <li class="list-inline-item"><a href="carrito">Carrito</a></li>
+                    <li class="list-inline-item">⋅</li>
+                    <li class="list-inline-item"><a href="pedidosCliente">Pedidos</a></li>
+                 </ul> 
+                
+                       <a href="cerrarsesion" class="btn-exit-system">
+							<i class="zmdi zmdi-power"></i>Cerrar Sesion
+						</a>
+            </div>
+            </nav>
+        </c:when>
+       <c:otherwise>
+            <nav class="navbar menu static-top">
             <div class="container">
                 <a class="navbar-brand" href="index">Vida Sana</a>
                 <ul class="list-inline mb-2">
@@ -38,7 +81,10 @@
                 <a class="btn btn-primary" href="login">Login</a>
             </div>
         </nav>
-    
+       
+         </c:otherwise>
+      </c:choose>    
+      
         <header class="masthead text-white text-center">
             <div class="overlay"></div>
             <div class="container">
@@ -95,7 +141,15 @@
 					<c:forEach items="${combos}" var="combo">
 		  				<div class="col-sm-6 col-md-4">
 		    				<div class="thumbnail">
-		      					<img alt="100%x200" data-src="holder.js/100%x200" src="img/pngegg.png" data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
+		    				
+                               <c:if test="${empty combo.imagen}">
+		      					  <img alt="100%x200" data-src="holder.js/100%x200" src="img/pngegg.png" data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
+		      					   </c:if>
+		      					   
+		      					   <c:if test="${not empty combo.imagen}">
+			      					 	<img alt="100%x200" data-src="holder.js/100%x200" src="img/combos/${combo.imagen}" data-holder-rendered="true" style="height: 200px; width: 100%; display: block;">
+			      					 	 </c:if>
+			      					 	 
 		      					<div class="caption">
 		        					<h3>${combo.nombre}</h3>
 		        					<p>${combo.descripcion}</p>

@@ -51,7 +51,7 @@
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu" >
 				<li>
 					<a href="homeAdministrador">
-						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Principal
+						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i>  Home Administrador
 					</a>
 				</li>
 				<li>
@@ -84,9 +84,15 @@
 			
 			<c:when test="${VendedorId != null}">
 			<ul class="list-unstyled full-box dashboard-sideBar-Menu" >
+			     <li>
+					<a href="index">
+						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Index
+					</a>
+				 </li>
+			
 				<li>
 					<a href="homeVendedor">
-						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Principal
+						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home vendedor
 					</a>
 				</li>
 				<li>
@@ -113,9 +119,15 @@
 	        <c:otherwise>
 	        
 	        <ul class="list-unstyled full-box dashboard-sideBar-Menu" >
+	          <li>
+					<a href="index">
+						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Index
+					</a>
+				</li>
+	        
 				<li>
 					<a href="homeCliente">
-						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home
+						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Home Cliente
 					</a>
 				</li>
 				<li>

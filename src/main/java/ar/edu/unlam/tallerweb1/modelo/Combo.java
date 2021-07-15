@@ -27,6 +27,7 @@ public class Combo {
 	private Double peso;
 	private Integer stock;
 	private Boolean tieneDescuento = false;
+	private String imagen;
 
 
 	@ManyToOne
@@ -105,6 +106,15 @@ public class Combo {
 	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+	
 	
 	
 }

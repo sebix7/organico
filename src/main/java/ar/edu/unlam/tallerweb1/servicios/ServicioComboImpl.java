@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,5 +78,21 @@ public class ServicioComboImpl implements ServicioCombo {
 		// TODO Auto-generated method stub
 		return nuevo.consultarCombosSinDescuento();
 	}
+	@Override
+	public List<Combo> Obtener3CombosConMenorPrecio() {
+		  List<Combo> resultado = new ArrayList();
+	    	
+	    	resultado = nuevo.consultarCombos();
+	    	Collections.sort(resultado, (x, y) -> x.getPrecio().compareTo(y.getPrecio()));
+	    	
+	    	if(resultado.size()>=3)
+	    	{
+	    		List<Combo> tresPrimeros=resultado.subList(0, 3);
+	    		return tresPrimeros;
+	    	}
+	    	
+
+	return resultado;
+   }
 
 }

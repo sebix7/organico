@@ -61,12 +61,18 @@
 										<td><span class="label label-xl font-weight-boldest label-rounded label-success">${pedido.estado}</span></td>
 										<td>${pedido.fechaDeEmision}</td>
 										<td><a href=detallePedido?id=${pedido.carro.id}>VER DETALLE DEL PEDIDO</a></td>
-										<td>${pedido.entrega}</td>
-										
-										 	<c:if test="${pedido.entrega == 'Pendiente'}">
-									        <td><button  type="button"  class="boton" value="${pedido.id}" class="btn btn-raised btn-danger" >Cancelar Pedido</button></td>				
-										   
-										    </c:if>	
+										     <c:choose>   
+										      <c:when test="${pedido.entrega == 'Cancelado'}">
+										         <td class="text-danger">${pedido.entrega}</td>
+										      </c:when>
+										      <c:when test="${pedido.entrega == 'Pendiente'}">
+										       <td  class="text-primary">${pedido.entrega}</td>
+									            <td><button  type="button"  class="boton" value="${pedido.id}" class="btn btn-raised btn-danger" >Cancelar Pedido</button></td>														   
+										      </c:when>
+										      <c:otherwise>
+										       <td class="text-success">${pedido.entrega}</td>
+										      </c:otherwise>
+									        </c:choose> 
 									</tr>
 								</c:forEach>
 							</tbody>

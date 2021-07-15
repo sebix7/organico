@@ -12,7 +12,7 @@ private long id;
 	
 	private Integer cantidadMensajesNoLeidos;
 
-	
+	private String imagen;
 
 	public long getId() {
 		return id;
@@ -53,5 +53,15 @@ private long id;
 	public void setCantidadMensajesNoLeidos(Integer cantidadMensajesNoLeidos) {
 		this.cantidadMensajesNoLeidos = cantidadMensajesNoLeidos;
 	}
+
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+	
+	
 	
 }
