@@ -94,5 +94,15 @@ public class ServicioComboImpl implements ServicioCombo {
 
 	return resultado;
    }
+	@Override
+	public List<Combo> consultarCombosPorEstacionYDescuentoSi(String estacion) {
+		// TODO Auto-generated method stub
+		return nuevo.consultarCombosPorEstacionYDescuentoSi(estacion);
+	}
+	@Override
+	public List<Combo> consultarCombosPorEstacionYDescuentoNo(String estacion) {
+		// TODO Auto-generated method stub
+		return nuevo.consultarCombosPorEstacionYDescuentoNo(estacion);
+	}
 
 }

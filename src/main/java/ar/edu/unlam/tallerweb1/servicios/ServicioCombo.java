@@ -20,6 +20,8 @@ public interface ServicioCombo {
 		List<Combo> consultarCombosConDescuento();
 		List<Combo> consultarCombosSinDescuento();
 		List<Combo> Obtener3CombosConMenorPrecio();
+	    List<Combo> consultarCombosPorEstacionYDescuentoSi(String estacion);
+	    List<Combo> consultarCombosPorEstacionYDescuentoNo(String estacion);
 
 
 }

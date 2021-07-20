@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
@@ -161,7 +162,7 @@
 		       						<form action="" method="POST">
 		       						<label for="EnvioDeIdCompra"></label>
 									<input type="hidden" id="EnvioDeIdCompra" name="EnvioDeIdCompra" value="${combo.id}">
-		       						<button type="submit"  class="btn btn-success">Comprar Combo</button>
+		       						<a  class="btn btn-primary" role="button" href="registroUsuario">Comprar Combo!</a>
 		       						</form>
 		      					</div>
 		    				</div>

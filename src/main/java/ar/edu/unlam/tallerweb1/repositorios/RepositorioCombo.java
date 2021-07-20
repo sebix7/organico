@@ -16,6 +16,7 @@ public interface RepositorioCombo {
 	    List<Combo> consultarCombosConDescuento();
 	    List<Combo> consultarCombosSinDescuento();
 	    List<Combo> consultarCombosPorId(Usuario entrada);
-	    
+	    List<Combo> consultarCombosPorEstacionYDescuentoSi(String estacion);
+	    List<Combo> consultarCombosPorEstacionYDescuentoNo(String estacion);
 	    
 }
