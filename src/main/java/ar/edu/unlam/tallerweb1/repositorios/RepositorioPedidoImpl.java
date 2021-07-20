@@ -60,5 +60,17 @@ public class RepositorioPedidoImpl implements RepositorioPedido {
 	public List<Pedido> obtenerTodosLosPedidos() {
 		return this.sessionFactory.getCurrentSession().createCriteria(Pedido.class).list();
 	}
+	
+	@Override
+	public List<Pedido> obtenerPedidosCancelados(){
+		
+		   List<Pedido>resultado;
+			resultado=sessionFactory.getCurrentSession().createCriteria(Pedido.class)
+					.add(Restrictions.eq("entrega","Cancelado"))
+					.list();
+		
+		return resultado;
+	}
+
 
 }

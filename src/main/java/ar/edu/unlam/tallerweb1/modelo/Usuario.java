@@ -26,6 +26,8 @@ public class Usuario {
 	@OneToOne
 	private Direccion direccion;
 	
+	private boolean activo;
+	
 	public Long getId() {
 		return id;
 	}
@@ -65,6 +67,13 @@ public class Usuario {
 		this.direccion = direccion;
 	}
 	
+	
+	public boolean isActivo() {
+		return activo;
+	}
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

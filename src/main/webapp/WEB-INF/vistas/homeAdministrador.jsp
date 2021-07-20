@@ -37,18 +37,7 @@
 			</div>
 		</div>
 		<div class="full-box text-center" style="padding: 30px 10px;">
-			<article class="full-box tile">
-				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Provedores
-				</div>
-				<div class="full-box tile-icon text-center">
-					<i class="zmdi zmdi-account"></i>
-				</div>
-				<div class="full-box tile-number text-titles">
-					<p class="full-box">7</p>
-					<small>Register</small>
-				</div>
-			</article>
+		
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
 					Usuarios
@@ -63,22 +52,23 @@
 			</article>
 			<article class="full-box tile">
 				<div class="full-box tile-title text-center text-titles text-uppercase">
+					Penaliza Clientes
+				</div>
+				<div class="full-box tile-icon text-center">
+					<i class="zmdi zmdi-timer"></i>
+				</div>
+			<div class="full-box tile-number text-titles">
+					<p class="full-box"><i class="zmdi zmdi-long-arrow-down"></i></p>
+					<small><a href="calificarClientes">Ingresar</a></small>
+				</div>
+			</article>
+			
+			<article class="full-box tile">
+				<div class="full-box tile-title text-center text-titles text-uppercase">
 					Estadisticas
 				</div>
 				<div class="full-box tile-icon text-center">
 					<i class="zmdi zmdi-settings"></i>
-				</div>
-				<div class="full-box tile-number text-titles">
-					<p class="full-box">70</p>
-					<small>Register</small>
-				</div>
-			</article>
-			<article class="full-box tile">
-				<div class="full-box tile-title text-center text-titles text-uppercase">
-					Alertas!
-				</div>
-				<div class="full-box tile-icon text-center">
-					<i class="zmdi zmdi-timer"></i>
 				</div>
 				<div class="full-box tile-number text-titles">
 					<p class="full-box">70</p>

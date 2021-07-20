@@ -45,15 +45,28 @@ public class ControladorClienteCombos {
 		String rol=(String)request.getSession().getAttribute("ROL");
 		
 		if(rol.equals("Cliente")) {
-			List<Combo> combos = this.servicioClienteCombos.consultarCombos();
-			ModelMap modelo = new ModelMap();
-			if(combos.size() == 0) {
-				String mensaje = "No hay combos disponibles";
-				modelo.put("mensaje", mensaje);
-			} else {
-				modelo.put("combos", combos);
-			}
-			return new ModelAndView("combos", modelo);
+			  Usuario usuario = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
+			     ModelMap modelo = new ModelMap();
+			     
+			     if(usuario.isActivo())
+			     {
+			          List<Combo> combos = this.servicioClienteCombos.consultarCombos();
+			         
+			          if(combos.size() == 0) {
+				      String mensaje = "No hay combos disponibles";
+			    	  modelo.put("mensaje", mensaje);
+			          } else {
+				      modelo.put("combos", combos);
+		        	  }
+			     
+			        return new ModelAndView("combos", modelo);
+			     }
+			     else
+			     {
+			    	 String mensajeActivo="Usted es un usuario no activo. Por el momento no puede realizar ninguna compra";
+			    	 modelo.put("mensajeActivo", mensajeActivo);
+			    	 return new ModelAndView("combos", modelo);
+			     }
 		}
 		else {
 			return new ModelAndView("login");

@@ -73,6 +73,7 @@
 										       <td class="text-success">${pedido.entrega}</td>
 										      </c:otherwise>
 									        </c:choose> 
+									    
 									</tr>
 								</c:forEach>
 							</tbody>

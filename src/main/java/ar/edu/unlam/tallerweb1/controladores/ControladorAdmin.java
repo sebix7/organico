@@ -10,21 +10,26 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCarro;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPedido;
 
 @Controller
 public class ControladorAdmin {
 
 	private ServicioLogin servicioLogin;
+	private ServicioPedido servicioPedido;
 	
 	
 	@Autowired
-	public ControladorAdmin(ServicioLogin servicioLogin){
+	public ControladorAdmin(ServicioLogin servicioLogin,ServicioPedido servicioPedido){
 		this.servicioLogin = servicioLogin;
+		this.servicioPedido=servicioPedido;
 	}
 	// Escucha la URL /periodo por GET, y redirige a una vista.
 	@RequestMapping("/homeAdministrador")
@@ -89,6 +94,54 @@ public class ControladorAdmin {
 		return null;
 		
 	}
+	
+	
+	@RequestMapping("/calificarClientes")
+	public ModelAndView irACalificar(HttpServletRequest request) {
+		
+		  String rol=(String)request.getSession().getAttribute("ROL");
+		     if(!rol.equals("Administrador"))
+		          return new ModelAndView("redirect:/login");
+		    
+		     
+			List<Pedido> pedidos = servicioPedido.ObtenerPedidosCancelados();
+			
+		       ModelMap modelo = new ModelMap();
+			
+			   if(pedidos.size() == 0) {
+			      	String mensaje = "No hay pedidos Cancelados";
+				     modelo.put("mensaje", mensaje);
+			}   else {
+			      modelo.put("pedidos", pedidos);
+			}
+		
+	return new ModelAndView("calificarClientes",modelo);
+		
+		}
+	
+	//action que cambia el valor activo del usuario a false
+	@RequestMapping(value = "/desactivarUsuario", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody String desactivaUsuario(@RequestParam("id") Long idusuario) {
+
+	       Usuario usuario= servicioLogin.buscarPorId(idusuario);
+	       usuario.setActivo(false);
+	       servicioLogin.actualizar(usuario);	       
+		
+		return null; 
+	}
+	
+	//action que cambia el valor activo del usuario a true
+	@RequestMapping(value = "/activarUsuario", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody String activaUsuario(@RequestParam("id") Long idusuario) {
+
+	       Usuario usuario= servicioLogin.buscarPorId(idusuario);
+	       usuario.setActivo(true);
+	       servicioLogin.actualizar(usuario);	       
+		
+		return null; 
+	}
+	
+	
 	@RequestMapping("/periodo")
 	public ModelAndView irAPeriodo() {
 		return new ModelAndView("periodo");

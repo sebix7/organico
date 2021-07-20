@@ -14,6 +14,7 @@ public interface RepositorioPedido {
 	Pedido buscarPedidoPorId(Long idpedido);
 	void actualizar(Pedido pedido);
 	List<Pedido> obtenerTodosLosPedidos();
+	List<Pedido> obtenerPedidosCancelados();
 
 
 }

@@ -46,7 +46,8 @@
 		<div class="container-fluid">
 
 							<form:form class="form-horizontal" role="form" action="actualizar-perfil" method="post" modelAttribute="usuario">
-							<form:input type="hidden" value="${id}" path="id" class="form-control" />	
+							<form:input type="hidden" value="${id}" path="id" class="form-control" />
+							<form:input type="hidden" value="${activo}" path="activo" class="form-control" />	
 								<div class="form-group"></div>
 							
 								<div class="form-group">

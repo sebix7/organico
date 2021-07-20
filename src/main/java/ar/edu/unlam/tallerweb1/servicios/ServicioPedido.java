@@ -16,5 +16,6 @@ public interface ServicioPedido {
 	List<Combo> consultarCombosDelPedido(Long carroId);
 	Pedido buscarPedidoPorId(Long idpedido);
 	void actualizar(Pedido pedido);
+	List<Pedido> ObtenerPedidosCancelados();
 
 }

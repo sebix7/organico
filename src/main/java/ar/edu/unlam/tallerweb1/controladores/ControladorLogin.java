@@ -187,6 +187,7 @@ public class ControladorLogin {
 		modelo.put("nombre", usuarioLogueado.getNombre());
 		modelo.put("email", usuarioLogueado.getEmail());
 		modelo.put("password", usuarioLogueado.getPassword());
+		modelo.put("activo", usuarioLogueado.isActivo());
 		
 		return new ModelAndView("perfil" , modelo);
 	}

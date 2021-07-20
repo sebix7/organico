@@ -35,6 +35,7 @@ public class ServicioLoginImpl implements ServicioLogin {
 
 	@Override
 	public void registro(Usuario usuario) {
+		 usuario.setActivo(true);
 		servicioLoginDao.guardar(usuario);
 		
 	}

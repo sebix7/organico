@@ -55,9 +55,10 @@
 					</a>
 				</li>
 				<li>
-					<a href="#!" class="btn-sideBar-SubMenu">
-						<i class="zmdi zmdi-case zmdi-hc-fw"></i> Proveedores <i class="zmdi zmdi-caret-down pull-right"></i>
-					</a>
+					 <a href="calificarClientes" >
+						<i class="zmdi zmdi-timer"></i> Penaliza Clientes 
+					  </a>
+					
 					<ul class="list-unstyled full-box" style="padding-top: 0px;">
 						<li>
 							<a href="periodo"><i class="zmdi zmdi-timer zmdi-hc-fw"></i> Periodo</a>

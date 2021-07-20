@@ -91,4 +91,10 @@ public class ServicioPedidoImpl implements ServicioPedido {
 		
 	}
 
+	@Override
+	public List<Pedido> ObtenerPedidosCancelados() {
+		
+		return repositorioPedido.obtenerPedidosCancelados();
+	}
+
 }

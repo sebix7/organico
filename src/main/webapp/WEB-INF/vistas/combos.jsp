@@ -42,6 +42,13 @@
 			  	<h1 class="text-titles">Combos </h1>
 			</div>
 		</div>
+			<div class="full-box text-center" style="padding: 30px 10px;">
+			<c:if test="${not empty mensajeActivo}">
+		        <h4><span>${mensajeActivo}</span></h4>
+	        </c:if>
+	        
+    <c:if test="${ empty mensajeActivo}">
+		
 		<div class="full-box text-center" style="padding: 30px 10px;">
 			<c:if test="${not empty mensaje}">
 		        <h4><span>${mensaje}</span></h4>
@@ -83,7 +90,7 @@
 				</div>
 			</c:if>
 		</div>
-		
+	</c:if>
 	</section>
 
 
