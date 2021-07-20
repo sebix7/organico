@@ -34,64 +34,40 @@
 		<!-- Content page -->
 		<div class="container-fluid">
 			<div class="page-header">
-			  	<h1 class="text-titles">Combos </h1>
+			  	<h1 class="text-titles">Buscar Combo </h1>
 			</div>
 		</div>
+		<form  action="filtro" method="Get">		
+				<div class="col-md-9 col-md-offset-2">
+		<p class="text-start text-muted text-uppercase">Estacion:</p>
+		<select name="Estacion" class="form-select" aria-label="multiple select example">
+			  
+			  <option value="Verano" selected>Verano</option>
+			  <option value="Primavera">Primavera</option>
+			  <option value="Invierno">Invierno</option>
+			  <option value="Otono">Otoño</option>
+		</select>
+		<br>
+		<p class="text-start text-muted text-uppercase">Descuento:</p>
+	
+			  <select name="Descuento" class="form-select" aria-label="multiple select example">
+			  <option value="no" selected>Sin Descuento</option>
+			  <option value="si">Con Descuento</option>
+		</select>
+		<br>
+		<p class="text-start text-muted text-uppercase">Ordenado Por Precio:</p>
 		
-		
-	<form class="form-horizontal" action="filtro1" method="Get">
-	
-	  <p>
-	  
-	<div  class="form-group">
-			<div class="col-md-9 col-md-offset-2">
-				<p class="text-start text-muted text-uppercase">Estacion:</p>
-		<input type="radio" id="Verano" name="estacion" value="Verano" checked>
-  		<label for="Verano">Verano</label><br>
-  		<input type="radio" id="Invierno" name="estacion" value="Invierno">
-  		<label for="Invierno">Invierno</label><br>
-  		<input type="radio" id="Primavera" name="estacion" value="Primavera" >
-  		<label for="Primavera">Primavera</label><br>
-  		<input type="radio" id="Otono" name="estacion" value="Otono">
-  		<label for="Otono">Otoño</label><br>
-  		 </div>
-			</div>
-	
-	
-	 <button class="btn btn-primary" type="submit">Buscar Combo por estacion</button>
-		     	     
-	</form>		
-		<form class="form-horizontal" action="filtro2" method="Get">
-
-	<div  class="form-group">
-			<div class="col-md-9 col-md-offset-2">
-				<p class="text-start text-muted text-uppercase">Estacion:</p>
-		<input type="radio" id="menor" name="precio" value="menor" checked>
-  		<label for="menor">Menor Precio</label><br>
-  		<input type="radio" id="mayor" name="precio" value="mayor">
-  		<label for="mayor">Mayor Precio</label><br>
-  		 </div>
-			</div>
-	 <button class="btn btn-primary" type="submit">Ordenar Combo por Precio</button>
-		     	     
+			  	  <select name="precio" class="form-select" aria-label="multiple select example">
+			  <option value="mayor" selected>Mayor Precio</option>
+			  <option value="menor">Menor Precio</option>
+		</select>
+		<br>
+		     	</div>
+		<button class="btn btn-primary" type="submit">Buscar Combos</button>
+			     
 	</form>	
-	
-		<form class="form-horizontal" action="filtro3" method="Get">
 
-	<div  class="form-group">
-			<div class="col-md-9 col-md-offset-2">
-				<p class="text-start text-muted text-uppercase">Con Descuento:</p>
-		<input type="radio" id="si" name="descuento" value="si" checked>
-  		<label for="si">Con Descuentos</label><br>
-  		<input type="radio" id="no" name="descuento" value="no">
-  		<label for="no">Sin Descuentos</label><br>
-  		 </div>
-			</div>
-	 <button class="btn btn-primary" type="submit">Ver Combos Con Descuetos</button>
-		     	     
-	</form>	
 	</section>
-
 
 <!-- Modal de ayuda -->
 <%@ include file="includes/DialogHelpModal.jsp"%>

@@ -37,7 +37,7 @@
 			  	<h1 class="text-titles">Combos </h1>
 			</div>
 		</div>		
-	<a href="homeVendedor">Hacer Otra Busqueda!</a>
+	<a href="filtrar">Hacer Otra Busqueda!</a>
 	<div class="full-box text-center" style="padding: 30px 10px;">
 			<c:if test="${not empty mensaje}">
 		        <h4><span>${mensaje}</span></h4>

@@ -80,4 +80,20 @@ public class RepositorioComboImpl implements RepositorioCombo {
 				.add(Restrictions.eq("tieneDescuento", false))
 				.list();
 	}
+	@Override
+	public List<Combo> consultarCombosPorEstacionYDescuentoSi(String estacion) {
+		// TODO Auto-generated method stub
+		return this.sessionFactory.getCurrentSession().createCriteria(Combo.class)
+				.add(Restrictions.eq("tieneDescuento", true))
+				.add(Restrictions.eq("estacion", estacion))
+				.list();
+	}
+	@Override
+	public List<Combo> consultarCombosPorEstacionYDescuentoNo(String estacion) {
+		// TODO Auto-generated method stub
+		return this.sessionFactory.getCurrentSession().createCriteria(Combo.class)
+				.add(Restrictions.eq("tieneDescuento", false))
+				.add(Restrictions.eq("estacion", estacion))
+				.list();
+	}
 }
