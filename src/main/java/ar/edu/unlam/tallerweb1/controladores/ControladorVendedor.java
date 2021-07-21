@@ -284,9 +284,28 @@ public class ControladorVendedor {
 	}
 	
 	
+	@RequestMapping(path = "/geo", method = RequestMethod.GET)
+	public ModelAndView irAGeo(HttpServletRequest request,@RequestParam(value="latitud",required=false) Double latitud,@RequestParam(value="longitud",required=false) Double longitud) {
+		String rol=(String)request.getSession().getAttribute("ROL");
+		
+		if(rol != null) 
+			if(rol.equals("Vendedor"))
+				return new ModelAndView("geo");
+		
+		return new ModelAndView("redirect:/login");
+	}
 	
-	
-	
+	@RequestMapping(path = "/procesarLocalizacion", method = RequestMethod.GET)
+	public ModelAndView procesoGeo(HttpServletRequest request) {
+		String rol=(String)request.getSession().getAttribute("ROL");
+		
+		if(rol != null) 
+			if(rol.equals("Vendedor"))
+				
+				return new ModelAndView("geo");
+		
+		return new ModelAndView("redirect:/login");
+	}
 	
 	
 	

@@ -12,34 +12,29 @@ public class Direccion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String calle;
-	private Integer numero;
-	@ManyToOne
-	private Localidad local;
+	private Double longitud;
+	private Double latitud;
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getCalle() {
-		return calle;
+	public Double getLongitud() {
+		return longitud;
 	}
-	public void setCalle(String calle) {
-		this.calle = calle;
+	public void setLongitud(Double longitud) {
+		this.longitud = longitud;
 	}
-	public Integer getNumero() {
-		return numero;
+	public Double getLatitud() {
+		return latitud;
 	}
-	public void setNumero(Integer numero) {
-		this.numero = numero;
+	public void setLatitud(Double latitud) {
+		this.latitud = latitud;
 	}
-	public Localidad getLocal() {
-		return local;
-	}
-	public void setLocal(Localidad local) {
-		this.local = local;
-	}
+	
+	
+	
 	
 	
 }
