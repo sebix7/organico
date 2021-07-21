@@ -97,6 +97,11 @@
 					</a>
 				</li>
 				<li>
+					<a href="geo">
+						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Localizate
+					</a>
+				</li>
+				<li>
 					<a href="#!" class="btn-sideBar-SubMenu">
 						<i class="zmdi zmdi-cutlery zmdi-hc-fw"></i> Combos <i class="zmdi zmdi-caret-down pull-right"></i>
 					</a>
@@ -142,8 +147,18 @@
 					</a>
 				</li>
 				<li>
+					<a href="oportunidades">
+						<i class="zmdi zmdi zmdi-fire zmdi-hc-fw"></i> Oportunidades
+					</a>
+				</li>
+				<li>
 					<a href="pedidosCliente">
 						<i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Pedidos
+					</a>
+				</li>
+				<li>
+					<a href="perfil">
+						<i class="zmdi zmdi-face zmdi-hc-fw"></i> Mi Perfil
 					</a>
 				</li>
 			</ul>
