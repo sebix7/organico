@@ -94,6 +94,7 @@ public class RepositorioComboImpl implements RepositorioCombo {
 		// TODO Auto-generated method stub
 		return this.sessionFactory.getCurrentSession().createCriteria(Combo.class)
 				.add(Restrictions.eq("tieneDescuento", false))
+				.add(Restrictions.eq("estacion", estacion))
 				.add(Restrictions.eq("usuario", us))
 				.list();
 	}
