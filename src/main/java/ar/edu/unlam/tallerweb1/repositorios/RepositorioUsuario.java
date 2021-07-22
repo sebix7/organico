@@ -13,5 +13,6 @@ public interface RepositorioUsuario {
     void modificar(Usuario usuario);
 	List<Usuario> findAll();
 	List<Usuario> findByRol(String rol);
+	List<Usuario> rolynull(String rol);
 	Usuario buscarPorId(Long id);
 }

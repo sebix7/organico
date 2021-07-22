@@ -228,7 +228,6 @@ public class ControladorLogin {
 		Usuario usuario = servicioLogin.buscarPorId(idusuario);
 		modelo.put("nombre", usuario.getNombre());
 		modelo.put("email", usuario.getEmail());
-		modelo.put("direccion", usuario.getDireccion());
 		modelo.put("rol",usuario.getRol());
 		
 		

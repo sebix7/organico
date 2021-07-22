@@ -13,10 +13,11 @@ public interface RepositorioCombo {
 	    void modificar(Combo usuario);
 	    Combo buscarPorId(Long id);
 	    List<Combo> consultarCombos();
+	    List<Combo> consultarCombosConDireccion();
 	    List<Combo> consultarCombosConDescuento();
 	    List<Combo> consultarCombosSinDescuento();
 	    List<Combo> consultarCombosPorId(Usuario entrada);
-	    List<Combo> consultarCombosPorEstacionYDescuentoSi(String estacion);
-	    List<Combo> consultarCombosPorEstacionYDescuentoNo(String estacion);
+	    List<Combo> consultarCombosPorEstacionYDescuentoSi(String estacion,Usuario email);
+	    List<Combo> consultarCombosPorEstacionYDescuentoNo(String estacion,Usuario email);
 	    
 }
