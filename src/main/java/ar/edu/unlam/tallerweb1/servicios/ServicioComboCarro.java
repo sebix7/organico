@@ -10,5 +10,6 @@ public interface ServicioComboCarro {
 
 	void guardarComboCarro(Carro carro, List<Combo> combos);
 	ComboCarro obtenerComboCarro(Long carroId, Long comboId);
+	List<ComboCarro> obtenerComboCarrosDelCarro(Long carroId);
 
 }

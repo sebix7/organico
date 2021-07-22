@@ -48,4 +48,9 @@ public class ServicioComboCarroImpl implements ServicioComboCarro {
 		return this.obtenerComboCarro(carroId, comboId);
 	}
 
+	@Override
+	public List<ComboCarro> obtenerComboCarrosDelCarro(Long carroId) {
+		return repositorioComboCarro.obtenerComboCarrosDelCarro(carroId);
+	}
+
 }

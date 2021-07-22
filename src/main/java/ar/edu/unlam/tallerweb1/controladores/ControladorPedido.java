@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +20,7 @@ import ar.edu.unlam.tallerweb1.modelo.ComboCarro;
 import ar.edu.unlam.tallerweb1.modelo.Pedido;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCarro;
+import ar.edu.unlam.tallerweb1.servicios.ServicioClienteCombos;
 import ar.edu.unlam.tallerweb1.servicios.ServicioComboCarro;
 import ar.edu.unlam.tallerweb1.servicios.ServicioLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPedido;
@@ -26,11 +29,15 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioPedido;
 public class ControladorPedido {
 	private ServicioPedido servicioPedido;
 	private ServicioLogin servicioLogin;
+	private ServicioComboCarro servicioComboCarro;
+	private ServicioClienteCombos servicioClienteCombos;
 
 	@Autowired
-	public ControladorPedido(ServicioPedido servicioPedido,ServicioLogin servicioLogin) {
+	public ControladorPedido(ServicioPedido servicioPedido,ServicioLogin servicioLogin,ServicioComboCarro servicioComboCarro,ServicioClienteCombos servicioClienteCombos) {
 		this.servicioPedido = servicioPedido;
 		this.servicioLogin=servicioLogin;
+		this.servicioComboCarro = servicioComboCarro;
+		this.servicioClienteCombos = servicioClienteCombos;
 	}
 	
 	
@@ -101,7 +108,15 @@ public class ControladorPedido {
 		@RequestMapping(value = "/cancelarPedido", method = RequestMethod.GET, produces = "application/json")
 		public @ResponseBody String cancelaPedido(@RequestParam("id") Long idpedido) {
 
+			  List<Combo> combos = new ArrayList<Combo>();
 		      Pedido pedido =servicioPedido.buscarPedidoPorId(idpedido);
+		      List<ComboCarro> combocarro = servicioComboCarro.obtenerComboCarrosDelCarro(pedido.getCarro().getId());
+		      for (ComboCarro cc : combocarro) {
+		    	  for (int i = 0; i < cc.getCantidad(); i++) {
+		    		  combos.add(cc.getCombo());
+		    	  }
+		      }
+		      this.servicioClienteCombos.restaurarStockDeCombos(combos);
 		      pedido.setEntrega("Cancelado");
 		      servicioPedido.actualizar(pedido);	
 			
