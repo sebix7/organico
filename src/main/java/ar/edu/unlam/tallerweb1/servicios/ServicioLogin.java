@@ -12,7 +12,7 @@ public interface ServicioLogin {
 	Usuario buscarPorMail(String mail);
 	List<Usuario> listarTodos();
 	List<Usuario> busquedaPorRol(String string);
-	
+	List<Usuario> listarTodosVendedoresLongitud(String string);
 	Usuario buscarPorId(Long id);
 
 	void actualizar(Usuario usuario);

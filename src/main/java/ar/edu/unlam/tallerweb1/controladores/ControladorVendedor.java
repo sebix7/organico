@@ -35,6 +35,7 @@ public class ControladorVendedor {
 	private ServicioLogin idVendedor;
 	private ServicioClienteCombos servicioClienteCombos;
 
+
 	
 	@Autowired
 	public ControladorVendedor(ServicioCombo creado, ServicioLogin idVendedor,ServicioClienteCombos servicioClienteCombos){
@@ -243,16 +244,17 @@ public class ControladorVendedor {
 			@RequestParam(value="precio",required=false) String precio
 			) {
 		String rol=(String)request.getSession().getAttribute("ROL");
+		String email=(String)request.getSession().getAttribute("EMAIL");
 		if(rol != null) 
 		if(rol.equals("Vendedor")) {
 			ModelMap modelo = new ModelMap();
 			 List<Combo> filtro;
 			 
 			 if(Descuento.equals("si")) {
-				 filtro = creado.consultarCombosPorEstacionYDescuentoSi(estaciones);
+				 filtro = creado.consultarCombosPorEstacionYDescuentoSi(estaciones,this.idVendedor.buscarPorMail(email));
 				 modelo.put("combos",filtro);
 			 }else {
-				 filtro = creado.consultarCombosPorEstacionYDescuentoNo(estaciones);
+				 filtro = creado.consultarCombosPorEstacionYDescuentoNo(estaciones,this.idVendedor.buscarPorMail(email));
 				 modelo.put("combos",filtro);
 			 }
 			 
@@ -285,7 +287,7 @@ public class ControladorVendedor {
 	
 	
 	@RequestMapping(path = "/geo", method = RequestMethod.GET)
-	public ModelAndView irAGeo(HttpServletRequest request,@RequestParam(value="latitud",required=false) Double latitud,@RequestParam(value="longitud",required=false) Double longitud) {
+	public ModelAndView irAGeo(HttpServletRequest request) {
 		String rol=(String)request.getSession().getAttribute("ROL");
 		
 		if(rol != null) 
@@ -296,13 +298,30 @@ public class ControladorVendedor {
 	}
 	
 	@RequestMapping(path = "/procesarLocalizacion", method = RequestMethod.GET)
-	public ModelAndView procesoGeo(HttpServletRequest request) {
+	public ModelAndView procesoGeo(HttpServletRequest request,@RequestParam(value="lata",required=false) Double latitud,@RequestParam(value="lona",required=false) Double longitud) {
 		String rol=(String)request.getSession().getAttribute("ROL");
-		
+		String email=(String)request.getSession().getAttribute("EMAIL");
+		ModelMap modelo = new ModelMap();
+		List <Combo> localizado;
+		localizado = this.creado.consultarCombosPorUs(this.idVendedor.buscarPorMail(email));
 		if(rol != null) 
-			if(rol.equals("Vendedor"))
+			if(rol.equals("Vendedor")) {
 				
-				return new ModelAndView("geo");
+				if(localizado.size()!=0) {
+					for (Combo combo : localizado) {
+						combo.setLatitud(latitud);
+						combo.setLongitud(longitud);
+						this.creado.registro(combo);
+					}
+				}else {
+					modelo.put("mensaje", "debes tener combos para geolocalizarte");
+					return new ModelAndView("geo",modelo);
+				}
+				
+				
+				modelo.put("mensaje", "exito al cargar tu ubicacion");
+				return new ModelAndView("geo",modelo);
+			}
 		
 		return new ModelAndView("redirect:/login");
 	}

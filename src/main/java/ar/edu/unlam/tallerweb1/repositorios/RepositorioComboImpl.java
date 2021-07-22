@@ -81,19 +81,28 @@ public class RepositorioComboImpl implements RepositorioCombo {
 				.list();
 	}
 	@Override
-	public List<Combo> consultarCombosPorEstacionYDescuentoSi(String estacion) {
+	public List<Combo> consultarCombosPorEstacionYDescuentoSi(String estacion,Usuario us) {
 		// TODO Auto-generated method stub
 		return this.sessionFactory.getCurrentSession().createCriteria(Combo.class)
 				.add(Restrictions.eq("tieneDescuento", true))
 				.add(Restrictions.eq("estacion", estacion))
+				.add(Restrictions.eq("usuario", us))
 				.list();
 	}
 	@Override
-	public List<Combo> consultarCombosPorEstacionYDescuentoNo(String estacion) {
+	public List<Combo> consultarCombosPorEstacionYDescuentoNo(String estacion,Usuario us) {
 		// TODO Auto-generated method stub
 		return this.sessionFactory.getCurrentSession().createCriteria(Combo.class)
 				.add(Restrictions.eq("tieneDescuento", false))
-				.add(Restrictions.eq("estacion", estacion))
+				.add(Restrictions.eq("usuario", us))
+				.list();
+	}
+	@Override
+	public List<Combo> consultarCombosConDireccion() {
+		// TODO Auto-generated method stub
+		return this.sessionFactory.getCurrentSession().createCriteria(Combo.class)
+				.add(Restrictions.isNotNull("longitud"))
+				.add(Restrictions.isNotNull("latitud"))
 				.list();
 	}
 }

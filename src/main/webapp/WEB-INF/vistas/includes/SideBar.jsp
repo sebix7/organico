@@ -98,7 +98,7 @@
 				</li>
 				<li>
 					<a href="geo">
-						<i class="zmdi zmdi-view-dashboard zmdi-hc-fw"></i> Localizate
+						<i class="zmdi zmdi zmdi-pin-drop zmdi-hc-fw"></i> Localizate
 					</a>
 				</li>
 				<li>

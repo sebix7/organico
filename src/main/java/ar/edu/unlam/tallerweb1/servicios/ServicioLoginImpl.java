@@ -65,6 +65,11 @@ public class ServicioLoginImpl implements ServicioLogin {
 		 servicioLoginDao.modificar(usuario);
 		
 	}
+
+	@Override
+	public List<Usuario> listarTodosVendedoresLongitud(String string) {
+	return	servicioLoginDao.rolynull(string);
+	}
 	
 
 }

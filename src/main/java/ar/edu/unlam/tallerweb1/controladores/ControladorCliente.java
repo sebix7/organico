@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +26,7 @@ public class ControladorCliente {
 	private ServicioCombo servicioCombo;
 	private ServicioLogin servicioLogin;
 	private ServicioClienteCombos servicioClienteCombos;
+	private static final Double EARTH_RADIUS = 6378137.0; // Radio ecuatorial
 	
 	@Autowired
 	public ControladorCliente(ServicioCombo servicioCombo,ServicioLogin servicioLogin,ServicioClienteCombos servicioClienteCombos){
@@ -32,29 +35,103 @@ public class ControladorCliente {
 		this.servicioClienteCombos = servicioClienteCombos;
 		
 	}
-	@RequestMapping("/homeCliente")
-	public ModelAndView home(HttpServletRequest request) {
+	
+	
+	@RequestMapping("/codigoLocalizacion")
+	public ModelAndView homeConCodigoDeLocalizacion(HttpServletRequest request,@RequestParam(value = "lon", required = false) Double log, @RequestParam(value = "lat", required = false) Double lat) {
 
 		String rol=(String)request.getSession().getAttribute("ROL");
 		
 		if(rol.equals("Cliente")) {
 			  Usuario usuario = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
-			     ModelMap modelo = new ModelMap();
-			     
+			  ModelMap modelo = new ModelMap();
+			  
+				
 			     if(usuario.isActivo())
 			     {
+			    	  List<Combo> combos3 = this.servicioCombo.ordenarPorDistancia(lat, log);
+			    	
+			    	
+	
 			          List<Combo> combos = this.servicioCombo.consultarCombosSinDescuento();
 			         
 			          
 			          List<Combo> combos2 = this.servicioCombo.consultarCombosConDescuento();
+			        
+			          if(combos3.size() == 0) {
+					      String mensaje = "No hay combos disponibles";
+				    	  modelo.put("mensaje", mensaje);
+				          } else {
+					      modelo.put("combos3", combos3);
+					      
+			        	  }
 			          
 			          if(combos.size() == 0) {
 				      String mensaje = "No hay combos disponibles";
 			    	  modelo.put("mensaje", mensaje);
 			          } else {
 				      modelo.put("combos", combos);
-				      modelo.put("combos2", combos2);
 		        	  }
+			          
+			          if(combos2.size() == 0) {
+					      String mensaje = "No hay combos disponibles";
+				    	  modelo.put("mensaje", mensaje);
+				          } else {
+					      modelo.put("combos2", combos2);
+			        	  }
+			     
+			        return new ModelAndView("homeCliente", modelo);
+			     }
+			     else
+			     {
+			    	 String mensajeActivo="Usted es un usuario no activo. Por el momento no puede realizar ninguna compra";
+			    	 modelo.put("mensajeActivo", mensajeActivo);
+			    	 return new ModelAndView("combos", modelo);
+			     }
+		}
+		else {
+			return new ModelAndView("login");
+		}
+		
+	}
+
+
+	
+	@RequestMapping("/homeCliente")
+	public ModelAndView home(HttpServletRequest request,@RequestParam(value = "lon", required = false) String log, @RequestParam(value = "lat", required = false) String lat) {
+
+		String rol=(String)request.getSession().getAttribute("ROL");
+		
+		if(rol.equals("Cliente")) {
+			  Usuario usuario = servicioLogin.buscarPorId((Long) request.getSession().getAttribute("userId"));
+			  ModelMap modelo = new ModelMap();
+			  
+				
+			     if(usuario.isActivo())
+			     {
+			   
+	
+			          List<Combo> combos = this.servicioCombo.consultarCombosSinDescuento();
+			         
+			          
+			          List<Combo> combos2 = this.servicioCombo.consultarCombosConDescuento();
+			        
+			          
+			          
+			          if(combos.size() == 0) {
+				      String mensaje = "No hay combos disponibles";
+			    	  modelo.put("mensaje", mensaje);
+			          } else {
+				      modelo.put("combos2", combos2);
+				      modelo.put("combos", combos);
+		        	  }
+			          
+			          if(combos2.size() == 0) {
+					      String mensaje = "No hay combos disponibles";
+				    	  modelo.put("mensaje", mensaje);
+				          } else {
+					      modelo.put("combos2", combos2);
+			        	  }
 			     
 			        return new ModelAndView("homeCliente", modelo);
 			     }
@@ -104,4 +181,8 @@ public class ControladorCliente {
 	public ModelAndView irACompras() {
 		return new ModelAndView("compras");
 	}
+	private double rad(double d){
+	    return d * Math.PI / 180.0;
+	}
+	
 }

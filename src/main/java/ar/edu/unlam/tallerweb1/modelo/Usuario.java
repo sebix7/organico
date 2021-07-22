@@ -23,8 +23,8 @@ public class Usuario {
 	private String password;
 	private String rol;
 	private String nombre;
-	@OneToOne
-	private Direccion direccion;
+
+	
 	
 	private boolean activo;
 	
@@ -60,14 +60,6 @@ public class Usuario {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Direccion getDireccion() {
-		return direccion;
-	}
-	public void setDireccion(Direccion direccion) {
-		this.direccion = direccion;
-	}
-	
-	
 	public boolean isActivo() {
 		return activo;
 	}

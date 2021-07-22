@@ -6,7 +6,7 @@
 <script src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyAiq3xISXSZYgkd9GDAOdajy4NK2d3L7dY"></script>
 <%@ include file="includes/cabecera.jsp"%>
 </head>
-<body  onload="loadMap()">
+<body  onload="initializee();">
 <!-- SideBar -->
 <%@ include file="includes/SideBar.jsp"%>
 
@@ -39,67 +39,73 @@
 			</div>
 		</div>
 		
+		
+		
 		<script>
-    function loadMap() {
+		function initializee() {
+		    // Creating map object
+		    var map = new google.maps.Map(document.getElementById('mapa_canvas'), {
+		        zoom: 12,
+		        center: new google.maps.LatLng(-34.686078060293006, -58.61402310230241),
+		        mapTypeId: google.maps.MapTypeId.ROADMAP
+		    });
 
-        var mapOptions = {
-            center:new google.maps.LatLng(-34.6686986,-58.5614947),
-            zoom:12,
-            panControl: false,
-            zoomControl: false,
-            scaleControl: false,
-            mapTypeControl:false,
-            streetViewControl:true,
-            overviewMapControl:true,
-            rotateControl:true,
-            mapTypeId:google.maps.MapTypeId.ROADMAP
-        };
+		    // creates a draggable marker to the given coords
+		    var vMarker = new google.maps.Marker({
+		        position: new google.maps.LatLng(-34.686078060293006, -58.61402310230241),
+		        draggable: true
+		    });
 
-        var map = new google.maps.Map(document.getElementById("mapa"),mapOptions);
+		    // adds a listener to the marker
+		    // gets the coords when drag event ends
+		    // then updates the input with the new coords
+		    google.maps.event.addListener(vMarker, 'dragend', function (evt) {
+		        $("#txtaLat").val(evt.latLng.lat().toFixed(6));
+		        $("#txtaLng").val(evt.latLng.lng().toFixed(6));
 
-    
+		        map.panTo(evt.latLng);
+		    });
 
-        google.maps.event.addListener(map, "click", function(event) {
-            var lat = event.latLng.lat();
-            var lng = event.latLng.lng();
+		    // centers the map on markers coords
+		    map.setCenter(vMarker.position);
 
-            document.a1.lat.value = lat;
-            document.a1.lon.value = lng;
+		    // adds the marker on the map
+		    vMarker.setMap(map);
+		}
 
-        });
-
-    }
 
 
 </script>
-
+<c:if test="${not empty mensaje}">
+		        <h4><span>${mensaje}</span></h4>
+	        </c:if>
    <div class="container-fluid" style="padding: 30px 10px;">
 		  <h2><span>Localizate en el mapa</span></h2>
-		  
-		  <div class="container-fluid" id="mapa" style="width:1300px; height:400px;"></div>
+		  <div id="mapa_canvas" style="width: auto; height: 500px;">
+    </div>
 		
 		</div>
+		
+		
 
 
 <div class="container-fluid">
 
-<p>Has Click sobre el mapa</p>
-
-						<form name="a1" method="get" action="procesarLocalizacion">
-						<div class="container-fluid" style="padding: 30px 10px;">
-  <label for="lat">Latitud:</label><br>
-  <input id="lat" type="number" id="latitud" name="latitud"><br>
-  <label for="lng">Longitud:</label><br>
-  <input id="lon" type="number" id="longitud" name="longitud"><br>
-
-   <button class="btn btn-primary" type="submit">Registrar</button>
-   </div>
-
-						</form>
+<div  class="full-box text-center" style="padding: 30px 10px;">
+			
+			<form method="get" action="procesarLocalizacion" >
+ 
+    <input name="lata" id="txtaLat" type="hidden" style="color:red" value="-34.686078060293006" />
+  
+    <input  name="lona" id="txtaLng" type="hidden" style="color:red" value="-58.61402310230241" /><br />
+   
+      <button class="btn btn-primary" type="submit">Grabar</button>
+			</form>
+	       		
 							
 					</div>
-
-		
+</div>
+			
 	</section>
 
 

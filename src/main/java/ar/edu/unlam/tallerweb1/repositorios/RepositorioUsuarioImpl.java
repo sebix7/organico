@@ -78,6 +78,18 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
 		}
 	}
 
+	@Override
+	public List<Usuario> rolynull(String rol) {
+		final Session session = sessionFactory.getCurrentSession();
+		List<Usuario> usuarioPorRol=session.createCriteria(Usuario.class)
+				.add( Restrictions.and(Restrictions.eq("rol",rol),
+						Restrictions.isNotNull("longitud")))
+				
+				.list();
+				
+		return  usuarioPorRol ;
+	}
+
 
 
 }
