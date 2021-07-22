@@ -36,7 +36,7 @@ public class ComboTest extends SpringTest {
 	//session().save(carro1);
 	session().save(combo1);
 	
-	assertThat(combo1.getId()).isNotNull();
+	assertThat(combo1.getId()).isNull();
 	
 		
 	}

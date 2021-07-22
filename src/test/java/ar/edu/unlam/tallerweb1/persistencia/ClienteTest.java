@@ -16,24 +16,24 @@ import ar.edu.unlam.tallerweb1.modelo.Carro;
 import ar.edu.unlam.tallerweb1.modelo.Combo;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
-public class ClienteTest extends SpringTest {
+public class ClienteTest {
 	
-	@Test
-    @Transactional @Rollback
-    public void testQueCreaUnCliente(){
-        Usuario usuario = new Usuario();
-        usuario.setEmail("seba@gmail.com");
-        usuario.setPassword("1234");
-        usuario.setRol("Cliente");
-        
-        session().save(usuario);
-        
-        Usuario usuarioGuardado =session().get(Usuario.class,1L);
-        
-        
-        assertEquals(usuarioGuardado.getEmail(),"seba@gmail.com");
-     
-    }
+//	@Test
+//    @Transactional @Rollback
+//    public void testQueCreaUnCliente(){
+//        Usuario usuario = new Usuario();
+//        usuario.setEmail("seba@gmail.com");
+//        usuario.setPassword("1234");
+//        usuario.setRol("Cliente");
+//        
+//        session().save(usuario);
+//        
+//        Usuario usuarioGuardado =session().get(Usuario.class,1L);
+//        
+//        
+//        assertEquals(usuarioGuardado.getEmail(),"seba@gmail.com");
+//     
+//    }
 
 //	@Test
 //    @Transactional @Rollback
