@@ -133,11 +133,11 @@
                 </div>
                     </div>
                     
+	        <c:if test="${not empty combos}">
                                  <div class="full-box text-center" style="padding: 30px 10px;">
 			
 		        <h4><span>Combos Seleccionados</span></h4>
 	       
-	        <c:if test="${not empty combos}">
 				<div class="row">
 					<c:forEach items="${combos}" var="combo">
 		  				<div class="col-sm-6 col-md-4">
@@ -162,7 +162,14 @@
 		       						<form action="" method="POST">
 		       						<label for="EnvioDeIdCompra"></label>
 									<input type="hidden" id="EnvioDeIdCompra" name="EnvioDeIdCompra" value="${combo.id}">
-		       						<a  class="btn btn-primary" role="button" href="registroUsuario">Comprar Combo!</a>
+										<c:if test="${Vendedor == null && Vendedor == null}">
+											<c:if test="${Cliente != null}">
+				       							<a class="btn btn-primary" role="button" href="combos">Comprar Combo!</a>
+				       						</c:if>
+				       						<c:if test="${Cliente == null}">
+				       							<a class="btn btn-primary" role="button" href="registroUsuario">Comprar Combo!</a>
+				       						</c:if>
+			       						</c:if>
 		       						</form>
 		      					</div>
 		    				</div>
