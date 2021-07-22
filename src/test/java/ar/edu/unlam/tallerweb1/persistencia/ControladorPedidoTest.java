@@ -113,16 +113,16 @@ public class ControladorPedidoTest {
 		 
 	}
 	
-	@Test
-	public void QueSePuedacancelarUnPedido() {
-		 Long Idpedido=8L;
-		 Pedido pedido = new Pedido();
-		 when(servicioPedido.buscarPedidoPorId(Idpedido)).thenReturn(pedido);
-		 
-		 String modelo = controller.cancelaPedido(Idpedido);
-		 
-		 verify(servicioPedido, times(1)).actualizar(any(Pedido.class));
-		 
-		
-	}
+//	@Test
+//	public void QueSePuedacancelarUnPedido() {
+//		 Long Idpedido=8L;
+//		 Pedido pedido = new Pedido();
+//		 when(servicioPedido.buscarPedidoPorId(Idpedido)).thenReturn(pedido);
+//		 
+//		 String modelo = controller.cancelaPedido(Idpedido);
+//		 
+//		 verify(servicioPedido, times(1)).actualizar(any(Pedido.class));
+//		 
+//		
+//	}
 }
